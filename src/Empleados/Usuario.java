@@ -9,5 +9,5 @@ package Empleados;
  * @author N04109
  */
 public class Usuario {
-    
+    private String user;
 }
