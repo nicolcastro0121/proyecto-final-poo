@@ -4,15 +4,12 @@
  */
 package Empleados;
 
-<<<<<<< HEAD
-public class Administrador {
-    private String Code;
-=======
 /**
  *
  * @author N04109
  */
 public class Administrador {
-    
->>>>>>> 45b49221ef087a59202b2c6d540bc7c8bacef02c
+    private String Code;
+
 }
+
