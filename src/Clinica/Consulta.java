@@ -31,7 +31,7 @@ public class Consulta {
 
     public void abrir() {
         this.estado = "Abierta";
-        System.out.println("Consulta abierta para: " + cita.getPaciente().getNombre());
+        System.out.println("Consulta abierta para: " + cita.getPaciente().getNombres());
     }
     
     public void cerrar() {

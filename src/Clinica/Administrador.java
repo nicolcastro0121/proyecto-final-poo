@@ -3,9 +3,11 @@ package Clinica;
 
 public class Administrador extends Empleado{
 
-    public Administrador(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
-        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
+    public Administrador(String dni, String nombre, String apellido, String telf, String email, String id, String usuario, String password, String estado) {
+        super(dni, nombre, apellido, telf, email, id, usuario, password, estado);
     }
+
+    
     
 
     @Override
