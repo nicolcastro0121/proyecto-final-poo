@@ -6,26 +6,27 @@ package Clinica;
 
 public class Paciente {
     private String dni;
-    private String nombre;
-    private String apellido;
+    private String nombres;
+    private String apellidos;
+    private String fechaNacimiento;
+    private String sexo;
+    private String telefono;
     private String direccion;
-    private String telf;
-    private String email;
-    private String historiaClinica;
+    private String contactoEmergencia;
+    private Cita[] citas;
+    private HistoriaClinica historia;
 
-    public Paciente(String dni, String nombre, String apellido, String direccion,
-                   String telf, String email, String historiaClinica) {
+    public Paciente(String dni, String nombres, String apellidos, String fechaNacimiento, String sexo, String telefono, String direccion, String contactoEmergencia) {
         this.dni = dni;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = fechaNacimiento;
+        this.sexo = sexo;
+        this.telefono = telefono;
         this.direccion = direccion;
-        this.telf = telf;
-        this.email = email;
-        this.historiaClinica = historiaClinica;
-    }
-    
-    public void verificarEstado() {
-        System.out.println("Paciente " + nombre + " verificado");
+        this.contactoEmergencia = contactoEmergencia;
+        this.citas = new Cita[50];
+        this.historia = new HistoriaClinica();
     }
 
     public String getDni() {
@@ -36,20 +37,44 @@ public class Paciente {
         this.dni = dni;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getDireccion() {
@@ -60,29 +85,32 @@ public class Paciente {
         this.direccion = direccion;
     }
 
-    public String getTelf() {
-        return telf;
+    public String getContactoEmergencia() {
+        return contactoEmergencia;
     }
 
-    public void setTelf(String telf) {
-        this.telf = telf;
+    public void setContactoEmergencia(String contactoEmergencia) {
+        this.contactoEmergencia = contactoEmergencia;
     }
 
-    public String getEmail() {
-        return email;
+    public Cita[] getCitas() {
+        return citas;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCitas(Cita[] citas) {
+        this.citas = citas;
     }
 
-    public String getHistoriaClinica() {
-        return historiaClinica;
+    public HistoriaClinica getHistoria() {
+        return historia;
     }
 
-    public void setHistoriaClinica(String historiaClinica) {
-        this.historiaClinica = historiaClinica;
+    public void setHistoria(HistoriaClinica historia) {
+        this.historia = historia;
     }
+    
+    
+
     
     
 }
