@@ -7,8 +7,6 @@ public class Administrador extends Empleado{
         super(dni, nombre, apellido, telf, email, id, usuario, password, estado);
     }
 
-    
-    
 
     @Override
     public boolean login() {
