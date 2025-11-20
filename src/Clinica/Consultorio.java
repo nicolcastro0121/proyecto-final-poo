@@ -3,34 +3,43 @@ package Clinica;
 
 
 public class Consultorio {
-    private String idconsul;
-    private String nombre;
+    private String codigo;
+    private String especialidad;
     private String estado;
+    private Cita[] citas;
 
-    public Consultorio(String idconsul, String nombre, String estado) {
-        this.idconsul = idconsul;
-        this.nombre = nombre;
+    public Consultorio(String codigo, String especialidad, String estado, Cita[] citas) {
+        this.codigo = codigo;
+        this.especialidad = especialidad;
         this.estado = estado;
+        this.citas = new Cita[20];
+    }
+    public void cambiarEstado() {
+        if (estado.equalsIgnoreCase("Disponible")) {
+            estado = "Ocupado";
+        } else if (estado.equalsIgnoreCase("Ocupado")) {
+            estado = "Mantenimiento";
+        } else {
+            estado = "Disponible";
+        }
+        System.out.println("Estado del consultorio " + codigo + " cambiado a: " + estado);
     }
     
-    public void verificarEstado() {
-        System.out.println("Consultorio " + nombre + " estado: " + estado);
+
+    public String getCodigo() {
+        return codigo;
     }
 
-    public String getIdconsul() {
-        return idconsul;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    public void setIdconsul(String idconsul) {
-        this.idconsul = idconsul;
+    public String getEspecialidad() {
+        return especialidad;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
     }
 
     public String getEstado() {
@@ -40,6 +49,16 @@ public class Consultorio {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public Cita[] getCitas() {
+        return citas;
+    }
+
+    public void setCitas(Cita[] citas) {
+        this.citas = citas;
+    }
+    
+    
     
     
 }
