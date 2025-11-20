@@ -4,8 +4,6 @@
  */
 package Clinica;
 
-import Empleados.*;
-
 /**
  *
  * @author N04109

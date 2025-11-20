@@ -4,7 +4,6 @@
  */
 package Clinica;
 
-import Empleados.*;
 
 /**
  *
