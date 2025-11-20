@@ -8,8 +8,6 @@ public class Administrador extends Empleado{
     }
     
 
-
-
     @Override
     public boolean login() {
         System.out.println("Administrador " + nombre + " ha iniciado sesión");

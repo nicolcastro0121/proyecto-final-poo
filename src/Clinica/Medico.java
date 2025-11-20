@@ -1,14 +1,30 @@
 
 package Clinica;
 public class Medico extends Empleado {
-    
     private String especialidad;
 
-    public Medico(String dni, String nombres, String apellidos, String telefono, String email,
-                  String usuario, String password, 
-                  String especialidad) { 
-        super(dni, nombres, apellidos, telefono, email, usuario, password, "MEDICO");
-            this.especialidad = especialidad;
+    public Medico(String especialidad, String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
+        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
+        this.especialidad = especialidad;
+    }
+    
+    @Override
+    public boolean login() {
+        System.out.println("Médico " + nombre + " ha iniciado sesión");
+        return true;
+    }
+
+    @Override
+    public void salir() {
+        System.out.println("Médico " + nombre + " ha cerrado sesión");
+    }
+    
+    public void gestionarConsulta() {
+        System.out.println("Médico gestionando consulta...");
+    }
+    
+    public String crearReceta() {
+        return "Receta creada por Dr. " + nombre;
     }
 
     public String getEspecialidad() {
@@ -18,8 +34,8 @@ public class Medico extends Empleado {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-    @Override
-    public String toString() {
-        return super.toString() + " - " + especialidad;
-    }
+
+
+
+    
 }
