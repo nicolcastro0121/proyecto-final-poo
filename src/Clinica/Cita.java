@@ -4,7 +4,7 @@ package Clinica;
 public class Cita {
     private String fechaHora;
     private String estado;
-    private String motivo;
+    private String Modalidad;
     private Consultorio consultorio;
     private Medico medico;
     private Paciente paciente;
@@ -13,7 +13,7 @@ public class Cita {
                 Consultorio consultorio, Medico medico, Paciente paciente) {
         this.fechaHora = fechaHora;
         this.estado = estado;
-        this.motivo = motivo;
+        this.Modalidad = motivo;
         this.consultorio = consultorio;
         this.medico = medico;
         this.paciente = paciente;
@@ -49,12 +49,12 @@ public class Cita {
         this.estado = estado;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public String getModalidad() {
+        return Modalidad;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public void setModalidad(String motivo) {
+        this.Modalidad = motivo;
     }
 
     public Consultorio getConsultorio() {
