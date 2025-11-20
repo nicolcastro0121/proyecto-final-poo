@@ -3,34 +3,34 @@ package Clinica;
 
 public class Cita {
     private String fechaHora;
+    private String modalidad;
     private String estado;
-    private String Modalidad;
-    private Consultorio consultorio;
-    private Medico medico;
     private Paciente paciente;
+    private Medico medico;
+    private Consultorio consultorio;
 
-    public Cita(String fechaHora, String estado, String motivo, 
-                Consultorio consultorio, Medico medico, Paciente paciente) {
+    public Cita(String fechaHora, String modalidad, String estado, Paciente paciente, Medico medico, Consultorio consultorio) {
         this.fechaHora = fechaHora;
+        this.modalidad = modalidad;
         this.estado = estado;
-        this.Modalidad = motivo;
-        this.consultorio = consultorio;
-        this.medico = medico;
         this.paciente = paciente;
+        this.medico = medico;
+        this.consultorio = consultorio;
     }
     
-    public void confirmaCita() {
+    public void confirmar() {
         this.estado = "Confirmada";
         System.out.println("Cita confirmada para: " + fechaHora);
     }
     
-    public void modificarCita() {
-        System.out.println("Cita modificada");
-    }
-    
-    public void cancelarCita() {
+    public void cancelar() {
         this.estado = "Cancelada";
         System.out.println("Cita cancelada");
+    }
+    
+    public void marcarEnSala() {
+        this.estado = "En sala";
+        System.out.println("Paciente en sala: " + paciente.getNombre());
     }
 
     public String getFechaHora() {
@@ -41,6 +41,14 @@ public class Cita {
         this.fechaHora = fechaHora;
     }
 
+    public String getModalidad() {
+        return modalidad;
+    }
+
+    public void setModalidad(String modalidad) {
+        this.modalidad = modalidad;
+    }
+
     public String getEstado() {
         return estado;
     }
@@ -49,20 +57,12 @@ public class Cita {
         this.estado = estado;
     }
 
-    public String getModalidad() {
-        return Modalidad;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setModalidad(String motivo) {
-        this.Modalidad = motivo;
-    }
-
-    public Consultorio getConsultorio() {
-        return consultorio;
-    }
-
-    public void setConsultorio(Consultorio consultorio) {
-        this.consultorio = consultorio;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
     public Medico getMedico() {
@@ -73,12 +73,12 @@ public class Cita {
         this.medico = medico;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public Consultorio getConsultorio() {
+        return consultorio;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setConsultorio(Consultorio consultorio) {
+        this.consultorio = consultorio;
     }
     
     
