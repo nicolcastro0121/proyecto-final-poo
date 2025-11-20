@@ -30,7 +30,7 @@ public class Cita {
     
     public void marcarEnSala() {
         this.estado = "En sala";
-        System.out.println("Paciente en sala: " + paciente.getNombre());
+        System.out.println("Paciente en sala: " + paciente.getNombres());
     }
 
     public String getFechaHora() {
