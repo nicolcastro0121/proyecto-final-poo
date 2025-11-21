@@ -24,6 +24,15 @@ public class GestionEmpleado {
         }
     }
     
+     public void crearEmpleado(Empleado empleado) {
+        if (cantidad < empleados.length) {
+            empleados[cantidad] = empleado;
+            cantidad++;
+        } else {
+            System.out.println("No hay espacio para más empleados");
+        }
+    }
+     
     public Empleado ValidarEmpleado(String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol){
         for (int i = 0; i < this.cantidad; i++) {
             if (this.empleados[i].getUserName().equals(userName)&& this.empleados[i].getPassword().equals(password)) {
