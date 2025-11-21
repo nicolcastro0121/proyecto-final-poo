@@ -16,14 +16,14 @@ public class GestionEmpleado {
         if (cantidad < empleados.length) {
             empleados[cantidad] = empleado;
             cantidad++;
-            System.out.println("Empleado agregado: " + empleado.getNombre());
+            
         } else {
-            System.out.println("No hay espacio para más empleados");
+            
         }
     }
     
-    public void modificar(int indice, Empleado nuevoEmpleado) {
-        if (indice >= 0 && indice < cantidad) {
+    public void modificar(int DNI, Empleado nuevoEmpleado) {
+        if () {
             empleados[indice] = nuevoEmpleado;
             System.out.println("Empleado modificado en posición: " + indice);
         } else {

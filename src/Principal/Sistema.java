@@ -45,40 +45,42 @@ public class Sistema {
         }
     }
     
-    public void eliminarUsuario(int indice) {
-        if (indice >= 0 && indice < cantidadUsuarios) {
-            System.out.println("Usuario eliminado: " + usuarios[indice].getUsuario());
-            for (int i = indice; i < cantidadUsuarios - 1; i++) {
-                usuarios[i] = usuarios[i + 1];
+    public void eliminarUsuario(String id) {
+    for (int i = 0; i < cantidadUsuarios; i++) {
+        if (usuarios[i].getId().equals(id)) {
+            System.out.println("Usuario eliminado: " + usuarios[i].getUsuario());
+            for (int j = i; j < cantidadUsuarios - 1; j++) {
+                usuarios[j] = usuarios[j + 1];
             }
             usuarios[cantidadUsuarios - 1] = null;
             cantidadUsuarios--;
-        } else {
-            System.out.println("Índice inválido");
+            return;
         }
     }
+    System.out.println("Usuario no encontrado con ID: " + id);
+}
     
-    public void modificarUsuario(int indice, Usuario nuevoUsuario) {
-        if (indice >= 0 && indice < cantidadUsuarios) {
-            Usuario usuarioActual = usuarios[indice];
-            usuarioActual.setId(nuevoUsuario.getId());
-            usuarioActual.setUsuario(nuevoUsuario.getUsuario());
-            usuarioActual.setPassword(nuevoUsuario.getPassword());
-            usuarioActual.setEstado(nuevoUsuario.getEstado());
-            System.out.println("Usuario modificado en posición: " + indice);
-        } else {
-            System.out.println("Índice inválido");
+    public void modificarUsuario(String id, Usuario nuevoUsuario) {
+    for (int i = 0; i < cantidadUsuarios; i++) {
+        if (usuarios[i].getId().equals(id)) {
+            usuarios[i].setUsuario(nuevoUsuario.getUsuario());
+            usuarios[i].setPassword(nuevoUsuario.getPassword());
+            usuarios[i].setEstado(nuevoUsuario.getEstado());
+            System.out.println("Usuario modificado: " + id);
+            return;
         }
     }
+    System.out.println("Usuario no encontrado con ID: " + id);
+}
     
-    public Usuario buscarUsuarioPorCredenciales(String usuario, String password) {
-        for (int i = 0; i < cantidadUsuarios; i++) {
-            if (usuarios[i].getUsuario().equals(usuario) && usuarios[i].getPassword().equals(password)) {
-                return usuarios[i];
-            }
+    public Usuario buscarUsuario(String id) {
+    for (int i = 0; i < cantidadUsuarios; i++) {
+        if (usuarios[i].getId().equals(id)) {
+            return usuarios[i];
         }
-        return null;
-    }    
+    }
+    return null;
+}   
     
     public void verUsuarios() {
         System.out.println("=== LISTA DE USUARIOS ===");
