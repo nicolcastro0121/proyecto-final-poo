@@ -53,5 +53,13 @@ public class GestionEmpleado {
                              " - DNI: " + empleado.getDni());
         }
     }
+
+    public Empleado[] getEmpleados() {
+        return empleados;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
     
 }
