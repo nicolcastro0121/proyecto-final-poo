@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Principal;
 
@@ -8,12 +8,14 @@ package Principal;
  *
  * @author Fernanda
  */
-public class GestorEmpleados extends javax.swing.JPanel {
+public class Gestor_Empleados extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Gestor_Empleados.class.getName());
 
     /**
-     * Creates new form NewJPanel
+     * Creates new form Gestor_Empleados
      */
-    public GestorEmpleados() {
+    public Gestor_Empleados() {
         initComponents();
     }
 
@@ -26,42 +28,57 @@ public class GestorEmpleados extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        ComboBoxROL = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        ComboBoxEspecialidades = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        Nombre_Ingreso = new javax.swing.JTextField();
         Agregar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         Modificar = new javax.swing.JButton();
+        Apellido_Ingreso = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        DNI_Ingreso = new javax.swing.JTextField();
         Eliminar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        Telefon_ingreso = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        ComboBoxROL = new javax.swing.JComboBox<>();
-        ComboBoxEspecialidades = new javax.swing.JComboBox<>();
-        Nombre_Ingreso = new javax.swing.JTextField();
-        Apellido_Ingreso = new javax.swing.JTextField();
-        DNI_Ingreso = new javax.swing.JTextField();
-        Telefon_ingreso = new javax.swing.JTextField();
         Email_Ingreso = new javax.swing.JTextField();
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jLabel1.setText("Nombre:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBoxROL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recepcionista", "Médico", "Enfermero", "Cajero", "Administrador" }));
+        ComboBoxROL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxROLActionPerformed(evt);
+            }
+        });
 
-        jRadioButton1.setText("jRadioButton1");
+        jLabel2.setText("Apellido");
+
+        ComboBoxEspecialidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicina general", "Pediatría", "Ginecología y obstetricia", "Cardiología", "Dermatología", "Traumatología y ortopedia" }));
+        ComboBoxEspecialidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxEspecialidadesActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("DNI:");
+
+        Nombre_Ingreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nombre_IngresoActionPerformed(evt);
+            }
+        });
 
         Agregar.setText("Agregar");
+
+        jLabel4.setText("Telefono:");
 
         Modificar.setText("Modificar");
         Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +87,17 @@ public class GestorEmpleados extends javax.swing.JPanel {
             }
         });
 
+        Apellido_Ingreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Apellido_IngresoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Rol:");
+
         Eliminar.setText("Eliminar");
+
+        jLabel6.setText("Especialidad");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,48 +112,10 @@ public class GestorEmpleados extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setText("Nombre:");
-
-        jLabel2.setText("Apellido");
-
-        jLabel3.setText("DNI:");
-
-        jLabel4.setText("Telefono:");
-
-        jLabel5.setText("Rol:");
-
-        jLabel6.setText("Especialidad");
-
         jLabel7.setText("Email:");
 
-        ComboBoxROL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recepcionista", "Médico", "Enfermero", "Cajero", "Administrador" }));
-        ComboBoxROL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboBoxROLActionPerformed(evt);
-            }
-        });
-
-        ComboBoxEspecialidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicina general", "Pediatría", "Ginecología y obstetricia", "Cardiología", "Dermatología", "Traumatología y ortopedia" }));
-        ComboBoxEspecialidades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboBoxEspecialidadesActionPerformed(evt);
-            }
-        });
-
-        Nombre_Ingreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Nombre_IngresoActionPerformed(evt);
-            }
-        });
-
-        Apellido_Ingreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Apellido_IngresoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -217,13 +206,11 @@ public class GestorEmpleados extends javax.swing.JPanel {
                     .addComponent(Eliminar)
                     .addComponent(Modificar)
                     .addComponent(Agregar))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ModificarActionPerformed
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
     private void ComboBoxROLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxROLActionPerformed
         if(this.ComboBoxROL.getSelectedItem().toString().equals("Medico")){
@@ -234,20 +221,46 @@ public class GestorEmpleados extends javax.swing.JPanel {
             this.ComboBoxEspecialidades.setEditable(false);
         }
     }//GEN-LAST:event_ComboBoxROLActionPerformed
-    
+
     private void ComboBoxEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxEspecialidadesActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
     }//GEN-LAST:event_ComboBoxEspecialidadesActionPerformed
 
     private void Nombre_IngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_IngresoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Nombre_IngresoActionPerformed
 
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModificarActionPerformed
+
     private void Apellido_IngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apellido_IngresoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Apellido_IngresoActionPerformed
-    public static void main(String[] args) {
-        
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new Gestor_Empleados().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -261,7 +274,6 @@ public class GestorEmpleados extends javax.swing.JPanel {
     private javax.swing.JButton Modificar;
     private javax.swing.JTextField Nombre_Ingreso;
     private javax.swing.JTextField Telefon_ingreso;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -269,10 +281,6 @@ public class GestorEmpleados extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
