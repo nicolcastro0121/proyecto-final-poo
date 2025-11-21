@@ -6,6 +6,8 @@ public class Enfermero extends Empleado{
     public Enfermero(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
         super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
     }
+
+    
     
     public void admitirPaciente(Cita cita) {
         if (cita != null) {

@@ -6,14 +6,18 @@ public abstract class Usuario {
     protected String usuario;
     protected String password;
     protected String estado;
-    
+    protected String Rol;
 
-    public Usuario(String id, String usuario, String password, String estado) {
+    public Usuario(String id, String usuario, String password, String estado, String Rol) {
         this.id = id;
         this.usuario = usuario;
         this.password = password;
         this.estado = estado;
+        this.Rol = Rol;
     }
+    
+
+    
 
     public String getId() {
         return id;
@@ -45,6 +49,14 @@ public abstract class Usuario {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getRol() {
+        return Rol;
+    }
+
+    public void setRol(String Rol) {
+        this.Rol = Rol;
     }
     
     

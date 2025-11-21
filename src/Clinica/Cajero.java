@@ -9,11 +9,11 @@ public class Cajero extends Empleado implements Imprimible{
     private GestionFactura gestionFactura;
     private GestionConsulta gestionConsulta;
 
-    public Cajero(GestionFactura gestionFactura, GestionConsulta gestionConsulta, String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
+    public Cajero(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
         super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
-        this.gestionFactura = gestionFactura;
-        this.gestionConsulta = gestionConsulta;
+        
     }
+    
 
     
     

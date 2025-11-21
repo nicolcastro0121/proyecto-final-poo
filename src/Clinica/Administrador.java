@@ -7,24 +7,10 @@ import InterfacesClinica.Reporte;
 public class Administrador extends Empleado implements Reporte{
      private GestionEmpleado gestionEmpleado;
      private GestionConsultorio gestionConsultorio;
-    
+
     public Administrador(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
         super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
-    }
-
-    
-
-
-    @Override
-    public boolean Autenticar() {
         
-         return false;
-        
-    }
-
-    @Override
-    public void salir() {
-        System.out.println("Administrador " + nombre + " ha cerrado sesión");
     }
     
     public void generarReportes() {
