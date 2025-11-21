@@ -7,17 +7,9 @@ public class Medico extends Empleado {
         super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
         this.especialidad = especialidad;
     }
-    
-    @Override
-    public boolean login() {
-        System.out.println("Médico " + nombre + " ha iniciado sesión");
-        return true;
-    }
 
-    @Override
-    public void salir() {
-        System.out.println("Médico " + nombre + " ha cerrado sesión");
-    }
+   
+    
     
     public void gestionarConsulta() {
         System.out.println("Médico gestionando consulta...");
@@ -33,9 +25,5 @@ public class Medico extends Empleado {
 
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
-    }
-
-
-
-    
+    }   
 }
