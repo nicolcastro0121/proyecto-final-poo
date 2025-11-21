@@ -1,6 +1,7 @@
 
 package Clinica;
 
+
 public class Paciente {
     private String dni;
     private String nombres;

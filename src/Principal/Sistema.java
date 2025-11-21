@@ -4,10 +4,32 @@
  */
 package Principal;
 
-/**
- *
- * @author Nicol
- */
+import InterfacesClinica.Imprimible;
+import InterfacesClinica.Reporte;
+import InterfacesClinica.Validable;
+
+
+
 public class Sistema {
+    public void imprimirDocumento(Imprimible documento) {
+        documento.imprimir();
+    }
+
     
+    public void generarReporteCompleto(Reporte reporte) {
+        System.out.println(reporte.generarReporteDetallado());
+    }
+
+
+    public boolean validarObjeto(Validable objeto) {
+        if (!objeto.validar()) {
+            String[] errores = objeto.obtenerErrores();
+            System.out.println("Errores de validación:");
+            for (String error : errores) {
+                System.out.println("- " + error);
+            }
+            return false;
+        }
+        return true;
+    }
 }

@@ -11,6 +11,10 @@ public class HistoriaClinica {
         this.cantidad = 0;
         this.paciente = paciente;
     }
+
+    HistoriaClinica() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
     public void agregar(Consulta consulta) {

@@ -1,7 +1,10 @@
 
 package GestionClinica;
 import Clinica.Consultorio;
-public class GestionConsultorio {
+import InterfacesClinica.Reporte;
+
+
+public class GestionConsultorio implements Reporte{
     private Consultorio[] consultorios;
     private int cantidad;
 
@@ -60,6 +63,28 @@ public class GestionConsultorio {
 
     public int getCantidad() {
         return cantidad;
+    }
+
+    @Override
+    public String generarReporte() {
+        return "Reporte de Consultorios: Total=" + this.cantidad;
+    }
+
+    @Override
+    public String generarReporteDetallado() {
+        StringBuilder reporte = new StringBuilder();
+        reporte.append("=== REPORTE DETALLADO DE CONSULTORIOS ===\n");
+        for (int i = 0; i < cantidad; i++) {
+            reporte.append("Consultorio: ").append(consultorios[i].getCodigo())
+                   .append(" - Especialidad: ").append(consultorios[i].getEspecialidad())
+                   .append(" - Estado: ").append(consultorios[i].getEstado()).append("\n");
+        }
+        return reporte.toString();
+    }
+
+    @Override
+    public Object[] obtenerDatosReporte() {
+        return this.consultorios;
     }
     
     

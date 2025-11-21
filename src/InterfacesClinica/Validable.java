@@ -2,6 +2,9 @@
 package InterfacesClinica;
 
 public interface Validable {
-    public boolean validar();
+    boolean validar();                 
+    String[] obtenerErrores();         
+    boolean esValido();    
+    
     
 }

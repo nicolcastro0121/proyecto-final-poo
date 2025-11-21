@@ -1,7 +1,9 @@
 
 package Clinica;
 
-public class Factura {
+import InterfacesClinica.Imprimible;
+
+public class Factura implements Imprimible{
     private int numero;
     private String descripcion;
     private double monto;
@@ -39,5 +41,20 @@ public class Factura {
 
     public void emitirFactura(){
         System.out.println("\nFactura emitida:" + this.numero + "\nDescripcion:" + this.descripcion + "\nMonto: " + this.monto);
+    }
+
+    @Override
+    public String generarDocumento() {
+        return "=== FACTURA ===\n" +
+               "Número: " + this.numero + "\n" +
+               "Descripción: " + this.descripcion + "\n" +
+               "Monto: $" + this.monto + "\n" +
+               "================";
+        
+    }
+
+    @Override
+    public void imprimir() {
+        System.out.println(generarDocumento());
     }
 }

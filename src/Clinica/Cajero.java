@@ -41,14 +41,8 @@ public class Cajero extends Empleado {
                                      total);
         
         gestionFactura.crearFactura(factura);
+        factura.imprimir();
         
-        System.out.println("=== COMPROBANTE DE PAGO ===");
-        System.out.println("Factura Nº: " + numeroFactura);
-        System.out.println("Paciente: " + consulta.getCita().getPaciente().getNombres() + 
-                          " " + consulta.getCita().getPaciente().getApellidos());
-        System.out.println("Motivo: " + consulta.getMotivo());
-        System.out.println("Total: $" + total);
-        System.out.println("============================");
     }
 
     @Override

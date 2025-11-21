@@ -5,13 +5,28 @@ public class Orden {
     private String nombre;
     private String descripcion;
     private double precio;
+    private String estado; 
+    private String resultado;
 
     public Orden(String nombre, String descripcion, double precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.estado = "Pendiente";
+        this.resultado = "";
     }
 
+    public void ActualizarEstado(String nuevoEstado) {
+        this.estado = nuevoEstado;
+    }
+
+    
+    public void RegistrarResultado(String resultado) {
+        this.resultado = resultado;
+        this.estado = "Con resultado";
+    }
+    
+    
     public String getNombre() {
         return nombre;
     }
@@ -20,12 +35,12 @@ public class Orden {
         this.nombre = nombre;
     }
 
-    public String getdescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setdescripcion(String cantidad) {
-        this.descripcion = cantidad;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public double getPrecio() {
@@ -35,6 +50,26 @@ public class Orden {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
+    }
+
+    
+
+    
     
     
 }

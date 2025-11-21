@@ -1,4 +1,6 @@
 package Clinica;
+import InterfacesClinica.Imprimible; 
+
 
 public class Receta {
 
@@ -53,6 +55,8 @@ public class Receta {
         }
     }
 
+     
+     
     public Medicamento[] getMedicamentos() {
         return medicamentos;
     }
