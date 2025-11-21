@@ -6,6 +6,7 @@ public abstract class Usuario {
     protected String usuario;
     protected String password;
     protected String estado;
+    
 
     public Usuario(String id, String usuario, String password, String estado) {
         this.id = id;
@@ -13,9 +14,6 @@ public abstract class Usuario {
         this.password = password;
         this.estado = estado;
     }
-    
-    public abstract boolean login();
-    public abstract void salir();
 
     public String getId() {
         return id;

@@ -2,9 +2,10 @@
 package Clinica;
 import GestionClinica.GestionFactura;
 import GestionClinica.GestionConsulta;
+import InterfacesClinica.Imprimible;
 import java.util.Random;
 
-public class Cajero extends Empleado {
+public class Cajero extends Empleado implements Imprimible{
     private GestionFactura gestionFactura;
     private GestionConsulta gestionConsulta;
 
@@ -46,14 +47,15 @@ public class Cajero extends Empleado {
     }
 
     @Override
-    public boolean login() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public String generarDocumento() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public void salir() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void imprimir() {
+        
     }
+
+    
     
 
     

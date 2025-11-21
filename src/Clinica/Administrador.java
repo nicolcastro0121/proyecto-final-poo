@@ -2,9 +2,12 @@
 package Clinica;
 
 import GestionClinica.GestionConsultorio;
-
-public class Administrador extends Empleado{
-
+import GestionClinica.GestionEmpleado;
+import InterfacesClinica.Reporte;
+public class Administrador extends Empleado implements Reporte{
+     private GestionEmpleado gestionEmpleado;
+     private GestionConsultorio gestionConsultorio;
+    
     public Administrador(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
         super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
     }
@@ -13,9 +16,10 @@ public class Administrador extends Empleado{
 
 
     @Override
-    public boolean login() {
-        System.out.println("Administrador " + nombre + " ha iniciado sesión");
-        return true;
+    public boolean Autenticar() {
+        
+         return false;
+        
     }
 
     @Override
@@ -27,5 +31,20 @@ public class Administrador extends Empleado{
 
         GestionConsultorio reporteConsultorios = new GestionConsultorio();
         System.out.println(reporteConsultorios.generarReporteDetallado());
+    }
+
+    @Override
+    public String generarReporte() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String generarReporteDetallado() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Object[] obtenerDatosReporte() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

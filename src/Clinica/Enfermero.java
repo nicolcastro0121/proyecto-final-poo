@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Clinica;
 
-/**
- *
- * @author Nicol
- */
 public class Enfermero extends Empleado{
 
     public Enfermero(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
@@ -57,25 +50,4 @@ public class Enfermero extends Empleado{
         }
     }
 
-    public void registrarResultadoOrden(Orden orden, String resultado) {
-        if (orden != null) {
-            orden.RegistrarResultado(resultado);
-            System.out.println("Resultado registrado para orden: " + orden.getNombre());
-        } else {
-            System.out.println("Error: Orden no válida");
-        }
-    }
-
-    @Override
-    public boolean login() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void salir() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-
-    
 }
