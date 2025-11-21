@@ -14,37 +14,38 @@ public class GestionPacientes {
         this.cantidad = 0;
     }
     
-    public void agregar(Paciente paciente) {
+    public boolean agregar(Paciente paciente) {
         if (cantidad < pacientes.length) {
             pacientes[cantidad] = paciente;
             cantidad++;
-            System.out.println("Paciente agregado: " + paciente.getNombres());
-        } else {
-            System.out.println("No hay espacio para más pacientes");
+            return true;
         }
+        return false;
     }
     
-    public void modificar(int indice, Paciente nuevoPaciente) {
-        if (indice >= 0 && indice < cantidad) {
-            pacientes[indice] = nuevoPaciente;
-            System.out.println("Paciente modificado en posición: " + indice);
-        } else {
-            System.out.println("Índice inválido");
+   public boolean modificar(String dni, Paciente nuevoPaciente) {
+        for (int i = 0; i < cantidad; i++) {
+            if (pacientes[i].getDni().equals(dni)) {
+                pacientes[i] = nuevoPaciente;
+                return true;
+            }
         }
+        return false;
     }
     
-    public void eliminar(int indice) {
-        if (indice >= 0 && indice < cantidad) {
-            System.out.println("Paciente eliminado: " + pacientes[indice].getNombres());
-            for (int i = indice; i < cantidad - 1; i++) {
-                pacientes[i] = pacientes[i + 1];
+    public boolean eliminar(String dni) {
+    for (int i = 0; i < cantidad; i++) {
+        if (pacientes[i].getDni().equals(dni)) {
+            for (int j = i; j < cantidad - 1; j++) {
+                pacientes[j] = pacientes[j + 1];
             }
             pacientes[cantidad - 1] = null;
             cantidad--;
-        } else {
-            System.out.println("Índice inválido");
+            return true;
         }
     }
+    return false;
+}
     
     public void ver() {
         System.out.println("=== LISTA DE PACIENTES ===");

@@ -12,9 +12,9 @@ public class GestionEmpleado {
         this.cantidad = 0;
     }
     
-    public void AgregarEmpleado(String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol){
+    public void AgregarEmpleado(String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, Empleado empleado, String pRol){
         if (this.cantidad < this.empleados.length) {
-            this.empleados[this.cantidad] = new Empleado(dni, nombres, apellidos, telf, email, userName, password, empleado, Rol){
+            this.empleados[this.cantidad] = new Empleado( dni,  nombres,  apellidos,  telf,  email,  pUserName,  pPassword,  pRol){
                 
             };
             this.cantidad++;
@@ -33,27 +33,29 @@ public class GestionEmpleado {
         return null;
     }
     
-    /*
-    public void modificar(int DNI, Empleado nuevoEmpleado) {
-        if () {
-            empleados[indice] = nuevoEmpleado;
-            System.out.println("Empleado modificado en posición: " + indice);
-        } else {
-            System.out.println("Índice inválido");
-        }
-    }
-    */
-    public void eliminar(int indice) {
-        if (indice >= 0 && indice < cantidad) {
-            System.out.println("Empleado eliminado: " + empleados[indice].getNombres());
-            for (int i = indice; i < cantidad - 1; i++) {
-                empleados[i] = empleados[i + 1];
+   
+    public boolean modificar(String DNI, Empleado nuevoEmpleado) {
+        for (int i = 0; i < cantidad; i++) {
+            if (empleados[i].getDni().equals(DNI)) {
+                empleados[i] = nuevoEmpleado;
+                return true; 
             }
-            empleados[cantidad - 1] = null;
-            cantidad--;
-        } else {
-            System.out.println("Índice inválido");
         }
+        return false; 
+    }
+    
+    public boolean eliminar(String DNI) {
+        for (int i = 0; i < cantidad; i++) {
+            if (empleados[i].getDni().equals(DNI)) {
+                for (int j = i; j < cantidad - 1; j++) {
+                    empleados[j] = empleados[j + 1];
+                }
+                empleados[cantidad - 1] = null;
+                cantidad--;
+                return true; 
+            }
+        }
+        return false; 
     }
     
 

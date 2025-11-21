@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GestionClinica;
 
 import Clinica.Factura;
@@ -16,29 +13,27 @@ public class GestionFactura {
         this.cantidad = 0;
     }
     
-    public void crearFactura(Factura factura) {
+    public boolean crearFactura(Factura factura) {
         if (cantidad < facturas.length) {
             facturas[cantidad] = factura;
             cantidad++;
-            System.out.println("Factura creada: " + factura.getNumero());
-        } else {
-            System.out.println("No hay espacio para más facturas");
+            return true;
         }
+        return false;
     }
     
-    public void eliminarFactura(int idFactura) {
+     public boolean eliminarFactura(int idFactura) {
         for (int i = 0; i < cantidad; i++) {
             if (facturas[i].getNumero() == idFactura) {
-                System.out.println("Factura eliminada: " + facturas[i].getNumero());
                 for (int j = i; j < cantidad - 1; j++) {
                     facturas[j] = facturas[j + 1];
                 }
                 facturas[cantidad - 1] = null;
                 cantidad--;
-                return;
+                return true;
             }
         }
-        System.out.println("Factura no encontrada con ID: " + idFactura);
+        return false;
     }
 
     public Factura[] getFacturas() {

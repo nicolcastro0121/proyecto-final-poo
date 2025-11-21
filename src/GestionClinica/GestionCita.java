@@ -11,39 +11,33 @@ public class GestionCita {
         this.cantidad = 0;
     }
     
-    public void agregar(Cita cita) {
+    public boolean agregar(Cita cita) {
         if (cantidad < citas.length) {
             citas[cantidad] = cita;
             cantidad++;
-            System.out.println("Cita agregada para: " + cita.getPaciente().getNombres());
-        } else {
-            System.out.println("No hay espacio para más citas en el sistema");
+            return true;
         }
+        return false;
     }
     
-     public void modificar(int indice, Cita nuevaCita) {
+     public boolean modificar(int indice, Cita nuevaCita) {
         if (indice >= 0 && indice < cantidad) {
             citas[indice] = nuevaCita;
-            System.out.println("Cita modificada en posición: " + indice);
-        } else {
-            System.out.println("Índice inválido");
+            return true;
         }
+        return false;
     }
      
      public boolean eliminar(int indice) {
-        
         if (indice >= 0 && indice < cantidad) {
-            System.out.println("Cita eliminada: " + citas[indice].getPaciente().getNombres());
             for (int i = indice; i < cantidad - 1; i++) {
                 citas[i] = citas[i + 1];
             }   
             citas[cantidad - 1] = null;
             cantidad--;
             return true;
-        } else {
-            System.out.println("Índice inválido");
-            return false;
         }
+        return false;
     }
      
      public void ver() {

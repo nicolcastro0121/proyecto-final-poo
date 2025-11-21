@@ -3,10 +3,12 @@ package Clinica;
 public class Medico extends Empleado {
     private String especialidad;
 
-    public Medico(String especialidad, String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol) {
-        super(dni, nombres, apellidos, telf, email, userName, password, empleado, Rol);
+    public Medico(String especialidad, String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol) {
+        super(dni, nombres, apellidos, telf, email, pUserName, pPassword, pRol);
         this.especialidad = especialidad;
     }
+
+    
 
 
     

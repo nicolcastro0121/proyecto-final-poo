@@ -1,8 +1,6 @@
 
 package Clinica;
 
-
-
 public class Cita {
     private String fechaHora;
     private String modalidad;

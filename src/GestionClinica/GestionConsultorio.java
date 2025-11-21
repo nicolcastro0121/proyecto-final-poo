@@ -12,39 +12,37 @@ public class GestionConsultorio implements Reporte{
         this.consultorios = new Consultorio[50];
         this.cantidad = 0;
     }
-    public void agregar(Consultorio consultorio) {
+    public boolean agregar(Consultorio consultorio) {
         if (cantidad < consultorios.length) {
             consultorios[cantidad] = consultorio;
             cantidad++;
-            System.out.println("Consultorio agregado: " + consultorio.getCodigo());
-        } else {
-            System.out.println("No hay espacio para más consultorios");
+            return true; 
         }
+        return false; 
     }
     
-    public void modificar(int indice, Consultorio nuevoConsultorio) {
-        if (indice >= 0 && indice < cantidad) {
-            consultorios[indice] = nuevoConsultorio;
-            System.out.println("Consultorio modificado en posición: " + indice);
-        } else {
-            System.out.println("Índice inválido");
-        }
-    }
-    
-     public void eliminar(String codigo) {
+    public boolean modificar(String codigo, Consultorio nuevoConsultorio) {
         for (int i = 0; i < cantidad; i++) {
             if (consultorios[i].getCodigo().equals(codigo)) {
-                System.out.println("Consultorio eliminado: " + consultorios[i].getCodigo());
-                
+                consultorios[i] = nuevoConsultorio;
+                return true; 
+            }
+        }
+        return false; 
+    }
+    
+     public boolean eliminar(String codigo) {
+        for (int i = 0; i < cantidad; i++) {
+            if (consultorios[i].getCodigo().equals(codigo)) {
                 for (int j = i; j < cantidad - 1; j++) {
                     consultorios[j] = consultorios[j + 1];
                 }
                 consultorios[cantidad - 1] = null;
                 cantidad--;
-                return;
+                return true;
             }
         }
-        System.out.println("Consultorio no encontrado con código: " + codigo);
+        return false;
     }
     public void ver() {
         System.out.println("=== LISTA DE CONSULTORIOS ===");

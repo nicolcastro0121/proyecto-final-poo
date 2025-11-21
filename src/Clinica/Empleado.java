@@ -1,4 +1,3 @@
-
 package Clinica;
 
 public class Empleado extends Usuario {
@@ -8,8 +7,8 @@ public class Empleado extends Usuario {
     protected String telf;
     protected String email;
 
-    public Empleado(String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol) {
-        super(userName, password, empleado, Rol);
+    public Empleado(String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol) {
+        super(pUserName, pPassword, pRol);
         this.dni = dni;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -17,14 +16,9 @@ public class Empleado extends Usuario {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    // Getters y setters...
     public String getDni() {
         return dni;
     }
@@ -64,13 +58,4 @@ public class Empleado extends Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-
-        
-
-
-
-
-    
 }
