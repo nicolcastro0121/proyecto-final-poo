@@ -1,20 +1,24 @@
 
 package Clinica;
-
+import GestionClinica.GestionConsulta;
 import GestionClinica.GestionConsultorio;
 import GestionClinica.GestionEmpleado;
 import InterfacesClinica.Reporte;
+
 public class Administrador extends Empleado{
      private GestionEmpleado gestionEmpleado;
      private GestionConsultorio gestionConsultorio;
+     private GestionConsulta gestionconsulta;
 
-    public Administrador(GestionEmpleado gestionEmpleado, GestionConsultorio gestionConsultorio, String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol) {
+    public Administrador(String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol) {
         super(dni, nombres, apellidos, telf, email, userName, password, empleado, Rol);
-        this.gestionEmpleado = gestionEmpleado;
         this.gestionConsultorio = gestionConsultorio;
+        this.gestionEmpleado = gestionEmpleado;
+        this.gestionconsulta =gestionconsulta;
     }
 
-
+    
+    
     public String generarReporteGeneral(int totalEmpleados, int totalConsultorios, int totalCitas, int totalFacturas) {
         return "=== REPORTE GENERAL ===\n" +
                "Total empleados: " + totalEmpleados + "\n" +

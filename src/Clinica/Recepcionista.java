@@ -1,14 +1,58 @@
 
 package Clinica;
 
+import GestionClinica.GestionPacientes;
+import GestionClinica.GestionCita;
+import GestionClinica.GestionFactura;
+import GestionClinica.GestionConsulta;
+import GestionClinica.GestionConsultorio;
+
 public class Recepcionista extends Empleado {
+    private GestionPacientes gestionPacientes;
+    private GestionCita gestionCitas;
+    private GestionFactura gestionFacturas;
+    private GestionConsulta gestionConsultas;
+    private GestionConsultorio gestionConsultorios;
 
     public Recepcionista(String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol) {
         super(dni, nombres, apellidos, telf, email, userName, password, empleado, Rol);
+        this.gestionPacientes = gestionPacientes;
+        this.gestionCitas = gestionCitas;
+        this.gestionFacturas = gestionFacturas;
+        this.gestionConsultas = gestionConsultas;
+        this.gestionConsultorios = gestionConsultorios;
     }
 
-
-
+    public void admitir(Cita cita) {
+        cita.marcarEnSala();
+        System.out.println("Paciente admitido: " + cita.getPaciente().getNombres());
+    } 
+    
+    public void darAlta(Cita cita) {
+        System.out.println("Paciente dado de alta: " + cita.getPaciente().getNombres());
+    }
+    
+    public void agregarPaciente(Paciente paciente) {
+        gestionPacientes.agregar(paciente);
+    }
+    
+    public void modificarPaciente(int dni, Paciente pacienteModificado) {
+        gestionPacientes.modificar(dni, pacienteModificado);
+    }
+    
+    public void eliminarPaciente(int dni) {
+        gestionPacientes.eliminar(dni);
+    }
+    
+    public void crearCita(Paciente paciente, Medico medico, Consultorio consultorio, String fechaHora, String modalidad) {
+        Cita nuevaCita = new Cita(fechaHora, modalidad, "Programada", paciente, medico, consultorio);
+        gestionCitas.agregar(nuevaCita);
+        System.out.println("Cita creada para: " + paciente.getNombres());
+    }
+    
+    public void modificarCita(int indice, Cita citaModificada) {
+        gestionCitas.modificar(indice, citaModificada);
+    }
     
     public boolean validarDisponibilidadCita(Cita nuevaCita, Cita[] citasExistentes, int cantidadCitas) {
         for (int i = 0; i < cantidadCitas; i++) {
