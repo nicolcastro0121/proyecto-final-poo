@@ -3,10 +3,12 @@ package Clinica;
 public class Medico extends Empleado {
     private String especialidad;
 
-    public Medico(String especialidad, String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado, String Rol) {
-        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado, Rol);
+    public Medico(String especialidad, String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol) {
+        super(dni, nombres, apellidos, telf, email, userName, password, empleado, Rol);
         this.especialidad = especialidad;
     }
+
+
     
     public Consulta abrirConsulta(Cita cita, String motivo, String antecedentes) {
         Consulta consulta = new Consulta(motivo, 50.0, "Abierta", antecedentes, 
@@ -36,7 +38,7 @@ public class Medico extends Empleado {
     }
     
     public String crearReceta() {
-        return "Receta creada por Dr. " + nombre;
+        return "Receta creada por Dr. " + nombres;
     }
 
     public String getEspecialidad() {

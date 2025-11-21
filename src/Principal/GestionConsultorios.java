@@ -32,17 +32,17 @@ public class GestionConsultorios extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        agregar = new javax.swing.JButton();
+        modificar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
+        codigo = new javax.swing.JTextField();
+        especialidad = new javax.swing.JTextField();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -57,10 +57,6 @@ public class GestionConsultorios extends javax.swing.JFrame {
         jLabel3.setText("Estado:");
 
         jLabel4.setText("Horarios:");
-
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Mantenimiento" }));
 
@@ -85,11 +81,11 @@ public class GestionConsultorios extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Agregar");
+        agregar.setText("Agregar");
 
-        jButton4.setText("Modificar");
+        modificar.setText("Modificar");
 
-        jButton5.setText("Eliminar");
+        eliminar.setText("Eliminar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,7 +94,7 @@ public class GestionConsultorios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
+                    .addComponent(agregar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
                         .addComponent(jLabel2)
@@ -113,35 +109,33 @@ public class GestionConsultorios extends javax.swing.JFrame {
                             .addComponent(jCheckBox3)
                             .addComponent(jCheckBox2)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jCheckBox1)))
+                            .addComponent(jCheckBox1)
+                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jButton4)
+                        .addComponent(modificar)
                         .addGap(37, 37, 37)
-                        .addComponent(jButton5)))
+                        .addComponent(eliminar)))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jButton1))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2))
-                            .addComponent(jButton2))
-                        .addGap(41, 41, 41))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jCheckBox1))
@@ -151,14 +145,14 @@ public class GestionConsultorios extends javax.swing.JFrame {
                 .addComponent(jCheckBox3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox5)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(agregar)
+                    .addComponent(modificar)
+                    .addComponent(eliminar))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,11 +202,10 @@ public class GestionConsultorios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton agregar;
+    private javax.swing.JTextField codigo;
+    private javax.swing.JButton eliminar;
+    private javax.swing.JTextField especialidad;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -225,5 +218,6 @@ public class GestionConsultorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JButton modificar;
     // End of variables declaration//GEN-END:variables
 }

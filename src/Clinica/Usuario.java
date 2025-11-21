@@ -1,42 +1,32 @@
 
 package Clinica;
 
-public abstract class Usuario {
-    protected String id;
-    protected String usuario;
+public class Usuario {
+    protected String userName;
     protected String password;
-    protected String estado;
+    private Empleado empleado;
     protected String Rol;
 
-    public Usuario(String id, String usuario, String password, String estado, String Rol) {
-        this.id = id;
-        this.usuario = usuario;
+    public Usuario(String userName, String password, Empleado empleado, String Rol) {
+        this.userName = userName;
         this.password = password;
-        this.estado = estado;
+        this.empleado = empleado;
         this.Rol = Rol;
     }
-    
-    public boolean login(String usuario, String password) {
-        return this.usuario.equals(usuario) && this.password.equals(password);
-    }
-    
 
-    
-
-    public String getId() {
-        return id;
+    public Usuario(String pUserName, String pPassword, String pRol) {
+        this.userName = pUserName;
+        this.password = pPassword;
+        this.Rol = pRol;
+        this.empleado = null; // puedes dejarlo en null si no tienes empleado
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -47,12 +37,12 @@ public abstract class Usuario {
         this.password = password;
     }
 
-    public String getEstado() {
-        return estado;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
     public String getRol() {
@@ -62,7 +52,10 @@ public abstract class Usuario {
     public void setRol(String Rol) {
         this.Rol = Rol;
     }
-    
+
+
+
+
     
 
 }

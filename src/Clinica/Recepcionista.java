@@ -3,9 +3,11 @@ package Clinica;
 
 public class Recepcionista extends Empleado {
 
-    public Recepcionista(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado, String Rol) {
-        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado, Rol);
+    public Recepcionista(String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol) {
+        super(dni, nombres, apellidos, telf, email, userName, password, empleado, Rol);
     }
+
+
 
     
     public boolean validarDisponibilidadCita(Cita nuevaCita, Cita[] citasExistentes, int cantidadCitas) {
@@ -26,7 +28,7 @@ public class Recepcionista extends Empleado {
     public void buscarCitasPorMedico(String nombreMedico, Cita[] citas, int cantidadCitas) {
         System.out.println("=== CITAS DEL MÉDICO: " + nombreMedico + " ===");
         for (int i = 0; i < cantidadCitas; i++) {
-            if (citas[i].getMedico().getNombre().equalsIgnoreCase(nombreMedico)) {
+            if (citas[i].getMedico().getNombres().equalsIgnoreCase(nombreMedico)) {
                 System.out.println("- " + citas[i].getFechaHora() + " - " + 
                                  citas[i].getPaciente().getNombres() + " - " + 
                                  citas[i].getEstado());

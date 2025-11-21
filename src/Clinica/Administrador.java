@@ -8,12 +8,13 @@ public class Administrador extends Empleado{
      private GestionEmpleado gestionEmpleado;
      private GestionConsultorio gestionConsultorio;
 
-    public Administrador(GestionEmpleado gestionEmpleado, GestionConsultorio gestionConsultorio, String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado, String Rol) {
-        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado, Rol);
+    public Administrador(GestionEmpleado gestionEmpleado, GestionConsultorio gestionConsultorio, String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol) {
+        super(dni, nombres, apellidos, telf, email, userName, password, empleado, Rol);
         this.gestionEmpleado = gestionEmpleado;
         this.gestionConsultorio = gestionConsultorio;
     }
-    
+
+
     public String generarReporteGeneral(int totalEmpleados, int totalConsultorios, int totalCitas, int totalFacturas) {
         return "=== REPORTE GENERAL ===\n" +
                "Total empleados: " + totalEmpleados + "\n" +

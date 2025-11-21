@@ -8,12 +8,12 @@ package Principal;
  *
  * @author Fernanda
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class GestorEmpleados extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public NewJPanel() {
+    public GestorEmpleados() {
         initComponents();
     }
 
@@ -29,9 +29,9 @@ public class NewJPanel extends javax.swing.JPanel {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -41,26 +41,26 @@ public class NewJPanel extends javax.swing.JPanel {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        jButton7.setText("Agregar");
+        Agregar.setText("Agregar");
 
-        jButton8.setText("Modificar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        Modificar.setText("Modificar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                ModificarActionPerformed(evt);
             }
         });
 
-        jButton9.setText("Eliminar");
+        Eliminar.setText("Eliminar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "DNI", "Nombres", "Apellidos", "Rol", "Especialidad", "Telefono", "Correo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -70,42 +70,41 @@ public class NewJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jButton7)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton8)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton9))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(121, 121, 121)
+                .addComponent(Agregar)
+                .addGap(27, 27, 27)
+                .addComponent(Modificar)
+                .addGap(32, 32, 32)
+                .addComponent(Eliminar)
+                .addContainerGap(152, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton8)
-                    .addComponent(jButton7))
+                    .addComponent(Eliminar)
+                    .addComponent(Modificar)
+                    .addComponent(Agregar))
                 .addGap(32, 32, 32))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_ModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Modificar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

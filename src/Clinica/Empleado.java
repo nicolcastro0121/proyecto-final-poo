@@ -1,26 +1,29 @@
 
 package Clinica;
 
-public abstract class Empleado extends Usuario {
+public class Empleado extends Usuario {
     protected String dni;
-    protected String nombre;
-    protected String apellido;
-    protected String direccion;
+    protected String nombres;
+    protected String apellidos;
     protected String telf;
     protected String email;
 
-    public Empleado(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado, String Rol) {
-        super(id, usuario, password, estado, Rol);
+    public Empleado(String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol) {
+        super(userName, password, empleado, Rol);
         this.dni = dni;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.telf = telf;
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getDni() {
         return dni;
@@ -30,28 +33,20 @@ public abstract class Empleado extends Usuario {
         this.dni = dni;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getTelf() {
@@ -69,10 +64,13 @@ public abstract class Empleado extends Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getNombreCompleto() {
-        return nombre + " " + apellido;
-    }
     
+    
+
+        
+
+
+
+
     
 }

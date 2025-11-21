@@ -58,7 +58,7 @@ public class HistoriaClinica {
             Consulta consulta = consultas[i];
             System.out.println("\n--- Consulta " + (i + 1) + " ---");
             System.out.println("Fecha: " + consulta.getCita().getFechaHora());
-            System.out.println("Médico: " + consulta.getCita().getMedico().getNombre());
+            System.out.println("Médico: " + consulta.getCita().getMedico().getNombres());
             System.out.println("Motivo: " + consulta.getMotivo());
             System.out.println("Diagnóstico: " + consulta.getDiagnosticos());
             System.out.println("Estado: " + consulta.getEstado());
