@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GestionClinica;
 
 import Clinica.Empleado;
 
-/**
- *
- * @author Nicol
- */
 public class GestionEmpleado {
     private Empleado[] empleados;
     private int cantidad;

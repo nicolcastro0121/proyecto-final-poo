@@ -2,6 +2,6 @@
 package InterfacesClinica;
 
 public interface Reporte {
-    public boolean generarReporte();
+    public String generarReporte();
     
 }
