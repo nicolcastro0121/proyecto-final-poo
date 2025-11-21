@@ -3,9 +3,11 @@ package Clinica;
 
 public class Enfermero extends Empleado{
 
-    public Enfermero(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
-        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
+    public Enfermero(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado, String Rol) {
+        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado, Rol);
     }
+
+
 
     
     

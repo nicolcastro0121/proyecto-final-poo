@@ -9,8 +9,8 @@ public abstract class Empleado extends Usuario {
     protected String telf;
     protected String email;
 
-    public Empleado(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
-        super(id, usuario, password, estado);
+    public Empleado(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado, String Rol) {
+        super(id, usuario, password, estado, Rol);
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -18,6 +18,7 @@ public abstract class Empleado extends Usuario {
         this.telf = telf;
         this.email = email;
     }
+
 
 
 
@@ -69,7 +70,9 @@ public abstract class Empleado extends Usuario {
         this.email = email;
     }
 
-
+    public String getNombreCompleto() {
+        return nombre + " " + apellido;
+    }
     
     
 }

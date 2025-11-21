@@ -57,8 +57,5 @@ public class Consultorio {
     public void setCitas(Cita[] citas) {
         this.citas = citas;
     }
-    
-    
-    
-    
+
 }

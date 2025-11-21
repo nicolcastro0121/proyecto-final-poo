@@ -10,10 +10,12 @@ public class Cajero extends Empleado implements Imprimible {
     private GestionFactura gestionFactura;
     private GestionConsulta gestionConsulta;
 
-    public Cajero(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
-        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
-
+    public Cajero(GestionFactura gestionFactura, GestionConsulta gestionConsulta, String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado, String Rol) {
+        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado, Rol);
+        this.gestionFactura = gestionFactura;
+        this.gestionConsulta = gestionConsulta;
     }
+
 
     public double calcularTotal(Consulta consulta) {
         double total = consulta.getPrecio();

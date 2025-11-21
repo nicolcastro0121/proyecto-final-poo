@@ -1,9 +1,9 @@
 
-package InterfacesClinica;
+    package InterfacesClinica;
 
-public interface Reporte {
-    String generarReporte();
-    String generarReporteDetallado();  
-    Object[] obtenerDatosReporte(); 
-    
-}
+    public interface Reporte {
+        String generarReporte();
+        String generarReporteDetallado();  
+        Object[] obtenerDatosReporte(); 
+
+    }

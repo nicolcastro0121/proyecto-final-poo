@@ -107,7 +107,9 @@ public class Paciente {
         this.historia = historia;
     }
     
-    
+    public String getInfoBasica() {
+        return nombres + " " + apellidos + " - DNI: " + dni + " - Tel: " + telefono;
+    }
 
     
     

@@ -57,7 +57,7 @@ public class Sistema {
             System.out.println("Índice inválido");
         }
     }
-    //crear una clase
+    
     public void modificarUsuario(int indice, Usuario nuevoUsuario) {
         if (indice >= 0 && indice < cantidadUsuarios) {
             Usuario usuarioActual = usuarios[indice];
@@ -70,6 +70,15 @@ public class Sistema {
             System.out.println("Índice inválido");
         }
     }
+    
+    public Usuario buscarUsuarioPorCredenciales(String usuario, String password) {
+        for (int i = 0; i < cantidadUsuarios; i++) {
+            if (usuarios[i].getUsuario().equals(usuario) && usuarios[i].getPassword().equals(password)) {
+                return usuarios[i];
+            }
+        }
+        return null;
+    }    
     
     public void verUsuarios() {
         System.out.println("=== LISTA DE USUARIOS ===");

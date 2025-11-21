@@ -17,7 +17,7 @@ public class HistoriaClinica {
     }
     
     
-    public void agregar(Consulta consulta) {
+    public void agregarConsulta(Consulta consulta) {
         if (cantidad < consultas.length) {
             consultas[cantidad] = consulta;
             cantidad++;
@@ -27,7 +27,7 @@ public class HistoriaClinica {
         }
     }
     
-    public void modificar(int indice, Consulta nuevaConsulta) {
+    public void Modificar(int indice, Consulta nuevaConsulta) {
         if (indice >= 0 && indice < cantidad) {
             consultas[indice] = nuevaConsulta;
             System.out.println("Consulta modificada en historia clínica en posición: " + indice);

@@ -4,33 +4,31 @@ package Clinica;
 import GestionClinica.GestionConsultorio;
 import GestionClinica.GestionEmpleado;
 import InterfacesClinica.Reporte;
-public class Administrador extends Empleado implements Reporte{
+public class Administrador extends Empleado{
      private GestionEmpleado gestionEmpleado;
      private GestionConsultorio gestionConsultorio;
 
-    public Administrador(String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado) {
-        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado);
-        
+    public Administrador(GestionEmpleado gestionEmpleado, GestionConsultorio gestionConsultorio, String dni, String nombre, String apellido, String direccion, String telf, String email, String id, String usuario, String password, String estado, String Rol) {
+        super(dni, nombre, apellido, direccion, telf, email, id, usuario, password, estado, Rol);
+        this.gestionEmpleado = gestionEmpleado;
+        this.gestionConsultorio = gestionConsultorio;
     }
     
-    public void generarReportes() {
-
-        GestionConsultorio reporteConsultorios = new GestionConsultorio();
-        System.out.println(reporteConsultorios.generarReporteDetallado());
+    public String generarReporteGeneral(int totalEmpleados, int totalConsultorios, int totalCitas, int totalFacturas) {
+        return "=== REPORTE GENERAL ===\n" +
+               "Total empleados: " + totalEmpleados + "\n" +
+               "Total consultorios: " + totalConsultorios + "\n" +
+               "Total citas: " + totalCitas + "\n" +
+               "Total facturas: " + totalFacturas;
     }
 
-    @Override
-    public String generarReporte() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void generarReporteOcupacion(String[] datosConsultorios) {
+        System.out.println("=== OCUPACIÓN DE CONSULTORIOS ===");
+        for (String dato : datosConsultorios) {
+            System.out.println(dato);
+        }
     }
 
-    @Override
-    public String generarReporteDetallado() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
-    @Override
-    public Object[] obtenerDatosReporte() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

@@ -12,7 +12,7 @@ public class Receta {
         this.cantidad = 0;
     }
 
-    public void agregar(Medicamento medicamento) {
+    public void agregarMedicamento(Medicamento medicamento) {
         if (cantidad < medicamentos.length) {
             medicamentos[cantidad] = medicamento;
             cantidad++;

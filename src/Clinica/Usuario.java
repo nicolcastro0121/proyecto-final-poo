@@ -16,6 +16,10 @@ public abstract class Usuario {
         this.Rol = Rol;
     }
     
+    public boolean login(String usuario, String password) {
+        return this.usuario.equals(usuario) && this.password.equals(password);
+    }
+    
 
     
 

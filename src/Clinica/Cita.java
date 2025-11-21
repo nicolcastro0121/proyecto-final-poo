@@ -1,9 +1,9 @@
 
 package Clinica;
 
-import InterfacesClinica.Validable;
 
-public class Cita implements Validable{
+
+public class Cita {
     private String fechaHora;
     private String modalidad;
     private String estado;
@@ -83,20 +83,4 @@ public class Cita implements Validable{
         this.consultorio = consultorio;
     }
 
-    @Override
-    public boolean validar() {
-        return true; //FALTA!!!
-    }
-
-    @Override
-    public String[] obtenerErrores() {
-        return new String[0];
-    }
-
-    @Override
-    public boolean esValido() {
-        return validar();
-    }
-    
-    
 }
