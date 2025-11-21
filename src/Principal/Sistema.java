@@ -14,14 +14,14 @@ import InterfacesClinica.Reporte;
 
 
 public class Sistema {
-    private GestionPacientes gestionPacientes;
-    private GestionEmpleado gestionEmpleados;
-    private GestionCita gestionCitas;
-    private GestionConsulta gestionConsultas;
-    private GestionConsultorio gestionConsultorios;
-    private GestionFactura gestionFacturas;
-    private Usuario[] usuarios;
-    private int cantidadUsuarios;
+    static GestionPacientes gestionPacientes;
+    static GestionEmpleado gestionEmpleados;
+    static GestionCita gestionCitas;
+    static GestionConsulta gestionConsultas;
+    static GestionConsultorio gestionConsultorios;
+    static GestionFactura gestionFacturas;
+    static Usuario[] usuarios;
+    static int cantidadUsuarios;
 
     public Sistema() {
         this.gestionPacientes = new GestionPacientes();
@@ -57,7 +57,7 @@ public class Sistema {
             System.out.println("Índice inválido");
         }
     }
-    
+    //crear una clase
     public void modificarUsuario(int indice, Usuario nuevoUsuario) {
         if (indice >= 0 && indice < cantidadUsuarios) {
             Usuario usuarioActual = usuarios[indice];

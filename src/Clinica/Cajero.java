@@ -5,7 +5,7 @@ import GestionClinica.GestionConsulta;
 import InterfacesClinica.Imprimible;
 import java.util.Random;
 
-public class Cajero extends Empleado implements FacturarTotal,Imprimible {
+public class Cajero extends Empleado implements Imprimible {
 
     private GestionFactura gestionFactura;
     private GestionConsulta gestionConsulta;
@@ -42,16 +42,17 @@ public class Cajero extends Empleado implements FacturarTotal,Imprimible {
         gestionFactura.crearFactura(factura);
     }
 
-    @Override
+    
+     @Override
     public String generarDocumento() {
-        // Crear una factura genérica para demostración
         Random rd = new Random();
         int numeroFactura = rd.nextInt(1000, 9999);
-        double montoEjemplo = 150.0; // Monto de ejemplo
+        double montoEjemplo = 150.0;
         
-        Factura factura = new Factura(String.valueOf(numeroFactura),
+        // Si Factura espera int, String, double
+        Factura factura = new Factura(numeroFactura,
                 "Factura de servicios médicos",
-                String.valueOf(montoEjemplo));
+                montoEjemplo);
         
         gestionFactura.crearFactura(factura);
         
@@ -61,9 +62,5 @@ public class Cajero extends Empleado implements FacturarTotal,Imprimible {
                "\nEmitida por: " + getNombre() + " " + getApellido();
     }
 
-    @Override
-    public double CalcularTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+ 
 }

@@ -7,7 +7,7 @@ public class GestionCita {
     private int cantidad;
     
     public GestionCita() {
-        this.citas = new Cita[200]; // preguntar en claseee
+        this.citas = new Cita[200]; 
         this.cantidad = 0;
     }
     
@@ -30,16 +30,19 @@ public class GestionCita {
         }
     }
      
-     public void eliminar(int index) {
-        if (index >= 0 && index < cantidad) {
-            System.out.println("Cita eliminada: " + citas[index].getPaciente().getNombres());
-            for (int i = index; i < cantidad - 1; i++) {
+     public boolean eliminar(int indice) {
+        
+        if (indice >= 0 && indice < cantidad) {
+            System.out.println("Cita eliminada: " + citas[indice].getPaciente().getNombres());
+            for (int i = indice; i < cantidad - 1; i++) {
                 citas[i] = citas[i + 1];
-            }
+            }   
             citas[cantidad - 1] = null;
             cantidad--;
+            return true;
         } else {
             System.out.println("Índice inválido");
+            return false;
         }
     }
      
