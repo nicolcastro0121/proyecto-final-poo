@@ -2,6 +2,7 @@
 package Clinica;
 
 public class Recepcionista extends Empleado {
+    
     public Recepcionista(String id, String usuario, String password, String estado,
                         String dni, String nombre, String apellido, String direccion,
                         String telf, String email) {
