@@ -6,7 +6,15 @@ public class Usuario {
     protected String password;
     private Empleado empleado;
     protected String Rol;
+    public int getRol;
 
+    public Usuario(String userName, String password, Empleado empleado, String Rol) {
+        this.userName = userName;
+        this.password = password;
+        this.empleado = empleado;
+        this.Rol = Rol;
+    }
+    
     public Usuario(String pUserName, String pPassword, String pRol) {
         this.userName = pUserName;
         this.password = pPassword;

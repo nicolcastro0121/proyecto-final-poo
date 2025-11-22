@@ -7,10 +7,6 @@ public class Medico extends Empleado {
         super(dni, nombres, apellidos, telf, email, pUserName, pPassword, pRol);
         this.especialidad = especialidad;
     }
-
-    
-
-
     
     public Consulta abrirConsulta(Cita cita, String motivo, String antecedentes) {
         Consulta consulta = new Consulta(motivo, 50.0, "Abierta", antecedentes, 

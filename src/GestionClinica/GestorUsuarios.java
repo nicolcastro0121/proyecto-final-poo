@@ -3,7 +3,7 @@ package GestionClinica;
 
 import Clinica.Empleado;
 import Clinica.Usuario;
-import Principal.GestorEmpleados;
+import Principal.Gestor_Empleados;
 
 public class GestorUsuarios {
     private Usuario[] listaUsuarios;

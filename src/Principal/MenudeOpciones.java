@@ -18,19 +18,50 @@ public class MenudeOpciones extends javax.swing.JFrame {
      * Creates new form MenudeOpciones
      */
     public MenudeOpciones(Usuario user) {
-        switch user.getRol(){
+        initComponents();
+        deshabilitarTodo();  
+        switch (user.getRol()){
             case "Administrador":
-                this.Consultas.setEnabled(true);
-                
+                GEmpleados.setEnabled(true);
+                GConsultorios.setEnabled(true);
+                HistorialClinica.setEnabled(true);
+                Reportes.setEnabled(true);
                 break;
             case "Médico":
-                
+                Consultas.setEnabled(true);          
+                AtencionClinica.setEnabled(true);
+                HistorialClinica.setEnabled(true);
+                EjecucionOrdenesAnalisis.setEnabled(true);
                 break;
             case "Enfermero":
-                
+                AdmisionyAlta.setEnabled(true);
+                EjecucionOrdenesAnalisis.setEnabled(true);
+                AtencionClinica.setEnabled(true); 
+                break;
+            case "Cajero":
+                Facturas.setEnabled(true);
+                break;
+            case "Recepcionista":
+                GestionPacientes.setEnabled(true);
+                Consultas.setEnabled(true);          
+                AdmisionyAlta.setEnabled(true);
+                Facturas.setEnabled(true); 
                 break;
         }
-        initComponents();
+        
+    }
+    
+    private void deshabilitarTodo() {
+        GEmpleados.setEnabled(false);
+        GConsultorios.setEnabled(false);
+        GestionPacientes.setEnabled(false);
+        Consultas.setEnabled(false);
+        AdmisionyAlta.setEnabled(false);
+        AtencionClinica.setEnabled(false);
+        EjecucionOrdenesAnalisis.setEnabled(false);
+        HistorialClinica.setEnabled(false);
+        Facturas.setEnabled(false);
+        Reportes.setEnabled(false);
     }
 
     /**
@@ -42,32 +73,59 @@ public class MenudeOpciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        GestorEmpleados = new javax.swing.JMenuItem();
-        GestorConsultorios = new javax.swing.JMenuItem();
-        Reportes = new javax.swing.JMenuItem();
+        GEmpleados = new javax.swing.JMenuItem();
+        GConsultorios = new javax.swing.JMenuItem();
+        GestionPacientes = new javax.swing.JMenuItem();
         Consultas = new javax.swing.JMenuItem();
+        AdmisionyAlta = new javax.swing.JMenuItem();
+        AtencionClinica = new javax.swing.JMenuItem();
+        EjecucionOrdenesAnalisis = new javax.swing.JMenuItem();
+        HistorialClinica = new javax.swing.JMenuItem();
+        Facturas = new javax.swing.JMenuItem();
+        Reportes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        jMenuItem1.setText("jMenuItem1");
 
         jMenu1.setText("File");
 
-        GestorEmpleados.setText("GestorEmpleados");
-        jMenu1.add(GestorEmpleados);
+        GEmpleados.setText("Gestion Empleados");
+        jMenu1.add(GEmpleados);
 
-        GestorConsultorios.setText("GestorConsultorios");
-        GestorConsultorios.addActionListener(new java.awt.event.ActionListener() {
+        GConsultorios.setText("Gestion Consultorios");
+        GConsultorios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GestorConsultoriosActionPerformed(evt);
+                GConsultoriosActionPerformed(evt);
             }
         });
-        jMenu1.add(GestorConsultorios);
+        jMenu1.add(GConsultorios);
 
-        Reportes.setText("Reportes");
-        jMenu1.add(Reportes);
+        GestionPacientes.setText("Gestion Pacientes");
+        jMenu1.add(GestionPacientes);
 
         Consultas.setText("Consultas");
         jMenu1.add(Consultas);
+
+        AdmisionyAlta.setText("Admision y Alta");
+        jMenu1.add(AdmisionyAlta);
+
+        AtencionClinica.setText("Atencion Clinica");
+        jMenu1.add(AtencionClinica);
+
+        EjecucionOrdenesAnalisis.setText("Ejecucion Ordenes Analisis");
+        jMenu1.add(EjecucionOrdenesAnalisis);
+
+        HistorialClinica.setText("Historial Clinica");
+        jMenu1.add(HistorialClinica);
+
+        Facturas.setText("Facturas y Pagos");
+        jMenu1.add(Facturas);
+
+        Reportes.setText("Reportes");
+        jMenu1.add(Reportes);
 
         jMenuBar1.add(jMenu1);
 
@@ -90,9 +148,9 @@ public class MenudeOpciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void GestorConsultoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestorConsultoriosActionPerformed
+    private void GConsultoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GConsultoriosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_GestorConsultoriosActionPerformed
+    }//GEN-LAST:event_GConsultoriosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,12 +178,19 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AdmisionyAlta;
+    private javax.swing.JMenuItem AtencionClinica;
     private javax.swing.JMenuItem Consultas;
-    private javax.swing.JMenuItem GestorConsultorios;
-    private javax.swing.JMenuItem GestorEmpleados;
+    private javax.swing.JMenuItem EjecucionOrdenesAnalisis;
+    private javax.swing.JMenuItem Facturas;
+    private javax.swing.JMenuItem GConsultorios;
+    private javax.swing.JMenuItem GEmpleados;
+    private javax.swing.JMenuItem GestionPacientes;
+    private javax.swing.JMenuItem HistorialClinica;
     private javax.swing.JMenuItem Reportes;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

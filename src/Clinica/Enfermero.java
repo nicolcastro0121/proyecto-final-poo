@@ -7,6 +7,9 @@ public class Enfermero extends Empleado{
         super(dni, nombres, apellidos, telf, email, pUserName, pPassword, pRol);
     }
 
+
+
+
     
 
 
