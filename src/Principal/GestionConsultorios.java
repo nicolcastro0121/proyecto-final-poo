@@ -3,20 +3,50 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Principal;
-
+import Clinica.Consultorio;
+import GestionClinica.GestionConsultorio;
+import javax.swing.JOptionPane;
 /**
  *
  * @author O28318
  */
 public class GestionConsultorios extends javax.swing.JFrame {
-
+    private GestionConsultorio gestor; 
+    private Integer indiceModificar = null;
+    
     /**
      * Creates new form GestionConsultorios
      */
-    public GestionConsultorios() {
+    public GestionConsultorios(GestionConsultorio gestor, Consultorio consultorio, Integer indice) {
         initComponents();
+        this.gestor = gestor; 
+        this.indiceModificar = indice;
+        if (consultorio != null) { 
+            
+            codigo.setText(consultorio.getCodigo());
+            especialidad.setText(consultorio.getEspecialidad()); 
+            Disponibilidad.setSelectedItem(consultorio.getEstado()); 
+// Horarios 
+            diez.setSelected(consultorio.getCitas()[0] != null); 
+            once.setSelected(consultorio.getCitas()[1] != null); 
+            doce.setSelected(consultorio.getCitas()[2] != null); 
+            una.setSelected(consultorio.getCitas()[3] != null); 
+            dos.setSelected(consultorio.getCitas()[4] != null); 
+        } else { // Nuevo consultorio, limpiar todo 
+            codigo.setText(""); 
+            especialidad.setText(""); 
+            Disponibilidad.setSelectedIndex(0); 
+            diez.setSelected(false); 
+            once.setSelected(false); 
+            doce.setSelected(false); 
+            una.setSelected(false); 
+            dos.setSelected(false); }
     }
-
+    
+    public GestionConsultorios(GestionConsultorio gestor) { 
+        
+        this(gestor, null, null);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,12 +62,12 @@ public class GestionConsultorios extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        Disponibilidad = new javax.swing.JComboBox<>();
+        diez = new javax.swing.JCheckBox();
+        once = new javax.swing.JCheckBox();
+        doce = new javax.swing.JCheckBox();
+        una = new javax.swing.JCheckBox();
+        dos = new javax.swing.JCheckBox();
         agregar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
@@ -58,34 +88,66 @@ public class GestionConsultorios extends javax.swing.JFrame {
 
         jLabel4.setText("Horarios:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Mantenimiento" }));
-
-        jCheckBox1.setText("10:00 - 11:00 AM");
-
-        jCheckBox2.setText("11:00 - 12:00 AM");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        Disponibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado" }));
+        Disponibilidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                DisponibilidadActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("12:00 - 1:00 PM");
-        jCheckBox3.setToolTipText("");
-
-        jCheckBox4.setText("1:00 - 2:00 PM");
-
-        jCheckBox5.setText("2:00 - 3:00 PM");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+        diez.setText("10:00 - 11:00 AM");
+        diez.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
+                diezActionPerformed(evt);
+            }
+        });
+
+        once.setText("11:00 - 12:00 AM");
+        once.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onceActionPerformed(evt);
+            }
+        });
+
+        doce.setText("12:00 - 1:00 PM");
+        doce.setToolTipText("");
+
+        una.setText("1:00 - 2:00 PM");
+
+        dos.setText("2:00 - 3:00 PM");
+        dos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dosActionPerformed(evt);
             }
         });
 
         agregar.setText("Agregar");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
 
         modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         eliminar.setText("Eliminar");
+
+        codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigoActionPerformed(evt);
+            }
+        });
+
+        especialidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                especialidadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,12 +166,12 @@ public class GestionConsultorios extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox5)
-                            .addComponent(jCheckBox4)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1)
+                            .addComponent(dos)
+                            .addComponent(una)
+                            .addComponent(doce)
+                            .addComponent(once)
+                            .addComponent(Disponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(diez)
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -134,19 +196,19 @@ public class GestionConsultorios extends javax.swing.JFrame {
                             .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Disponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jCheckBox1))
+                    .addComponent(diez))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
+                .addComponent(once)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
+                .addComponent(doce)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
+                .addComponent(una)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox5)
+                .addComponent(dos)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregar)
@@ -158,13 +220,54 @@ public class GestionConsultorios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void onceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_onceActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+    private void dosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    }//GEN-LAST:event_dosActionPerformed
+
+    private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigoActionPerformed
+
+    private void especialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_especialidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_especialidadActionPerformed
+
+    private void DisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisponibilidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DisponibilidadActionPerformed
+
+    private void diezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diezActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_diezActionPerformed
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        // TODO add your handling code here:
+        String cod = codigo.getText(); 
+        String esp = especialidad.getText(); 
+        String estado = Disponibilidad.getSelectedItem().toString(); 
+        Consultorio nuevo = new Consultorio(cod, esp, estado, new Clinica.Cita[5]);
+        
+        nuevo.getCitas()[0] = diez.isSelected() ? new Clinica.Cita() : null; 
+        nuevo.getCitas()[1] = once.isSelected() ? new Clinica.Cita() : null; 
+        nuevo.getCitas()[2] = doce.isSelected() ? new Clinica.Cita() : null; 
+        nuevo.getCitas()[3] = una.isSelected() ? new Clinica.Cita() : null; 
+        nuevo.getCitas()[4] = dos.isSelected() ? new Clinica.Cita() : null;
+        
+        if (indiceModificar != null) { 
+            gestor.modificar(gestor.getConsultorios()[indiceModificar].getCodigo(), nuevo);
+        }else{ 
+            gestor.agregar(nuevo); 
+        }
+        JOptionPane.showMessageDialog(this, "Consultorio guardado correctamente.");
+    }//GEN-LAST:event_agregarActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,24 +297,20 @@ public class GestionConsultorios extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestionConsultorios().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> 
+        new GestionConsultorios(new GestionConsultorio()).setVisible(true)
+        );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Disponibilidad;
     private javax.swing.JButton agregar;
     private javax.swing.JTextField codigo;
+    private javax.swing.JCheckBox diez;
+    private javax.swing.JCheckBox doce;
+    private javax.swing.JCheckBox dos;
     private javax.swing.JButton eliminar;
     private javax.swing.JTextField especialidad;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -219,5 +318,7 @@ public class GestionConsultorios extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JButton modificar;
+    private javax.swing.JCheckBox once;
+    private javax.swing.JCheckBox una;
     // End of variables declaration//GEN-END:variables
 }

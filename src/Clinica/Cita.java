@@ -18,6 +18,15 @@ public class Cita {
         this.consultorio = consultorio;
     }
     
+    public Cita() {
+        this.fechaHora = "";
+        this.modalidad = "";
+        this.estado = "Libre";
+        this.paciente = null;
+        this.medico = null;
+        this.consultorio = null;
+    }
+    
     public void confirmar() {
         this.estado = "Confirmada";
         System.out.println("Cita confirmada para: " + fechaHora);

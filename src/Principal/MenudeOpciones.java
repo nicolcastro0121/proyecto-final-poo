@@ -93,6 +93,11 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jMenu1.setText("File");
 
         GEmpleados.setText("Gestion Empleados");
+        GEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GEmpleadosActionPerformed(evt);
+            }
+        });
         jMenu1.add(GEmpleados);
 
         GConsultorios.setText("Gestion Consultorios");
@@ -151,6 +156,16 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private void GConsultoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GConsultoriosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GConsultoriosActionPerformed
+
+    private void GEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GEmpleadosActionPerformed
+        // TODO add your handling code here:
+        Gestor_Empleados gestor = new Gestor_Empleados();
+        gestor.setVisible(true);
+
+    // Cerrar u ocultar la ventana actual del menú
+        this.dispose();  // si quieres cerrar el menú completamente
+// this.setVisible(false)
+    }//GEN-LAST:event_GEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments
