@@ -39,7 +39,7 @@ public class Sistema {
         if (cantidadUsuarios < usuarios.length) {
             usuarios[cantidadUsuarios] = usuario;
             cantidadUsuarios++;
-            System.out.println("Usuario agregado: " + usuario.getUsuario());
+            System.out.println("Usuario agregado: " + usuario.getUserName());
         } else {
             System.out.println("No hay espacio para más usuarios");
         }
@@ -47,8 +47,8 @@ public class Sistema {
     
     public void eliminarUsuario(String id) {
     for (int i = 0; i < cantidadUsuarios; i++) {
-        if (usuarios[i].getId().equals(id)) {
-            System.out.println("Usuario eliminado: " + usuarios[i].getUsuario());
+        if (usuarios[i].getUserName().equals(id)) {
+            System.out.println("Usuario eliminado: " + usuarios[i].getUserName());
             for (int j = i; j < cantidadUsuarios - 1; j++) {
                 usuarios[j] = usuarios[j + 1];
             }
@@ -62,10 +62,9 @@ public class Sistema {
     
     public void modificarUsuario(String id, Usuario nuevoUsuario) {
     for (int i = 0; i < cantidadUsuarios; i++) {
-        if (usuarios[i].getId().equals(id)) {
-            usuarios[i].setUsuario(nuevoUsuario.getUsuario());
+        if (usuarios[i].getUserName().equals(id)) {
+            usuarios[i].setUserName(nuevoUsuario.getUserName());
             usuarios[i].setPassword(nuevoUsuario.getPassword());
-            usuarios[i].setEstado(nuevoUsuario.getEstado());
             System.out.println("Usuario modificado: " + id);
             return;
         }
@@ -75,7 +74,7 @@ public class Sistema {
     
     public Usuario buscarUsuario(String id) {
     for (int i = 0; i < cantidadUsuarios; i++) {
-        if (usuarios[i].getId().equals(id)) {
+        if (usuarios[i].getUserName().equals(id)) {
             return usuarios[i];
         }
     }
@@ -87,9 +86,6 @@ public class Sistema {
         System.out.println("Total de usuarios: " + cantidadUsuarios);
         for (int i = 0; i < cantidadUsuarios; i++) {
             Usuario user = usuarios[i];
-            System.out.println((i+1) + ". ID: " + user.getId() + 
-                             " - Usuario: " + user.getUsuario() + 
-                             " - Estado: " + user.getEstado());
         }
     }
 
