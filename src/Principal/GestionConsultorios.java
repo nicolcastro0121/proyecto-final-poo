@@ -11,18 +11,20 @@ import javax.swing.JOptionPane;
  * @author O28318
  */
 public class GestionConsultorios extends javax.swing.JFrame {
-    private GestionConsultorio gestor; 
+    private ConsultasTabla gestor; 
     private Integer indiceModificar = null;
     
     /**
      * Creates new form GestionConsultorios
+     * @param gestor
+     * @param consultorio
+     * @param indice
      */
-    public GestionConsultorios(GestionConsultorio gestor, Consultorio consultorio, Integer indice) {
+    public GestionConsultorios(ConsultasTabla gestor, Consultorio consultorio, Integer indice) {
         initComponents();
         this.gestor = gestor; 
         this.indiceModificar = indice;
         if (consultorio != null) { 
-            
             codigo.setText(consultorio.getCodigo());
             especialidad.setText(consultorio.getEspecialidad()); 
             Disponibilidad.setSelectedItem(consultorio.getEstado()); 
@@ -43,8 +45,7 @@ public class GestionConsultorios extends javax.swing.JFrame {
             dos.setSelected(false); }
     }
     
-    public GestionConsultorios(GestionConsultorio gestor) { 
-        
+    public GestionConsultorios(ConsultasTabla gestor) { 
         this(gestor, null, null);
     }
     /**
@@ -69,7 +70,6 @@ public class GestionConsultorios extends javax.swing.JFrame {
         una = new javax.swing.JCheckBox();
         dos = new javax.swing.JCheckBox();
         agregar = new javax.swing.JButton();
-        modificar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         codigo = new javax.swing.JTextField();
         especialidad = new javax.swing.JTextField();
@@ -121,21 +121,19 @@ public class GestionConsultorios extends javax.swing.JFrame {
             }
         });
 
-        agregar.setText("Agregar");
+        agregar.setText("Aceptar");
         agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarActionPerformed(evt);
             }
         });
 
-        modificar.setText("Modificar");
-        modificar.addActionListener(new java.awt.event.ActionListener() {
+        eliminar.setText("Cancelar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarActionPerformed(evt);
+                eliminarActionPerformed(evt);
             }
         });
-
-        eliminar.setText("Eliminar");
 
         codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,16 +152,18 @@ public class GestionConsultorios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(agregar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel4)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(agregar)
+                        .addGap(55, 55, 55)
+                        .addComponent(eliminar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dos)
@@ -173,13 +173,8 @@ public class GestionConsultorios extends javax.swing.JFrame {
                             .addComponent(Disponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(diez)
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(modificar)
-                        .addGap(37, 37, 37)
-                        .addComponent(eliminar)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                            .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,12 +204,11 @@ public class GestionConsultorios extends javax.swing.JFrame {
                 .addComponent(una)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dos)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar)
-                    .addComponent(modificar)
-                    .addComponent(eliminar))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addComponent(eliminar)
+                    .addComponent(agregar))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -258,16 +252,22 @@ public class GestionConsultorios extends javax.swing.JFrame {
         nuevo.getCitas()[4] = dos.isSelected() ? new Clinica.Cita() : null;
         
         if (indiceModificar != null) { 
-            gestor.modificar(gestor.getConsultorios()[indiceModificar].getCodigo(), nuevo);
+            ConsultasTabla.listaconsultorios.set(indiceModificar, nuevo);
         }else{ 
-            gestor.agregar(nuevo); 
+            ConsultasTabla.listaconsultorios.add(nuevo);
         }
+        
+        gestor.ActualizarTabla();
+        this.dispose();
+        gestor.setVisible(true);
         JOptionPane.showMessageDialog(this, "Consultorio guardado correctamente.");
     }//GEN-LAST:event_agregarActionPerformed
 
-    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_modificarActionPerformed
+        this.dispose();
+        gestor.setVisible(true);
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,7 +298,7 @@ public class GestionConsultorios extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> 
-        new GestionConsultorios(new GestionConsultorio()).setVisible(true)
+        new GestionConsultorios(new ConsultasTabla()).setVisible(true)
         );
     }
 
@@ -317,7 +317,6 @@ public class GestionConsultorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JButton modificar;
     private javax.swing.JCheckBox once;
     private javax.swing.JCheckBox una;
     // End of variables declaration//GEN-END:variables

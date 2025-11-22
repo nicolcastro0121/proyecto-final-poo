@@ -109,6 +109,11 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jMenu1.add(GConsultorios);
 
         GestionPacientes.setText("Gestion Pacientes");
+        GestionPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GestionPacientesActionPerformed(evt);
+            }
+        });
         jMenu1.add(GestionPacientes);
 
         Consultas.setText("Consultas");
@@ -166,6 +171,10 @@ public class MenudeOpciones extends javax.swing.JFrame {
         this.dispose();  // si quieres cerrar el menú completamente
 // this.setVisible(false)
     }//GEN-LAST:event_GEmpleadosActionPerformed
+
+    private void GestionPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionPacientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GestionPacientesActionPerformed
 
     /**
      * @param args the command line arguments

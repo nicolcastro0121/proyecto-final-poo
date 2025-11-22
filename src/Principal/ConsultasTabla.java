@@ -1,22 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Principal;
 
-/**
- *
- * @author Nicol
- */
+import Clinica.Consultorio;
+import Clinica.Empleado;
+import Clinica.Medico;
+import static Principal.Gestor_Empleados.listaEmpleados;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel; 
+
 public class ConsultasTabla extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ConsultasTabla.class.getName());
+    private static final java.util.logging.Logger logger =
+            java.util.logging.Logger.getLogger("ConsultasTabla");
+    
+    public static ArrayList<Consultorio> listaconsultorios = new ArrayList<>();
 
-    /**
-     * Creates new form ConsultasTabla
-     */
     public ConsultasTabla() {
         initComponents();
+        ActualizarTabla();
     }
 
     /**
@@ -105,9 +107,10 @@ public class ConsultasTabla extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-        datosEmpleado ventana = new datosEmpleado(this);
+        GestionConsultorios ventana = new GestionConsultorios(this);
         ventana.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
@@ -115,13 +118,13 @@ public class ConsultasTabla extends javax.swing.JFrame {
         int fila = jTable1.getSelectedRow();
 
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Selecciona un empleado para modificar.");
+            JOptionPane.showMessageDialog(this, "Selecciona un consultorio para modificar.");
             return;
         }
 
-        Empleado emp = listaEmpleados.get(fila);
+        Consultorio cons = listaconsultorios.get(fila);
 
-        datosEmpleado ventana = new datosEmpleado(this, emp, fila);
+        GestionConsultorios ventana = new GestionConsultorios(this, cons, fila);
         ventana.setVisible(true);
         this.setVisible(false);
 
@@ -132,15 +135,28 @@ public class ConsultasTabla extends javax.swing.JFrame {
         int filaSeleccionada = jTable1.getSelectedRow();
 
         if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Selecciona un empleado para eliminar.");
+            JOptionPane.showMessageDialog(this, "Selecciona un consultorio para eliminar.");
             return;
         }
         // Eliminar de la lista
-        Gestor_Empleados.listaEmpleados.remove(filaSeleccionada);
+        ConsultasTabla.listaconsultorios.remove(filaSeleccionada);
         // Actualizar tabla
-        actualizarTabla();
+        ActualizarTabla();
     }//GEN-LAST:event_EliminarActionPerformed
+        public void ActualizarTabla(){
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            
+            for (Consultorio cons: listaconsultorios) {
+            model.addRow(new Object[]{
+                cons.getCodigo(),
+                cons.getEspecialidad(),
+                cons.getEstado(),
+            });
+        }
 
+            
+        }
     /**
      * @param args the command line arguments
      */
