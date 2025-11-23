@@ -19,7 +19,7 @@ public class Usuario {
         this.userName = pUserName;
         this.password = pPassword;
         this.Rol = pRol;
-        this.empleado = null; // puedes dejarlo en null si no tienes empleado
+        this.empleado = null; 
     }
 
     public String getUserName() {

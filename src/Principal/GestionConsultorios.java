@@ -1,50 +1,69 @@
-
 package Principal;
+
+import Clinica.Cita;
 import Clinica.Consultorio;
 import GestionClinica.GestionConsultorio;
 import javax.swing.JOptionPane;
+import Clinica.Empleado;
+
 /**
  *
  * @author O28318
  */
 public class GestionConsultorios extends javax.swing.JFrame {
-    private ConsultasTabla gestor; 
+
+    private ConsultasTabla gestor;
     private Integer indiceModificar = null;
-    
+
     /**
      * Creates new form GestionConsultorios
+     *
      * @param gestor
      * @param consultorio
      * @param indice
      */
     public GestionConsultorios(ConsultasTabla gestor, Consultorio consultorio, Integer indice) {
         initComponents();
-        this.gestor = gestor; 
+        this.gestor = gestor;
         this.indiceModificar = indice;
-        if (consultorio != null) { 
-            codigo.setText(consultorio.getCodigo());
-            especialidad.setText(consultorio.getEspecialidad()); 
-            Disponibilidad.setSelectedItem(consultorio.getEstado()); 
+        javax.swing.DefaultComboBoxModel<String> modelo = new javax.swing.DefaultComboBoxModel<>();
+        modelo.addElement("Sin Asignar");
+        for (Empleado emp : Gestor_Empleados.listaEmpleados) {
+            // Filtramos solo los médicos
+            if (emp.getRol().equalsIgnoreCase("Médico")) {
+                modelo.addElement(emp.getNombres() + " " + emp.getApellidos());
+            }
+        }
 
-            diez.setSelected(consultorio.getCitas()[0] != null); 
-            once.setSelected(consultorio.getCitas()[1] != null); 
-            doce.setSelected(consultorio.getCitas()[2] != null); 
-            una.setSelected(consultorio.getCitas()[3] != null); 
-            dos.setSelected(consultorio.getCitas()[4] != null); 
-        } else { 
-            codigo.setText(""); 
-            especialidad.setText(""); 
-            Disponibilidad.setSelectedIndex(0); 
-            diez.setSelected(false); 
-            once.setSelected(false); 
-            doce.setSelected(false); 
-            una.setSelected(false); 
-            dos.setSelected(false); }
+        comboMedicos.setModel(modelo);
+
+        if (consultorio != null) {
+            codigo.setText(consultorio.getCodigo());
+            especialidad.setText(consultorio.getEspecialidad());
+            Disponibilidad.setSelectedItem(consultorio.getEstado());
+
+            diez.setSelected(consultorio.getCitas()[0] != null);
+            once.setSelected(consultorio.getCitas()[1] != null);
+            doce.setSelected(consultorio.getCitas()[2] != null);
+            una.setSelected(consultorio.getCitas()[3] != null);
+            dos.setSelected(consultorio.getCitas()[4] != null);
+        } else {
+            codigo.setText("");
+            especialidad.setText("");
+            Disponibilidad.setSelectedIndex(0);
+            comboMedicos.setSelectedIndex(0); // Reiniciar combo
+            diez.setSelected(false);
+            once.setSelected(false);
+            doce.setSelected(false);
+            una.setSelected(false);
+            dos.setSelected(false);
+        }
     }
-    
-    public GestionConsultorios(ConsultasTabla gestor) { 
+
+    public GestionConsultorios(ConsultasTabla gestor) {
         this(gestor, null, null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,6 +89,8 @@ public class GestionConsultorios extends javax.swing.JFrame {
         eliminar = new javax.swing.JButton();
         codigo = new javax.swing.JTextField();
         especialidad = new javax.swing.JTextField();
+        comboMedicos = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -144,54 +165,58 @@ public class GestionConsultorios extends javax.swing.JFrame {
             }
         });
 
+        comboMedicos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selccione..." }));
+
+        jLabel5.setText("Médico asignado");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(61, 61, 61)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Disponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dos)
                             .addComponent(una)
-                            .addComponent(doce)
                             .addComponent(once)
-                            .addComponent(Disponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(diez)
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37))
+                            .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(comboMedicos, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(doce, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
                         .addComponent(agregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(69, 69, 69)
                         .addComponent(eliminar)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Disponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(Disponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(diez))
@@ -203,11 +228,18 @@ public class GestionConsultorios extends javax.swing.JFrame {
                 .addComponent(una)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dos)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eliminar)
-                    .addComponent(agregar))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboMedicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(agregar)
+                            .addComponent(eliminar))
+                        .addContainerGap(24, Short.MAX_VALUE))))
         );
 
         pack();
@@ -239,27 +271,39 @@ public class GestionConsultorios extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         // TODO add your handling code here:
-        String cod = codigo.getText(); 
-        String esp = especialidad.getText(); 
-        String estado = Disponibilidad.getSelectedItem().toString(); 
-        Consultorio nuevo = new Consultorio(cod, esp, estado, new Clinica.Cita[5]);
+        String cod = codigo.getText();
+        String esp = especialidad.getText();
+        String estado = Disponibilidad.getSelectedItem().toString();
         
-        nuevo.getCitas()[0] = diez.isSelected() ? new Clinica.Cita() : null; 
-        nuevo.getCitas()[1] = once.isSelected() ? new Clinica.Cita() : null; 
-        nuevo.getCitas()[2] = doce.isSelected() ? new Clinica.Cita() : null; 
-        nuevo.getCitas()[3] = una.isSelected() ? new Clinica.Cita() : null; 
-        nuevo.getCitas()[4] = dos.isSelected() ? new Clinica.Cita() : null;
+        // CAPTURAR MÉDICO
+        String medico = comboMedicos.getSelectedItem().toString();
+
+        // CREAR ARRAY DE HORARIOS
+        // Usamos la clase Cita correctamente (asegúrate de importar Clinica.Cita)
+        Cita[] horarios = new Cita[5];
         
-        if (indiceModificar != null) { 
+        // Lógica ternaria: Si está seleccionado = nueva Cita, si no = null
+        horarios[0] = diez.isSelected() ? new Cita() : null;
+        horarios[1] = once.isSelected() ? new Cita() : null;
+        horarios[2] = doce.isSelected() ? new Cita() : null;
+        horarios[3] = una.isSelected() ? new Cita() : null;
+        horarios[4] = dos.isSelected() ? new Cita() : null;
+
+        // USAR EL NUEVO CONSTRUCTOR (Con médico y horarios)
+        Consultorio nuevo = new Consultorio(cod, esp, estado, horarios, medico);
+        if (indiceModificar != null) {
             ConsultasTabla.listaconsultorios.set(indiceModificar, nuevo);
-        }else{ 
+        } else {
             ConsultasTabla.listaconsultorios.add(nuevo);
         }
+
+        if (gestor != null) {
+            gestor.ActualizarTabla();
+            gestor.setVisible(true);
+        }
         
-        gestor.ActualizarTabla();
-        this.dispose();
-        gestor.setVisible(true);
         JOptionPane.showMessageDialog(this, "Consultorio guardado correctamente.");
+        this.dispose();
     }//GEN-LAST:event_agregarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
@@ -296,8 +340,8 @@ public class GestionConsultorios extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> 
-        new GestionConsultorios(new ConsultasTabla()).setVisible(true)
+        java.awt.EventQueue.invokeLater(()
+                -> new GestionConsultorios(new ConsultasTabla()).setVisible(true)
         );
     }
 
@@ -305,6 +349,7 @@ public class GestionConsultorios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Disponibilidad;
     private javax.swing.JButton agregar;
     private javax.swing.JTextField codigo;
+    private javax.swing.JComboBox<String> comboMedicos;
     private javax.swing.JCheckBox diez;
     private javax.swing.JCheckBox doce;
     private javax.swing.JCheckBox dos;
@@ -314,6 +359,7 @@ public class GestionConsultorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JCheckBox once;

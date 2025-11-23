@@ -4,6 +4,7 @@
  */
 package Principal;
 
+import Clinica.Medico;
 import Clinica.Usuario;
 import GestionClinica.GestorUsuarios;
 
@@ -20,10 +21,16 @@ public class loginn extends javax.swing.JFrame {
     public loginn() {
         initComponents();
         usuarios = new GestorUsuarios();
+        Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
+        Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
         usuarios.AgregarUsuario("admin", "admin", "Administrador");
         usuarios.AgregarUsuario("medico", "medico", "Médico");
         usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
         usuarios.AgregarUsuario("recep", "recep", "Recepcionista");
+        Gestor_Empleados.listaEmpleados.add(med1);
+        Gestor_Empleados.listaEmpleados.add(med2);
+        usuarios.AgregarUsuario("medico1", "1234", "Médico"); // Coincide con med1
+        usuarios.AgregarUsuario("medico2", "1234", "Médico");
     }
 
     /**
@@ -36,12 +43,11 @@ public class loginn extends javax.swing.JFrame {
     private void initComponents() {
 
         Aceptar = new javax.swing.JButton();
-        Cancelar = new javax.swing.JButton();
+        Salir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         user = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
 
         Aceptar.setText("Aceptar");
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -50,18 +56,17 @@ public class loginn extends javax.swing.JFrame {
             }
         });
 
-        Cancelar.setText("Cancelar");
+        Salir.setText("Salir");
+        Salir.setActionCommand("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Usuario:");
 
         jLabel2.setText("Contraseña:");
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,11 +75,10 @@ public class loginn extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Aceptar)
                         .addGap(73, 73, 73)
-                        .addComponent(Cancelar))
+                        .addComponent(Salir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -83,7 +87,7 @@ public class loginn extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                             .addComponent(jPasswordField1))))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,12 +100,10 @@ public class loginn extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Aceptar)
-                    .addComponent(Cancelar))
+                    .addComponent(Salir))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
 
@@ -110,14 +112,24 @@ public class loginn extends javax.swing.JFrame {
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
         // TODO add your handling code here:
-        Usuario x = this.usuarios.ValidarUsuario(this.user.getText(), this.jPasswordField1.getText());
-        MenudeOpciones menu = new MenudeOpciones(x);
-        menu.setVisible(true);
+        String pass = String.valueOf(jPasswordField1.getPassword());
+        Usuario x = this.usuarios.ValidarUsuario(this.user.getText(), pass);
+        
+        // 2. Verificamos si existe (si x no es null)
+        if (x != null) {
+            // Si es correcto, entramos
+            MenudeOpciones menu = new MenudeOpciones(x); // Ojo: Si tu Menú pide (User, Sistema), ajusta esto
+            menu.setVisible(true);
+            this.dispose(); // ¡IMPORTANTE! Cerramos la ventana de Login
+        } else {
+            // Si es incorrecto, mostramos mensaje
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+        }
     }//GEN-LAST:event_AceptarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_SalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,8 +158,7 @@ public class loginn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
-    private javax.swing.JButton Cancelar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;

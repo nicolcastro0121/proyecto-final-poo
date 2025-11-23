@@ -40,15 +40,23 @@ public class ConsultasTabla extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Especialidad", "Estado", "Horarios"
+                "Codigo", "Especialidad", "Estado", "Horarios", "Médico"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         Agregar.setText("Agregar");
@@ -146,16 +154,30 @@ public class ConsultasTabla extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarActionPerformed
         public void ActualizarTabla(){
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0);
+        model.setRowCount(0);
+        
+        for (Consultorio cons: listaconsultorios) {
             
-            for (Consultorio cons: listaconsultorios) {
+            // 1. Lógica para convertir los cuadritos marcados en texto
+            String textoHorarios = "";
+            if (cons.getCitas() != null) {
+                if (cons.getCitas()[0] != null) textoHorarios += "10am ";
+                if (cons.getCitas()[1] != null) textoHorarios += "11am ";
+                if (cons.getCitas()[2] != null) textoHorarios += "12pm ";
+                if (cons.getCitas()[3] != null) textoHorarios += "1pm ";
+                if (cons.getCitas()[4] != null) textoHorarios += "2pm ";
+            }
+            if (textoHorarios.isEmpty()) textoHorarios = "Cerrado";
+
+            // 2. Agregamos las 5 columnas completas
             model.addRow(new Object[]{
                 cons.getCodigo(),
                 cons.getEspecialidad(),
                 cons.getEstado(),
+                textoHorarios,            // Columna 4: Horarios
+                cons.getMedicoAsignado()  // Columna 5: Médico
             });
         }
-
             
         }
     /**

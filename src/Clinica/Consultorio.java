@@ -7,12 +7,14 @@ public class Consultorio {
     private String especialidad;
     private String estado;
     private Cita[] citas;
-
-    public Consultorio(String codigo, String especialidad, String estado, Cita[] citas) {
+    private String medicoAsignado;
+    
+    public Consultorio(String codigo, String especialidad, String estado, Cita[] citas, String medico) {
         this.codigo = codigo;
         this.especialidad = especialidad;
         this.estado = estado;
-        this.citas = new Cita[20];
+        this.citas = citas;
+        this.medicoAsignado = medico;
     }
     public void cambiarEstado() {
         if (estado.equalsIgnoreCase("Disponible")) {
@@ -56,6 +58,13 @@ public class Consultorio {
 
     public void setCitas(Cita[] citas) {
         this.citas = citas;
+    }
+    public String getMedicoAsignado() {
+        return medicoAsignado;
+    }
+
+    public void setMedicoAsignado(String medicoAsignado) {
+        this.medicoAsignado = medicoAsignado;
     }
 
 }
