@@ -14,6 +14,11 @@ public class GestorUsuarios {
         this.numUsuario = 0;
     }
     
+    public void AgregarUsuario(String pUserName, String pPassword, String pRol, Empleado emp){
+        this.listaUsuarios[this.numUsuario] = new Usuario(pUserName, pPassword, emp, pRol);
+        this.numUsuario++;
+    }
+    
     public void AgregarUsuario(String pUserName, String pPassword, String pRol){
         this.listaUsuarios[this.numUsuario] = new Usuario(pUserName, pPassword, pRol);
         this.numUsuario++;

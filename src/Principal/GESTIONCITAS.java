@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class GESTIONCITAS extends javax.swing.JFrame {
+    private Clinica.Usuario usuarioActual;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GESTIONCITAS.class.getName());
 
@@ -21,6 +22,10 @@ public class GESTIONCITAS extends javax.swing.JFrame {
         initComponents();
         cargarListas(); // Llenar las listas desplegables
         actualizarTabla();
+    }
+    public GESTIONCITAS(Clinica.Usuario user) {
+        this(); // llama al constructor vacío
+        this.usuarioActual = user;
     }
     private void cargarListas() {
         // 1. Cargar Médicos
@@ -119,8 +124,6 @@ public class GESTIONCITAS extends javax.swing.JFrame {
         bEliminar = new javax.swing.JButton();
         jcbPacientes = new javax.swing.JComboBox<>();
         bVolver = new javax.swing.JToggleButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bAgregar.setText("Agregar");
         bAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +317,9 @@ public class GESTIONCITAS extends javax.swing.JFrame {
 
     private void bVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolverActionPerformed
         // TODO add your handling code here:
+        MenudeOpciones menu = new MenudeOpciones(usuarioActual);
+        menu.setVisible(true);
+        this.dispose();        
     }//GEN-LAST:event_bVolverActionPerformed
 
     /**

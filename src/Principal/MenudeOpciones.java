@@ -12,6 +12,7 @@ import Clinica.Usuario;
  */
 public class MenudeOpciones extends javax.swing.JFrame {
     private Clinica.Usuario usuarioActual;
+    
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenudeOpciones.class.getName());
 
@@ -22,6 +23,39 @@ public class MenudeOpciones extends javax.swing.JFrame {
         initComponents();
         deshabilitarTodo();
         this.usuarioActual = user;
+        cargarDatosUsuario();
+        aplicarRol(user);
+        // menu: cerrar la ventana principal debe cerrar la app
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
+
+    }
+
+    public MenudeOpciones() {
+        
+        throw new UnsupportedOperationException("Usa el constructor con Usuario");
+    }
+    private void cargarDatosUsuario() {
+        if (usuarioActual != null && usuarioActual.getEmpleado() != null) {
+
+            nombre.setText(usuarioActual.getEmpleado().getNombres());
+            apellido.setText(usuarioActual.getEmpleado().getApellidos());
+            dni.setText(usuarioActual.getEmpleado().getDni());
+            correo.setText(usuarioActual.getEmpleado().getEmail());
+            telefono.setText(usuarioActual.getEmpleado().getTelf());
+
+        } else {
+            // Seguridad por si el empleado es null
+            nombre.setText("—");
+            apellido.setText("—");
+            dni.setText("—");
+            correo.setText("—");
+            telefono.setText("—");
+        }
+    }
+
+    private void aplicarRol(Usuario user) {
+        if (user == null) return;
         switch (user.getRol()) {
             case "Administrador":
                 GEmpleados.setEnabled(true);
@@ -53,13 +87,8 @@ public class MenudeOpciones extends javax.swing.JFrame {
                 Facturas.setEnabled(true);
                 break;
         }
-
     }
-
-    public MenudeOpciones() {
-        initComponents();
-    }
-
+    
     private void deshabilitarTodo() {
         GEmpleados.setEnabled(false);
         GConsultorios.setEnabled(false);
@@ -83,6 +112,18 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        nombre = new javax.swing.JLabel();
+        apellido = new javax.swing.JLabel();
+        dni = new javax.swing.JLabel();
+        correo = new javax.swing.JLabel();
+        telefono = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         GEmpleados = new javax.swing.JMenuItem();
@@ -99,7 +140,108 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
         jMenuItem1.setText("jMenuItem1");
 
-        jMenu1.setText("File");
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("BIENVENIDO");
+
+        jLabel2.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nombre");
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Apellido");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("DNI");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Correo");
+
+        jLabel6.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Telefono");
+
+        nombre.setBackground(new java.awt.Color(255, 255, 255));
+        nombre.setOpaque(true);
+
+        apellido.setBackground(new java.awt.Color(255, 255, 255));
+        apellido.setOpaque(true);
+
+        dni.setBackground(new java.awt.Color(255, 255, 255));
+        dni.setOpaque(true);
+
+        correo.setBackground(new java.awt.Color(255, 255, 255));
+        correo.setOpaque(true);
+
+        telefono.setBackground(new java.awt.Color(255, 255, 255));
+        telefono.setOpaque(true);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(71, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(52, 52, 52))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel1)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        jMenu1.setText("Funciones");
 
         GEmpleados.setText("Gestion Empleados");
         GEmpleados.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +279,11 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jMenu1.add(AdmisionyAlta);
 
         AtencionClinica.setText("Atencion Clinica");
+        AtencionClinica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtencionClinicaActionPerformed(evt);
+            }
+        });
         jMenu1.add(AtencionClinica);
 
         EjecucionOrdenesAnalisis.setText("Ejecucion Ordenes Analisis");
@@ -163,7 +310,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Rol");
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -172,11 +319,13 @@ public class MenudeOpciones extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(454, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -189,13 +338,9 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }//GEN-LAST:event_GConsultoriosActionPerformed
 
     private void GEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GEmpleadosActionPerformed
-        // TODO add your handling code here:
-        Gestor_Empleados gestor = new Gestor_Empleados();
+        Gestor_Empleados gestor = new Gestor_Empleados(this.usuarioActual);
         gestor.setVisible(true);
-
-        // Cerrar u ocultar la ventana actual del menú
-        this.dispose();  // si quieres cerrar el menú completamente
-// this.setVisible(false)
+        this.dispose();
     }//GEN-LAST:event_GEmpleadosActionPerformed
 
     private void GestionPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionPacientesActionPerformed
@@ -217,6 +362,11 @@ public class MenudeOpciones extends javax.swing.JFrame {
         gestorCitas.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_CitasActionPerformed
+
+    private void AtencionClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtencionClinicaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_AtencionClinicaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,9 +404,21 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private javax.swing.JMenuItem GestionPacientes;
     private javax.swing.JMenuItem HistorialClinica;
     private javax.swing.JMenuItem Reportes;
+    private javax.swing.JLabel apellido;
+    private javax.swing.JLabel correo;
+    private javax.swing.JLabel dni;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel nombre;
+    private javax.swing.JLabel telefono;
     // End of variables declaration//GEN-END:variables
 }

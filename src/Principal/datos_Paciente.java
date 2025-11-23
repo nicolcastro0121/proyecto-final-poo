@@ -77,8 +77,6 @@ public class datos_Paciente extends javax.swing.JFrame {
 
         jTextField9.setText("jTextField9");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         Aceptar.setText("Aceptar");
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -23,11 +23,11 @@ public class loginn extends javax.swing.JFrame {
         usuarios = new GestorUsuarios();
         Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
         Gestor_Empleados.listaEmpleados.add(med1);
-         usuarios.AgregarUsuario("medico1", "1234", "Médico");
+         usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
          
         Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
         Gestor_Empleados.listaEmpleados.add(med2);
-        usuarios.AgregarUsuario("medico2", "1234", "Médico");
+        usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
         
         
         usuarios.AgregarUsuario("admin", "admin", "Administrador");
@@ -118,7 +118,7 @@ public class loginn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        // TODO add your handling code here:
+
         String pass = String.valueOf(jPasswordField1.getPassword());
         Usuario x = this.usuarios.ValidarUsuario(this.user.getText(), pass);
         

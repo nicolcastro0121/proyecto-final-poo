@@ -6,6 +6,7 @@ package Principal;
 
 import Clinica.Empleado;
 import Clinica.Medico;
+import Clinica.Usuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel; 
@@ -17,12 +18,35 @@ import javax.swing.table.DefaultTableModel;
 
     // Lista estática donde se guardarán los empleados
     public static ArrayList<Empleado> listaEmpleados = new ArrayList<>();
+    private Usuario user;
 
 
     
-    public Gestor_Empleados() {
+    public Gestor_Empleados(Usuario user) {
         initComponents();
         actualizarTabla();
+        this.user = user;
+        configurarVentana(user);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        
+    }
+    
+    private void configurarVentana(Usuario user) {
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                // Si tenemos usuario, reabrimos el menú con el mismo usuario
+                if (Gestor_Empleados.this.user != null) {
+                    new MenudeOpciones(Gestor_Empleados.this.user).setVisible(true);
+                } else {
+                    // Si no tenemos usuario (p. ej. pruebas), abrimos menú vacío
+                    new MenudeOpciones(Gestor_Empleados.this.user).setVisible(true);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -35,8 +59,6 @@ import javax.swing.table.DefaultTableModel;
         Eliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Agregar.setText("Agregar");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +147,7 @@ import javax.swing.table.DefaultTableModel;
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
+
         datosEmpleado ventana = new datosEmpleado(this);
         ventana.setVisible(true);
         this.setVisible(false);
@@ -191,7 +214,10 @@ import javax.swing.table.DefaultTableModel;
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Gestor_Empleados().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+        Usuario temp = new Usuario("demo", "demo", "Administrador");
+        new GestionPacientes(temp).setVisible(true);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

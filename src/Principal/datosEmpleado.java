@@ -3,6 +3,7 @@ package Principal;
 
 import Clinica.Empleado;
 import Clinica.Medico;
+import Clinica.Usuario;
 
 
 public class datosEmpleado extends javax.swing.JFrame {
@@ -66,8 +67,6 @@ public class datosEmpleado extends javax.swing.JFrame {
         ComboBoxEspecialidades = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         ComboBoxROL = new javax.swing.JComboBox<>();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setText("Nombre:");
 
@@ -269,7 +268,8 @@ public class datosEmpleado extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Gestor_Empleados().setVisible(true); 
+                Usuario temp = new Usuario("demo", "demo", "Administrador");
+                new Gestor_Empleados(temp).setVisible(true);
             }
         });
     }

@@ -1,20 +1,36 @@
 
 package Principal;
 import Clinica.Paciente;
+import Clinica.Usuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class GestionPacientes extends javax.swing.JFrame {
-    
+    private Usuario user;
     private static final java.util.logging.Logger logger =
             java.util.logging.Logger.getLogger("Gestion Pacientes");
 
     public static ArrayList<Paciente> listaPacientes = new ArrayList<>();
     
-    public GestionPacientes() {
+    public GestionPacientes(Usuario user) {
+        
         initComponents();
+        
         actualizarTabla();
+        this.user = user;
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                new MenudeOpciones(GestionPacientes.this.user).setVisible(true);
+            }
+        });
+    }
+    
+    public GestionPacientes() {
+        throw new UnsupportedOperationException("Usa el constructor con Usuario");
     }
     
     @SuppressWarnings("unchecked")
@@ -30,8 +46,6 @@ public class GestionPacientes extends javax.swing.JFrame {
         Volverbt = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,6 +165,8 @@ public class GestionPacientes extends javax.swing.JFrame {
 
     private void VolverbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverbtActionPerformed
         // TODO add your handling code here:
+        new MenudeOpciones(this.user).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VolverbtActionPerformed
 
     
@@ -203,7 +219,10 @@ public class GestionPacientes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new GestionPacientes().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+        Usuario temp = new Usuario("demo", "demo", "Administrador");
+        new GestionPacientes(temp).setVisible(true);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
