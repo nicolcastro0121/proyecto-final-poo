@@ -11,7 +11,8 @@ import Clinica.Usuario;
  * @author Nicol
  */
 public class MenudeOpciones extends javax.swing.JFrame {
-    
+    private Clinica.Usuario usuarioActual;
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenudeOpciones.class.getName());
 
     /**
@@ -19,45 +20,51 @@ public class MenudeOpciones extends javax.swing.JFrame {
      */
     public MenudeOpciones(Usuario user) {
         initComponents();
-        deshabilitarTodo();  
-        switch (user.getRol()){
+        deshabilitarTodo();
+        this.usuarioActual = user;
+        switch (user.getRol()) {
             case "Administrador":
                 GEmpleados.setEnabled(true);
                 GConsultorios.setEnabled(true);
                 HistorialClinica.setEnabled(true);
                 Reportes.setEnabled(true);
+                Citas.setEnabled(true);
+                GestionPacientes.setEnabled(true);
                 break;
             case "Médico":
-                Consultas.setEnabled(true);          
+                Citas.setEnabled(true);
                 AtencionClinica.setEnabled(true);
                 HistorialClinica.setEnabled(true);
                 EjecucionOrdenesAnalisis.setEnabled(true);
+                GestionPacientes.setEnabled(true);
                 break;
             case "Enfermero":
                 AdmisionyAlta.setEnabled(true);
                 EjecucionOrdenesAnalisis.setEnabled(true);
-                AtencionClinica.setEnabled(true); 
+                AtencionClinica.setEnabled(true);
                 break;
             case "Cajero":
                 Facturas.setEnabled(true);
                 break;
             case "Recepcionista":
                 GestionPacientes.setEnabled(true);
-                Consultas.setEnabled(true);          
+                Citas.setEnabled(true);
                 AdmisionyAlta.setEnabled(true);
-                Facturas.setEnabled(true); 
+                Facturas.setEnabled(true);
                 break;
         }
-        
+
     }
+
     public MenudeOpciones() {
         initComponents();
     }
+
     private void deshabilitarTodo() {
         GEmpleados.setEnabled(false);
         GConsultorios.setEnabled(false);
         GestionPacientes.setEnabled(false);
-        Consultas.setEnabled(false);
+        Citas.setEnabled(false);
         AdmisionyAlta.setEnabled(false);
         AtencionClinica.setEnabled(false);
         EjecucionOrdenesAnalisis.setEnabled(false);
@@ -81,7 +88,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         GEmpleados = new javax.swing.JMenuItem();
         GConsultorios = new javax.swing.JMenuItem();
         GestionPacientes = new javax.swing.JMenuItem();
-        Consultas = new javax.swing.JMenuItem();
+        Citas = new javax.swing.JMenuItem();
         AdmisionyAlta = new javax.swing.JMenuItem();
         AtencionClinica = new javax.swing.JMenuItem();
         EjecucionOrdenesAnalisis = new javax.swing.JMenuItem();
@@ -118,8 +125,13 @@ public class MenudeOpciones extends javax.swing.JFrame {
         });
         jMenu1.add(GestionPacientes);
 
-        Consultas.setText("Consultas");
-        jMenu1.add(Consultas);
+        Citas.setText("Citas");
+        Citas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CitasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Citas);
 
         AdmisionyAlta.setText("Admision y Alta");
         jMenu1.add(AdmisionyAlta);
@@ -181,14 +193,13 @@ public class MenudeOpciones extends javax.swing.JFrame {
         Gestor_Empleados gestor = new Gestor_Empleados();
         gestor.setVisible(true);
 
-    // Cerrar u ocultar la ventana actual del menú
+        // Cerrar u ocultar la ventana actual del menú
         this.dispose();  // si quieres cerrar el menú completamente
 // this.setVisible(false)
     }//GEN-LAST:event_GEmpleadosActionPerformed
 
     private void GestionPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionPacientesActionPerformed
-        // TODO add your handling code here:
-       GestionPacientes ventanaTabla = new GestionPacientes();
+        GestionPacientes ventanaTabla = new GestionPacientes();
         ventanaTabla.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_GestionPacientesActionPerformed
@@ -200,6 +211,12 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private void FacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FacturasActionPerformed
+
+    private void CitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CitasActionPerformed
+        GESTIONCITAS gestorCitas = new GESTIONCITAS(this.usuarioActual);
+        gestorCitas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_CitasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,7 +246,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AdmisionyAlta;
     private javax.swing.JMenuItem AtencionClinica;
-    private javax.swing.JMenuItem Consultas;
+    private javax.swing.JMenuItem Citas;
     private javax.swing.JMenuItem EjecucionOrdenesAnalisis;
     private javax.swing.JMenuItem Facturas;
     private javax.swing.JMenuItem GConsultorios;

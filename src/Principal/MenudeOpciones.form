@@ -38,10 +38,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GestionPacientesActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="Consultas">
+            <MenuItem class="javax.swing.JMenuItem" name="Citas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultas"/>
+                <Property name="text" type="java.lang.String" value="Citas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CitasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="AdmisionyAlta">
               <Properties>

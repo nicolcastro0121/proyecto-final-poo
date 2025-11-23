@@ -27,6 +27,7 @@ public class GestionPacientes extends javax.swing.JFrame {
         Agregar = new javax.swing.JButton();
         Modificar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
+        Volverbt = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -68,23 +69,31 @@ public class GestionPacientes extends javax.swing.JFrame {
             }
         });
 
+        Volverbt.setText("Volver");
+        Volverbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverbtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(Agregar)
-                        .addGap(78, 78, 78)
-                        .addComponent(Modificar)
-                        .addGap(78, 78, 78)
-                        .addComponent(Eliminar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(173, 173, 173)
+                .addComponent(Agregar)
+                .addGap(78, 78, 78)
+                .addComponent(Modificar)
+                .addGap(78, 78, 78)
+                .addComponent(Eliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Volverbt)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +104,8 @@ public class GestionPacientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Agregar)
                     .addComponent(Modificar)
-                    .addComponent(Eliminar))
+                    .addComponent(Eliminar)
+                    .addComponent(Volverbt))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -138,6 +148,10 @@ public class GestionPacientes extends javax.swing.JFrame {
         
         actualizarTabla();
     }//GEN-LAST:event_EliminarActionPerformed
+
+    private void VolverbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverbtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VolverbtActionPerformed
 
     
     public void actualizarTabla() {
@@ -196,6 +210,7 @@ public class GestionPacientes extends javax.swing.JFrame {
     private javax.swing.JButton Agregar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Modificar;
+    private javax.swing.JButton Volverbt;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

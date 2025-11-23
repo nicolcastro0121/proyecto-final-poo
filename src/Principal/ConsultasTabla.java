@@ -115,7 +115,6 @@ public class ConsultasTabla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        // TODO add your handling code here:
         GestionConsultorios ventana = new GestionConsultorios(this);
         ventana.setVisible(true);
         this.setVisible(false);
@@ -123,7 +122,6 @@ public class ConsultasTabla extends javax.swing.JFrame {
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        // TODO add your handling code here:
         int fila = jTable1.getSelectedRow();
 
         if (fila == -1) {

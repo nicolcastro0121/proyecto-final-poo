@@ -22,15 +22,22 @@ public class loginn extends javax.swing.JFrame {
         initComponents();
         usuarios = new GestorUsuarios();
         Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
+        Gestor_Empleados.listaEmpleados.add(med1);
+         usuarios.AgregarUsuario("medico1", "1234", "Médico");
+         
         Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
+        Gestor_Empleados.listaEmpleados.add(med2);
+        usuarios.AgregarUsuario("medico2", "1234", "Médico");
+        
+        
         usuarios.AgregarUsuario("admin", "admin", "Administrador");
         usuarios.AgregarUsuario("medico", "medico", "Médico");
         usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
         usuarios.AgregarUsuario("recep", "recep", "Recepcionista");
-        Gestor_Empleados.listaEmpleados.add(med1);
-        Gestor_Empleados.listaEmpleados.add(med2);
-        usuarios.AgregarUsuario("medico1", "1234", "Médico"); // Coincide con med1
-        usuarios.AgregarUsuario("medico2", "1234", "Médico");
+        
+        
+        
+        
     }
 
     /**

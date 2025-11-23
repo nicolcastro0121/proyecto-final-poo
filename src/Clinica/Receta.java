@@ -11,6 +11,24 @@ public class Receta {
         this.medicamentos = new Medicamento[10];
         this.cantidad = 0;
     }
+    public String getContenido() {
+        String texto = ""; // Empezamos con el texto vacío
+        
+        for (int i = 0; i < cantidad; i++) {
+            Medicamento m = medicamentos[i];
+            
+            // Vamos pegando (concatenando) la información línea por línea
+            texto = texto + "- " + m.getNombre() + " (" + m.getMarca() + ") | ";
+            texto = texto + "Dosis: " + m.getDosis() + " mg | ";
+            texto = texto + "Cada: " + m.getFrecuencia() + " hrs | ";
+            texto = texto + "Por: " + m.getDuracion() + " días";
+            
+            
+            texto = texto + "\n"; 
+        }
+        
+        return texto; 
+    }
 
     public void agregarMedicamento(Medicamento medicamento) {
         if (cantidad < medicamentos.length) {
