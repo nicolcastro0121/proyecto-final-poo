@@ -75,23 +75,23 @@ public class GestionPacientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
                         .addComponent(Agregar)
                         .addGap(78, 78, 78)
                         .addComponent(Modificar)
                         .addGap(78, 78, 78)
-                        .addComponent(Eliminar)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addComponent(Eliminar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Agregar)
                     .addComponent(Modificar)
@@ -104,7 +104,7 @@ public class GestionPacientes extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-        datos_Paciente ventana = new datos_Paciente(this);
+        datos_Paciente ventana = new datos_Paciente(this); 
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AgregarActionPerformed
@@ -133,9 +133,9 @@ public class GestionPacientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecciona un paciente para eliminar.");
             return;
         }
-        // Eliminar de la lista
-        Gestor_Empleados.listaEmpleados.remove(filaSeleccionada);
-        // Actualizar tabla
+        
+        GestionPacientes.listaPacientes.remove(filaSeleccionada);
+        
         actualizarTabla();
     }//GEN-LAST:event_EliminarActionPerformed
 

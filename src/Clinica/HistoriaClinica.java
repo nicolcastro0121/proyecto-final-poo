@@ -1,4 +1,3 @@
-
 package Clinica;
 
 public class HistoriaClinica {
@@ -6,22 +5,29 @@ public class HistoriaClinica {
     private int cantidad;
     private Paciente paciente;
     
+    // Constructor con Paciente (el que ya tenías)
     public HistoriaClinica(Paciente paciente) {
         this.consultas = new Consulta[100];
         this.cantidad = 0;
         this.paciente = paciente;
     }
 
-    HistoriaClinica() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // --- CONSTRUCTOR CORREGIDO ---
+    // Antes lanzaba error, ahora inicializa los datos
+    public HistoriaClinica() {
+        this.consultas = new Consulta[100];
+        this.cantidad = 0;
+        // El paciente se queda en null temporalmente hasta que se asigne
     }
-    
+    // -----------------------------
     
     public void agregarConsulta(Consulta consulta) {
         if (cantidad < consultas.length) {
             consultas[cantidad] = consulta;
             cantidad++;
-            System.out.println("Consulta agregada a historia clínica de: " + paciente.getNombres());
+            // Agregamos una validación por si paciente es null para que no falle
+            String nombrePac = (paciente != null) ? paciente.getNombres() : "Desconocido";
+            System.out.println("Consulta agregada a historia clínica de: " + nombrePac);
         } else {
             System.out.println("No hay espacio para más consultas");
         }
@@ -50,20 +56,29 @@ public class HistoriaClinica {
     }
     
     public void ver() {
-        System.out.println("=== HISTORIA CLÍNICA DE: " + paciente.getNombres() + " " + paciente.getApellidos() + " ===");
-        System.out.println("DNI: " + paciente.getDni());
+        // Validación para evitar error si no hay paciente asignado aún
+        String nombre = (paciente != null) ? paciente.getNombres() + " " + paciente.getApellidos() : "Sin Asignar";
+        String dni = (paciente != null) ? paciente.getDni() : "---";
+
+        System.out.println("=== HISTORIA CLÍNICA DE: " + nombre + " ===");
+        System.out.println("DNI: " + dni);
         System.out.println("Total de consultas: " + cantidad);
         
         for (int i = 0; i < cantidad; i++) {
             Consulta consulta = consultas[i];
             System.out.println("\n--- Consulta " + (i + 1) + " ---");
-            System.out.println("Fecha: " + consulta.getCita().getFechaHora());
-            System.out.println("Médico: " + consulta.getCita().getMedico().getNombres());
+            if (consulta.getCita() != null) {
+                 System.out.println("Fecha: " + consulta.getCita().getFechaHora());
+                 System.out.println("Médico: " + consulta.getCita().getMedico().getNombres());
+            }
             System.out.println("Motivo: " + consulta.getMotivo());
             System.out.println("Diagnóstico: " + consulta.getDiagnosticos());
             System.out.println("Estado: " + consulta.getEstado());
         }
     }
+    
+    // Agrega este SETTER por si necesitas asignar el paciente después
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
 }
-
-
