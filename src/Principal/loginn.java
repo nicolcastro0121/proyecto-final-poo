@@ -23,6 +23,7 @@ public class loginn extends javax.swing.JFrame {
         usuarios.AgregarUsuario("admin", "admin", "Administrador");
         usuarios.AgregarUsuario("medico", "medico", "Médico");
         usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
+        usuarios.AgregarUsuario("recep", "recep", "Recepcionista");
     }
 
     /**
