@@ -132,9 +132,19 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jMenu1.add(HistorialClinica);
 
         Facturas.setText("Facturas y Pagos");
+        Facturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FacturasActionPerformed(evt);
+            }
+        });
         jMenu1.add(Facturas);
 
         Reportes.setText("Reportes");
+        Reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportesActionPerformed(evt);
+            }
+        });
         jMenu1.add(Reportes);
 
         jMenuBar1.add(jMenu1);
@@ -160,6 +170,8 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
     private void GConsultoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GConsultoriosActionPerformed
         // TODO add your handling code here:
+        ConsultasTabla gestor = new ConsultasTabla();
+        gestor.setVisible(true);
     }//GEN-LAST:event_GConsultoriosActionPerformed
 
     private void GEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GEmpleadosActionPerformed
@@ -175,6 +187,14 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private void GestionPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionPacientesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GestionPacientesActionPerformed
+
+    private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReportesActionPerformed
+
+    private void FacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FacturasActionPerformed
 
     /**
      * @param args the command line arguments

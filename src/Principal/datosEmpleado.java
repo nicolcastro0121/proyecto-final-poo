@@ -17,7 +17,7 @@ public class datosEmpleado extends javax.swing.JFrame {
         this.gestor = gestor;
         this.indiceModificar = indice;
 
-        if (emp != null) {   
+        if (emp != null) { 
             dni.setText(emp.getDni()); 
             nombre.setText(emp.getNombres()); 
             apellido.setText(emp.getApellidos()); 
@@ -92,6 +92,12 @@ public class datosEmpleado extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Dni:");
+
+        dni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dniActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Especialidad");
 
@@ -228,6 +234,10 @@ public class datosEmpleado extends javax.swing.JFrame {
             this.ComboBoxEspecialidades.setEnabled(false);
         }
     }//GEN-LAST:event_ComboBoxROLActionPerformed
+
+    private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dniActionPerformed
 
     /**
      * @param args the command line arguments
