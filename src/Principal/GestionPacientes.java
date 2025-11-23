@@ -34,22 +34,18 @@ public class GestionPacientes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "DNI", "Nombre", "Apellido", "Fecha Nacimiento", "Sexo", "Telefono"
+                "DNI", "Nombre", "Apellido", "Fecha Nacimiento", "Sexo", "Telefono", "Dirección", "Contacto de Emergencia"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-        }
 
         Agregar.setText("Agregar");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
