@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Principal;
 import Clinica.Consultorio;
 import GestionClinica.GestionConsultorio;
@@ -28,13 +25,13 @@ public class GestionConsultorios extends javax.swing.JFrame {
             codigo.setText(consultorio.getCodigo());
             especialidad.setText(consultorio.getEspecialidad()); 
             Disponibilidad.setSelectedItem(consultorio.getEstado()); 
-// Horarios 
+
             diez.setSelected(consultorio.getCitas()[0] != null); 
             once.setSelected(consultorio.getCitas()[1] != null); 
             doce.setSelected(consultorio.getCitas()[2] != null); 
             una.setSelected(consultorio.getCitas()[3] != null); 
             dos.setSelected(consultorio.getCitas()[4] != null); 
-        } else { // Nuevo consultorio, limpiar todo 
+        } else { 
             codigo.setText(""); 
             especialidad.setText(""); 
             Disponibilidad.setSelectedIndex(0); 
@@ -152,13 +149,9 @@ public class GestionConsultorios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(agregar)
                         .addGap(55, 55, 55)
-                        .addComponent(eliminar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -174,7 +167,12 @@ public class GestionConsultorios extends javax.swing.JFrame {
                             .addComponent(diez)
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)))
+                        .addGap(37, 37, 37))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(agregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(eliminar)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

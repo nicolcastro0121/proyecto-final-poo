@@ -13,7 +13,7 @@ import GestionClinica.GestorUsuarios;
  */
 public class loginn extends javax.swing.JFrame {
     private GestorUsuarios usuarios;
-
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(loginn.class.getName());
     /**
      * Creates new form loginn
      */
