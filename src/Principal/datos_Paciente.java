@@ -23,7 +23,7 @@ public class datos_Paciente extends javax.swing.JFrame {
             Sexo.setText(pac.getSexo());
             Telefono.setText(pac.getTelefono());
             Direccion.setText(pac.getDireccion());
-            Contacto_Emergencia.setText(pac.getContactoEmergencia());
+//            Contacto_Emergencia.setText(pac.getContactoEmergencia());
 
         }else{
             Dni.setText("");
