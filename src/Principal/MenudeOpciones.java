@@ -11,8 +11,8 @@ import Clinica.Usuario;
  * @author Nicol
  */
 public class MenudeOpciones extends javax.swing.JFrame {
+
     private Clinica.Usuario usuarioActual;
-    
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenudeOpciones.class.getName());
 
@@ -27,14 +27,14 @@ public class MenudeOpciones extends javax.swing.JFrame {
         aplicarRol(user);
         // menu: cerrar la ventana principal debe cerrar la app
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        
 
     }
 
     public MenudeOpciones() {
-        
+
         throw new UnsupportedOperationException("Usa el constructor con Usuario");
     }
+
     private void cargarDatosUsuario() {
         if (usuarioActual != null && usuarioActual.getEmpleado() != null) {
 
@@ -55,7 +55,9 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }
 
     private void aplicarRol(Usuario user) {
-        if (user == null) return;
+        if (user == null) {
+            return;
+        }
         switch (user.getRol()) {
             case "Administrador":
                 GEmpleados.setEnabled(true);
@@ -88,7 +90,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void deshabilitarTodo() {
         GEmpleados.setEnabled(false);
         GConsultorios.setEnabled(false);
@@ -124,6 +126,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         dni = new javax.swing.JLabel();
         correo = new javax.swing.JLabel();
         telefono = new javax.swing.JLabel();
+        CerrarSesionbt = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         GEmpleados = new javax.swing.JMenuItem();
@@ -183,42 +186,48 @@ public class MenudeOpciones extends javax.swing.JFrame {
         telefono.setBackground(new java.awt.Color(255, 255, 255));
         telefono.setOpaque(true);
 
+        CerrarSesionbt.setText("CerrarSesion");
+        CerrarSesionbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarSesionbtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(52, 52, 52))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(dni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addComponent(apellido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(correo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CerrarSesionbt)
+                .addGap(150, 150, 150))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,7 +247,9 @@ public class MenudeOpciones extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(CerrarSesionbt)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Funciones");
@@ -319,8 +330,8 @@ public class MenudeOpciones extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(454, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 409, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -344,8 +355,9 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }//GEN-LAST:event_GEmpleadosActionPerformed
 
     private void GestionPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionPacientesActionPerformed
-        GestionPacientes ventanaTabla = new GestionPacientes();
-        ventanaTabla.setVisible(true);
+        GestionPacientes ventana = new GestionPacientes(this.usuarioActual); 
+        
+        ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_GestionPacientesActionPerformed
 
@@ -354,7 +366,10 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void FacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturasActionPerformed
-        // TODO add your handling code here:
+        GestionFactura ventana = new GestionFactura(this.usuarioActual);
+        ventana.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_FacturasActionPerformed
 
     private void CitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CitasActionPerformed
@@ -365,8 +380,17 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
     private void AtencionClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtencionClinicaActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_AtencionClinicaActionPerformed
+
+    private void CerrarSesionbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionbtActionPerformed
+        loginn login = new loginn();
+
+        // 2. Hacer visible el login
+        login.setVisible(true);
+
+        // 3. Cerrar (destruir) la ventana actual del menú
+        this.dispose();    }//GEN-LAST:event_CerrarSesionbtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,6 +420,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AdmisionyAlta;
     private javax.swing.JMenuItem AtencionClinica;
+    private javax.swing.JToggleButton CerrarSesionbt;
     private javax.swing.JMenuItem Citas;
     private javax.swing.JMenuItem EjecucionOrdenesAnalisis;
     private javax.swing.JMenuItem Facturas;

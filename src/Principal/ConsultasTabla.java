@@ -35,20 +35,21 @@ public class ConsultasTabla extends javax.swing.JFrame {
         Agregar = new javax.swing.JButton();
         Modificar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
+        Volverbt = new javax.swing.JToggleButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Motivo", "Precio", "Estado", "Antecedentes", "Signos vitales", "Examenes fisicos", "Diagnostico", "Cant. Operaciones", "Plan medico"
+                "Código", "Especialidad", "Estado", "Horarios", "Médico Asignado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -78,6 +79,8 @@ public class ConsultasTabla extends javax.swing.JFrame {
             }
         });
 
+        Volverbt.setText("Volver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,26 +89,29 @@ public class ConsultasTabla extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Agregar)
                 .addGap(72, 72, 72)
                 .addComponent(Modificar)
-                .addGap(108, 108, 108)
+                .addGap(79, 79, 79)
                 .addComponent(Eliminar)
-                .addGap(177, 177, 177))
+                .addGap(66, 66, 66)
+                .addComponent(Volverbt)
+                .addGap(119, 119, 119))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Eliminar)
                     .addComponent(Modificar)
-                    .addComponent(Agregar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Agregar)
+                    .addComponent(Volverbt))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -204,6 +210,7 @@ public class ConsultasTabla extends javax.swing.JFrame {
     private javax.swing.JButton Agregar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Modificar;
+    private javax.swing.JToggleButton Volverbt;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

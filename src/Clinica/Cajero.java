@@ -1,11 +1,11 @@
 package Clinica;
-import InterfacesClinica.FacturarTotal;
+
 import GestionClinica.GestionFactura;
 import GestionClinica.GestionConsulta;
 import InterfacesClinica.Imprimible;
 import java.util.Random;
 
-public class Cajero extends Empleado implements Imprimible {
+public class Cajero extends Empleado {
 
     private GestionFactura gestionFactura;
     private GestionConsulta gestionConsulta;
@@ -16,13 +16,6 @@ public class Cajero extends Empleado implements Imprimible {
         this.gestionConsulta = gestionConsulta;
     }
 
-
-
-
-    
-
-
-
     public double calcularTotal(Consulta consulta) {
         double total = consulta.getPrecio();
 
@@ -32,9 +25,10 @@ public class Cajero extends Empleado implements Imprimible {
                 total += orden.getPrecio();
             }
         }
-
-        System.out.println("Total calculado: $" + total + " para paciente: "
-                + consulta.getCita().getPaciente().getNombres());
+       
+        String nombrePac = (consulta.getCita().getPaciente() != null) ? consulta.getCita().getPaciente().getNombres() : "Desconocido";
+        System.out.println("Total calculado: $" + total + " para paciente: " + nombrePac);
+        
         return total;
     }
 
@@ -43,32 +37,13 @@ public class Cajero extends Empleado implements Imprimible {
         double total = calcularTotal(consulta);
         int numeroFactura = rd.nextInt(1000, 9999);
 
+        Paciente pacienteReal = consulta.getCita().getPaciente();
+
         Factura factura = new Factura(numeroFactura,
                 "Consulta médica y servicios asociados",
-                total);
+                total, pacienteReal); 
 
         gestionFactura.crearFactura(factura);
     }
 
-    
-     @Override
-    public String generarDocumento() {
-        Random rd = new Random();
-        int numeroFactura = rd.nextInt(1000, 9999);
-        double montoEjemplo = 150.0;
-        
-        // Si Factura espera int, String, double
-        Factura factura = new Factura(numeroFactura,
-                "Factura de servicios médicos",
-                montoEjemplo);
-        
-        gestionFactura.crearFactura(factura);
-        
-        return "FACTURA #" + numeroFactura + 
-               "\nDescripción: Factura de servicios médicos" +
-               "\nMonto: $" + montoEjemplo +
-               "\nEmitida por: " + getNombres() + " " + getApellidos();
-    }
-
- 
-}
+}   

@@ -1,23 +1,27 @@
-
 package Principal;
+
 import Clinica.Factura;
 import java.util.ArrayList;
+import Clinica.Usuario;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel; 
+import javax.swing.table.DefaultTableModel;
 
 public class GestionFactura extends javax.swing.JFrame {
-    
-    
-    private static final java.util.logging.Logger logger =
-            java.util.logging.Logger.getLogger("Factura");
-    
+
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger("Factura");
     public static ArrayList<Factura> listaFactura = new ArrayList<>();
-    
+    private Usuario usuarioActual;
+
+    public GestionFactura(Usuario user) {
+        initComponents();
+        this.usuarioActual = user; 
+        actualizarTabla();
+    }
     public GestionFactura() {
         initComponents();
+        actualizarTabla();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,16 +31,17 @@ public class GestionFactura extends javax.swing.JFrame {
         Agregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
+        Volver = new javax.swing.JToggleButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Numero", "Descripción", "cantidad"
+                "Numero", "Descripción", "cantidad", "Paciente"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -62,23 +67,31 @@ public class GestionFactura extends javax.swing.JFrame {
             }
         });
 
+        Volver.setText("Volver");
+        Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(Agregar)
-                        .addGap(50, 50, 50)
-                        .addComponent(jButton2)
-                        .addGap(64, 64, 64)
-                        .addComponent(Eliminar)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(Agregar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(Eliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Volver)
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +102,8 @@ public class GestionFactura extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Agregar)
                     .addComponent(jButton2)
-                    .addComponent(Eliminar))
+                    .addComponent(Eliminar)
+                    .addComponent(Volver))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -98,7 +112,7 @@ public class GestionFactura extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-        datos_Factura ventana = new datos_Factura();
+        datos_Factura ventana = new datos_Factura(this, null, null);
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AgregarActionPerformed
@@ -106,45 +120,54 @@ public class GestionFactura extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int fila = jTable1.getSelectedRow();
-
         if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Selecciona una factura para modificar.");
             return;
         }
-
         Factura fac = listaFactura.get(fila);
-
         datos_Factura ventana = new datos_Factura(this, fac, fila);
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        // TODO add your handling code here:
-        int filaSeleccionada = jTable1.getSelectedRow();
-
-        if (filaSeleccionada == -1) {
+        int fila = jTable1.getSelectedRow();
+        if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Selecciona una factura para eliminar.");
             return;
         }
-        // Eliminar de la lista
-        Gestor_Empleados.listaEmpleados.remove(filaSeleccionada);
-        // Actualizar tabla
+        listaFactura.remove(fila);
         actualizarTabla();
     }//GEN-LAST:event_EliminarActionPerformed
+
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
+        if (this.usuarioActual != null) {
+            MenudeOpciones menu = new MenudeOpciones(this.usuarioActual);
+            menu.setVisible(true);
+        } else {
+            new loginn().setVisible(true);
+        }
+        this.dispose();
+    }//GEN-LAST:event_VolverActionPerformed
 
     public void actualizarTabla() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-
         for (Factura fac : listaFactura) {
+            String nombrePaciente = "Sin Paciente";
+            if (fac.getPaciente() != null) {
+                nombrePaciente = fac.getPaciente().getNombres() + " " + fac.getPaciente().getApellidos();
+            }
+
             model.addRow(new Object[]{
                 fac.getNumero(),
                 fac.getDescripcion(),
                 fac.getMonto(),
+                nombrePaciente 
             });
         }
     }
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -180,6 +203,7 @@ public class GestionFactura extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
     private javax.swing.JButton Eliminar;
+    private javax.swing.JToggleButton Volver;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

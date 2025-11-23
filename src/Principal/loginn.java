@@ -5,8 +5,11 @@
 package Principal;
 
 import Clinica.Medico;
+import Clinica.Recepcionista;
 import Clinica.Usuario;
+import Clinica.Cajero;
 import GestionClinica.GestorUsuarios;
+import static java.lang.System.gc;
 
 /**
  *
@@ -29,6 +32,7 @@ public class loginn extends javax.swing.JFrame {
         Gestor_Empleados.listaEmpleados.add(med2);
         usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
         
+        usuarios.AgregarUsuario("cajero", "cajero", "Cajero");
         
         usuarios.AgregarUsuario("admin", "admin", "Administrador");
         usuarios.AgregarUsuario("medico", "medico", "Médico");

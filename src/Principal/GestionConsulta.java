@@ -1,17 +1,17 @@
-
 package Principal;
+
 import Clinica.Consulta;
 
-
 public class GestionConsulta extends javax.swing.JFrame {
-    private datos_Consulta gestor; 
+
+    private datos_Consulta gestor;
     private Integer indiceModificar = null;
-    
+
     public GestionConsulta(datos_Consulta gestor, Consulta cons, Integer indice) {
         initComponents();
         this.gestor = gestor;
         this.indiceModificar = indice;
-        if (cons != null) { 
+        if (cons != null) {
             Motivo.setText(cons.getMotivo());
             Precio.setText(String.valueOf(cons.getPrecio()));
             estado.setText(cons.getEstado());
@@ -21,7 +21,7 @@ public class GestionConsulta extends javax.swing.JFrame {
             diagnosticos.setText(cons.getDiagnosticos());
             cant_operaciones.setText(String.valueOf(cons.getCantidadOrdenes()));
             plan.setText(cons.getPlan());
-        }else{
+        } else {
             Motivo.setText("");
             Precio.setText("");
             estado.setText("");
@@ -39,7 +39,6 @@ public class GestionConsulta extends javax.swing.JFrame {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -195,7 +194,6 @@ public class GestionConsulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-        // TODO add your handling code here:
         String pMotivo = Motivo.getText();
         double pPrecio = Double.parseDouble(Precio.getText());
         String pEstado = estado.getText();
@@ -205,16 +203,20 @@ public class GestionConsulta extends javax.swing.JFrame {
         String pDiagnosticos = diagnosticos.getText();
         int pCantidadOrdenes = Integer.parseInt(cant_operaciones.getText());
         String pPlan = plan.getText();
-        
-        Consulta cons;
-        cons = new Consulta(pMotivo, pPrecio, pEstado, pAntecedentes,pSignosVitales, pExamenesFisicos, pDiagnosticos,pCantidadOrdenes, pPlan);
-        
-        if (indiceModificar != null) {
-            datos_consulta.listaConsulta.set(indiceModificar, cons);
+
+        Consulta cons = new Consulta(
+                pMotivo, pPrecio, pEstado, pAntecedentes,
+                pSignosVitales, pExamenesFisicos,
+                pDiagnosticos, pCantidadOrdenes, pPlan
+        );
+
+        // -1 significa AGREGAR
+        if (indiceModificar != -1) {
+            datos_Consulta.listaConsulta.set(indiceModificar, cons);
         } else {
-            datos_consulta.listaConsulta.add(cons);
+            datos_Consulta.listaConsulta.add(cons);
         }
-        
+
         gestor.actualizarTabla();
         this.dispose();
         gestor.setVisible(true);
@@ -251,7 +253,7 @@ public class GestionConsulta extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new datos_Consulta().setVisible(true); 
+                new datos_Consulta().setVisible(true);
             }
         });
     }

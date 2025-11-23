@@ -25,14 +25,16 @@
               <Component id="jScrollPane1" min="-2" pref="726" max="-2" attributes="0"/>
               <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="Agregar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
               <Component id="Modificar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
               <Component id="Eliminar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <Component id="Volverbt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,13 +43,14 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="368" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Eliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Modificar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Agregar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Volverbt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,40 +66,16 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="4">
-                <Column editable="false" title="Motivo" type="java.lang.Object"/>
-                <Column editable="false" title="Precio" type="java.lang.Object"/>
+              <Table columnCount="5" rowCount="4">
+                <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
+                <Column editable="false" title="Especialidad" type="java.lang.Object"/>
                 <Column editable="false" title="Estado" type="java.lang.Object"/>
-                <Column editable="false" title="Antecedentes" type="java.lang.Object"/>
-                <Column editable="false" title="Signos vitales" type="java.lang.Object"/>
-                <Column editable="true" title="Examenes fisicos" type="java.lang.Object"/>
-                <Column editable="true" title="Diagnostico" type="java.lang.Object"/>
-                <Column editable="true" title="Cant. Operaciones" type="java.lang.Object"/>
-                <Column editable="true" title="Plan medico" type="java.lang.Object"/>
+                <Column editable="false" title="Horarios" type="java.lang.Object"/>
+                <Column editable="false" title="M&#xe9;dico Asignado" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -154,6 +133,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EliminarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="Volverbt">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Volver"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
