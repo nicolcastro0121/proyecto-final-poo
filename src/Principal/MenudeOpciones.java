@@ -186,6 +186,8 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
     private void GestionPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionPacientesActionPerformed
         // TODO add your handling code here:
+        datos_Paciente gestor = new datos_Paciente();
+        gestor.setVisible(true);
     }//GEN-LAST:event_GestionPacientesActionPerformed
 
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed

@@ -14,7 +14,7 @@ public class datos_Factura extends javax.swing.JFrame {
         this.indiceModificar = indice;
         
         if(fac != null){
-            
+           descripcion.setText();
             
             
         }
