@@ -211,7 +211,7 @@ public class GestionConsulta extends javax.swing.JFrame {
                 pDiagnosticos, pCantidadOrdenes, pPlan
         );
 
-        // -1 significa AGREGAR
+
         if (indiceModificar != -1) {
             datos_Consulta.listaConsulta.set(indiceModificar, cons);
         } else {

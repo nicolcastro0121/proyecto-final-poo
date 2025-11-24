@@ -21,6 +21,10 @@ public class datos_Consulta extends javax.swing.JFrame {
         initComponents();
         actualizarTabla();
     }
+    public datos_Consulta() {
+        initComponents();
+      
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -139,9 +143,9 @@ public class datos_Consulta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecciona una consulta para eliminar.");
             return;
         }
-        // Eliminar de la lista de consultas
+
         listaConsulta.remove(filaSeleccionada);
-        // Actualizar tabla
+
         actualizarTabla();
     }//GEN-LAST:event_EliminarActionPerformed
 

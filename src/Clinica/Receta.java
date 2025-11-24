@@ -16,8 +16,7 @@ public class Receta {
         
         for (int i = 0; i < cantidad; i++) {
             Medicamento m = medicamentos[i];
-            
-            // Vamos pegando (concatenando) la información línea por línea
+
             texto = texto + "- " + m.getNombre() + " (" + m.getMarca() + ") | ";
             texto = texto + "Dosis: " + m.getDosis() + " mg | ";
             texto = texto + "Cada: " + m.getFrecuencia() + " hrs | ";
@@ -61,14 +60,12 @@ public class Receta {
         }
     }
      public void ver() {
-        System.out.println("=== RECETA MÉDICA ===");
+        System.out.println("RECETA MÉDICA");
         System.out.println("Cantidad de medicamentos: " + cantidad);
         for (int i = 0; i < cantidad; i++) {
             Medicamento med = medicamentos[i];
-            System.out.println((i+1) + ". " + med.getNombre() + 
-                             " - " + med.getMarca() +
-                             " - Dosis: " + med.getDosis() +
-                             " - Frecuencia: " + med.getFrecuencia() + " veces/día" +
+            System.out.println((i+1) + ". " + med.getNombre() +  " - " + med.getMarca() +
+                             " - Dosis: " + med.getDosis() + " - Frecuencia: " + med.getFrecuencia() + " veces/día" +
                              " - Duración: " + med.getDuracion() + " días");
         }
     }

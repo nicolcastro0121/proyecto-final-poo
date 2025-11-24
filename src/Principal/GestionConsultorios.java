@@ -29,7 +29,7 @@ public class GestionConsultorios extends javax.swing.JFrame {
         javax.swing.DefaultComboBoxModel<String> modelo = new javax.swing.DefaultComboBoxModel<>();
         modelo.addElement("Sin Asignar");
         for (Empleado emp : Gestor_Empleados.listaEmpleados) {
-            // Filtramos solo los médicos
+
             if (emp.getRol().equalsIgnoreCase("Médico")) {
                 modelo.addElement(emp.getNombres() + " " + emp.getApellidos());
             }
@@ -51,7 +51,7 @@ public class GestionConsultorios extends javax.swing.JFrame {
             codigo.setText("");
             especialidad.setText("");
             Disponibilidad.setSelectedIndex(0);
-            comboMedicos.setSelectedIndex(0); // Reiniciar combo
+            comboMedicos.setSelectedIndex(0); 
             diez.setSelected(false);
             once.setSelected(false);
             doce.setSelected(false);

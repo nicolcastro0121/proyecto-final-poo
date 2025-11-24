@@ -15,10 +15,8 @@ public class datos_Factura extends javax.swing.JFrame {
         this.gestor = gestor;
         this.indiceModificar = indice;
 
-        // --- 1. CARGAR PACIENTES AL COMBOBOX ---
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
         for (Paciente p : GestionPacientes.listaPacientes) {
-            // Guardamos "DNI - Nombre" para identificarlo fácil
             modelo.addElement(p.getDni() + " - " + p.getNombres() + " " + p.getApellidos());
         }
         ComBoxPacientes.setModel(modelo);
@@ -28,8 +26,6 @@ public class datos_Factura extends javax.swing.JFrame {
             numero.setText(String.valueOf(fac.getNumero()));
             descripcion.setText(fac.getDescripcion());
             cantidad.setText(String.valueOf(fac.getMonto()));
-
-            // Seleccionar el paciente correcto en el combo
             if (fac.getPaciente() != null) {
                 String item = fac.getPaciente().getDni() + " - " + fac.getPaciente().getNombres() + " " + fac.getPaciente().getApellidos();
                 ComBoxPacientes.setSelectedItem(item);
@@ -167,7 +163,6 @@ public class datos_Factura extends javax.swing.JFrame {
                 }
             }
 
-            // 3. Crear y Guardar Factura
             Factura facts = new Factura(pnumero, pdescripcion, pcantidad, pacienteSeleccionado);
 
             if (indiceModificar != null) {
@@ -180,8 +175,7 @@ public class datos_Factura extends javax.swing.JFrame {
                 gestor.actualizarTabla();
                 gestor.setVisible(true);
             } else {
-                // PLAN B: Si el gestor vino vacío, creamos una nueva tabla para no cerrar la app
-                System.out.println("Aviso: Se perdió la referencia a la tabla, abriendo una nueva.");
+                System.out.println("Error en tabla");
                 GestionFactura nuevaTabla = new GestionFactura();
                 nuevaTabla.setVisible(true);
             }

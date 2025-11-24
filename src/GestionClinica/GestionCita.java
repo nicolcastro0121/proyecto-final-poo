@@ -20,9 +20,9 @@ public class GestionCita {
         return false;
     }
     
-     public boolean modificar(int indice, Cita nuevaCita) {
-        if (indice >= 0 && indice < cantidad) {
-            citas[indice] = nuevaCita;
+     public boolean modificar(int posicioncita, Cita nuevaCita) {
+        if (posicioncita >= 0 && posicioncita < cantidad) {
+            citas[posicioncita] = nuevaCita;
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public class GestionCita {
     }
      
      public void ver() {
-        System.out.println("=== LISTA DE CITAS ===");
+        System.out.println("LISTA DE CITAS");
         System.out.println("Total de citas: " + cantidad);
         for (int i = 0; i < cantidad; i++) {
             Cita cita = citas[i];

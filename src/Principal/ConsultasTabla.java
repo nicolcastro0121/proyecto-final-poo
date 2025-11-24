@@ -148,9 +148,7 @@ public class ConsultasTabla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecciona un consultorio para eliminar.");
             return;
         }
-        // Eliminar de la lista
         ConsultasTabla.listaconsultorios.remove(filaSeleccionada);
-        // Actualizar tabla
         ActualizarTabla();
     }//GEN-LAST:event_EliminarActionPerformed
         public void ActualizarTabla(){
@@ -158,8 +156,6 @@ public class ConsultasTabla extends javax.swing.JFrame {
         model.setRowCount(0);
         
         for (Consultorio cons: listaconsultorios) {
-            
-            // 1. Lógica para convertir los cuadritos marcados en texto
             String textoHorarios = "";
             if (cons.getCitas() != null) {
                 if (cons.getCitas()[0] != null) textoHorarios += "10am ";
@@ -170,13 +166,13 @@ public class ConsultasTabla extends javax.swing.JFrame {
             }
             if (textoHorarios.isEmpty()) textoHorarios = "Cerrado";
 
-            // 2. Agregamos las 5 columnas completas
+       
             model.addRow(new Object[]{
                 cons.getCodigo(),
                 cons.getEspecialidad(),
                 cons.getEstado(),
-                textoHorarios,            // Columna 4: Horarios
-                cons.getMedicoAsignado()  // Columna 5: Médico
+                textoHorarios,            
+                cons.getMedicoAsignado()  
             });
         }
             

@@ -38,7 +38,6 @@ import javax.swing.table.DefaultTableModel;
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
-                // Si tenemos usuario, reabrimos el menú con el mismo usuario
                 if (Gestor_Empleados.this.user != null) {
                     new MenudeOpciones(Gestor_Empleados.this.user).setVisible(true);
                 } else {
@@ -161,9 +160,8 @@ import javax.swing.table.DefaultTableModel;
             JOptionPane.showMessageDialog(this, "Selecciona un empleado para eliminar.");
             return;
         }
-        // Eliminar de la lista
+
         Gestor_Empleados.listaEmpleados.remove(filaSeleccionada);
-        // Actualizar tabla
         actualizarTabla();
     }//GEN-LAST:event_EliminarActionPerformed
 

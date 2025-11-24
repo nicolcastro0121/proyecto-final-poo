@@ -19,7 +19,7 @@ public class GestionEmpleado {
             };
             this.cantidad++;
         }else{
-             System.out.println("No se pueden agregar más empleados. Límite alcanzado.");
+             System.out.println("No se pueden agregar más empleados.No hay espacio.");
                     
         }
     }

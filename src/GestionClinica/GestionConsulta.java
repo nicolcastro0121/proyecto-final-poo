@@ -21,17 +21,17 @@ public class GestionConsulta {
         return false;
     }
 
-    public boolean modificar(int indice, Consulta nuevaConsulta) {
-        if (indice >= 0 && indice < cantidad) {
-            consultas[indice] = nuevaConsulta;
+    public boolean modificar(int posi, Consulta nuevaConsulta) {
+        if (posi >= 0 && posi < cantidad) {
+            consultas[posi] = nuevaConsulta;
             return true;
         }
         return false;
     }
 
-    public Consulta buscar(int indice) {
-        if (indice >= 0 && indice < cantidad) {
-            return consultas[indice];
+    public Consulta buscar(int posicionconsulta) {
+        if (posicionconsulta >= 0 && posicionconsulta < cantidad) {
+            return consultas[posicionconsulta];
         }
         return null;
     }

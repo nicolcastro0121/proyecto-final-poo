@@ -168,9 +168,7 @@ public class GestionPacientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecciona un paciente para eliminar.");
             return;
         }
-
         GestionPacientes.listaPacientes.remove(filaSeleccionada);
-
         actualizarTabla();
     }//GEN-LAST:event_EliminarActionPerformed
 

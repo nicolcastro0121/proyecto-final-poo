@@ -48,7 +48,7 @@ public class GestionPacientes {
 }
     
     public void ver() {
-        System.out.println("=== LISTA DE PACIENTES ===");
+        System.out.println("LISTA DE PACIENTES");
         System.out.println("Total de pacientes: " + cantidad);
         for (int i = 0; i < cantidad; i++) {
             Paciente paciente = pacientes[i];

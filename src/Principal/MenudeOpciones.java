@@ -18,7 +18,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
         this.usuarioActual = user;
         cargarDatosUsuario();
         aplicarRol(user);
-        // menu: cerrar la ventana principal debe cerrar la app
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     }

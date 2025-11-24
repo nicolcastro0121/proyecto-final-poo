@@ -159,12 +159,8 @@ public class GestionFactura extends javax.swing.JFrame {
                 nombrePaciente = fac.getPaciente().getNombres() + " " + fac.getPaciente().getApellidos();
             }
 
-            model.addRow(new Object[]{
-                fac.getNumero(),
-                fac.getDescripcion(),
-                fac.getMonto(),
-                nombrePaciente 
-            });
+            model.addRow(new Object[]{  fac.getNumero(), fac.getDescripcion(), fac.getMonto(),
+                nombrePaciente});
         }
     }
 

@@ -45,7 +45,7 @@ public class GestionConsultorio implements Reporte{
         return false;
     }
     public void ver() {
-        System.out.println("=== LISTA DE CONSULTORIOS ===");
+        System.out.println("LISTA DE CONSULTORIOS");
         System.out.println("Total de consultorios: " + cantidad);
         for (int i = 0; i < cantidad; i++) {
             Consultorio consultorio = consultorios[i];
@@ -71,7 +71,7 @@ public class GestionConsultorio implements Reporte{
     @Override
     public String generarReporteDetallado() {
         StringBuilder reporte = new StringBuilder();
-        reporte.append("=== REPORTE DETALLADO DE CONSULTORIOS ===\n");
+        reporte.append("REPORTE DETALLADO DE CONSULTORIOS");
         for (int i = 0; i < cantidad; i++) {
             reporte.append("Consultorio: ").append(consultorios[i].getCodigo())
                    .append(" - Especialidad: ").append(consultorios[i].getEspecialidad())

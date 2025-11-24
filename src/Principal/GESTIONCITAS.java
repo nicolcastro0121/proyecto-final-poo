@@ -20,30 +20,29 @@ public class GESTIONCITAS extends javax.swing.JFrame {
     
     public GESTIONCITAS() {
         initComponents();
-        cargarListas(); // Llenar las listas desplegables
+        cargarListas();
         actualizarTabla();
     }
     public GESTIONCITAS(Clinica.Usuario user) {
-        this(); // llama al constructor vacío
+        this(); 
         this.usuarioActual = user;
     }
     private void cargarListas() {
-        // 1. Cargar Médicos
         jcbMedicos.removeAllItems();
         for(Empleado emp : Gestor_Empleados.listaEmpleados) {
             if(emp.getRol().equalsIgnoreCase("Médico")) {
-                // Guardamos el DNI como identificador único al principio
+                
                 jcbMedicos.addItem(emp.getDni() + " - " + emp.getNombres());
             }
         }
         
-        // 2. Cargar Pacientes
+
         jcbPacientes.removeAllItems();
         for(Paciente pac : GestionPacientes.listaPacientes) {
             jcbPacientes.addItem(pac.getDni() + " - " + pac.getNombres());
         }
         
-        // 3. Cargar Consultorios
+
         jcbConsultorios.removeAllItems();
         for(Consultorio con : ConsultasTabla.listaconsultorios) {
             jcbConsultorios.addItem(con.getCodigo() + " - " + con.getEspecialidad());
@@ -273,16 +272,13 @@ public class GESTIONCITAS extends javax.swing.JFrame {
             return;
         }
 
-        // Buscar objetos reales
         Paciente p = buscarPaciente(jcbPacientes.getSelectedItem().toString());
         Medico m = buscarMedico(jcbMedicos.getSelectedItem().toString());
         Consultorio c = buscarConsultorio(jcbConsultorios.getSelectedItem().toString());
         
         String fecha = jtFecha.getText();
         String estado = jcbEstado.getSelectedItem().toString();
-        
-        // Crear Cita (Usando tu constructor de Cita: fecha, modalidad, estado, paciente, medico, consultorio)
-        // Asumo modalidad vacía o "Presencial" por defecto
+
         Cita nuevaCita = new Cita(fecha, "Presencial", estado, p, m, c);
         
         listaCitas.add(nuevaCita);
@@ -296,7 +292,6 @@ public class GESTIONCITAS extends javax.swing.JFrame {
         int fila = jtCitas.getSelectedRow();
         if(fila >= 0) {
             Cita c = listaCitas.get(fila);
-            // Solo actualizamos el estado desde el combo
             c.setEstado(jcbEstado.getSelectedItem().toString());
             actualizarTabla();
             JOptionPane.showMessageDialog(this, "Estado Actualizado");
