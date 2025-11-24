@@ -4,12 +4,14 @@
  */
 package Principal;
 
+import Clinica.Administrador;
 import Clinica.Medico;
 import Clinica.Recepcionista;
 import Clinica.Usuario;
 import Clinica.Cajero;
 import GestionClinica.GestorUsuarios;
 import static java.lang.System.gc;
+import Clinica.Paciente;
 
 /**
  *
@@ -32,14 +34,19 @@ public class loginn extends javax.swing.JFrame {
         Gestor_Empleados.listaEmpleados.add(med2);
         usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
         
-        usuarios.AgregarUsuario("cajero", "cajero", "Cajero");
         
-        usuarios.AgregarUsuario("admin", "admin", "Administrador");
+        Administrador amin = new Administrador("12312312", "Paul", "Castro", "123123", "castro@gmail.com", "admin", "admin", "Administrador");
+        Gestor_Empleados.listaEmpleados.add(amin);
+        usuarios.AgregarUsuario("admin", "admin", "Administrador",amin);
+        
+        usuarios.AgregarUsuario("cajero", "cajero", "Cajero");
+
         usuarios.AgregarUsuario("medico", "medico", "Médico");
         usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
         usuarios.AgregarUsuario("recep", "recep", "Recepcionista");
         
-        
+        Paciente paciente = new Paciente("74839201", "María Fernanda", "López Rivas", "2004-03-22", "F", "987654321", "Jr. Las Gardenias 221", "Carlos López - 987112233");
+        GestionPacientes.listaPacientes.add(paciente);
         
         
     }
@@ -125,15 +132,12 @@ public class loginn extends javax.swing.JFrame {
 
         String pass = String.valueOf(jPasswordField1.getPassword());
         Usuario x = this.usuarios.ValidarUsuario(this.user.getText(), pass);
-        
-        // 2. Verificamos si existe (si x no es null)
         if (x != null) {
-            // Si es correcto, entramos
-            MenudeOpciones menu = new MenudeOpciones(x); // Ojo: Si tu Menú pide (User, Sistema), ajusta esto
+           
+            MenudeOpciones menu = new MenudeOpciones(x);
             menu.setVisible(true);
-            this.dispose(); // ¡IMPORTANTE! Cerramos la ventana de Login
-        } else {
-            // Si es incorrecto, mostramos mensaje
+            this.dispose(); 
+        } else {      
             javax.swing.JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
         }
     }//GEN-LAST:event_AceptarActionPerformed

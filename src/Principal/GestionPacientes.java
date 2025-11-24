@@ -1,5 +1,5 @@
-
 package Principal;
+
 import Clinica.Paciente;
 import Clinica.Usuario;
 import java.util.ArrayList;
@@ -7,20 +7,20 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class GestionPacientes extends javax.swing.JFrame {
+
     private Usuario user;
-    private static final java.util.logging.Logger logger =
-            java.util.logging.Logger.getLogger("Gestion Pacientes");
+    private static final java.util.logging.Logger logger
+            = java.util.logging.Logger.getLogger("Gestion Pacientes");
 
     public static ArrayList<Paciente> listaPacientes = new ArrayList<>();
-    
+
     public GestionPacientes(Usuario user) {
-        
+
         initComponents();
-        
+
         actualizarTabla();
         this.user = user;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
@@ -28,11 +28,11 @@ public class GestionPacientes extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public GestionPacientes() {
         throw new UnsupportedOperationException("Usa el constructor con Usuario");
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -59,8 +59,19 @@ public class GestionPacientes extends javax.swing.JFrame {
             new String [] {
                 "DNI", "Nombre", "Apellido", "Fecha Nacimiento", "Sexo", "Telefono", "Dirección", "Contacto de Emergencia"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         Agregar.setText("Agregar");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,8 +138,8 @@ public class GestionPacientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        // TODO add your handling code here:
-        datos_Paciente ventana = new datos_Paciente(this); 
+
+        datos_Paciente ventana = new datos_Paciente(this);
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AgregarActionPerformed
@@ -157,9 +168,9 @@ public class GestionPacientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecciona un paciente para eliminar.");
             return;
         }
-        
+
         GestionPacientes.listaPacientes.remove(filaSeleccionada);
-        
+
         actualizarTabla();
     }//GEN-LAST:event_EliminarActionPerformed
 
@@ -169,12 +180,13 @@ public class GestionPacientes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_VolverbtActionPerformed
 
-    
     public void actualizarTabla() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
-        for (Paciente pac : listaPacientes) {
+        for (int i = 0; i < listaPacientes.size(); i++) {
+            Paciente pac = listaPacientes.get(i);
+
             model.addRow(new Object[]{
                 pac.getDni(),
                 pac.getNombres(),
@@ -183,10 +195,10 @@ public class GestionPacientes extends javax.swing.JFrame {
                 pac.getSexo(),
                 pac.getTelefono(),
                 pac.getDireccion(),
-                pac.getContactoEmergencia(),
-            });
+                pac.getContactoEmergencia(),});
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -220,8 +232,8 @@ public class GestionPacientes extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-        Usuario temp = new Usuario("demo", "demo", "Administrador");
-        new GestionPacientes(temp).setVisible(true);
+            Usuario temp = new Usuario("demo", "demo", "Administrador");
+            new GestionPacientes(temp).setVisible(true);
         });
     }
 

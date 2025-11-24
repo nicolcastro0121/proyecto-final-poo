@@ -10,7 +10,7 @@ public class Administrador extends Empleado{
      private GestionConsultorio gestionConsultorio;
      private GestionConsulta gestionconsulta;
 
-    public Administrador(GestionEmpleado gestionEmpleado, GestionConsultorio gestionConsultorio, GestionConsulta gestionconsulta, String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol) {
+    public Administrador(String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol) {
         super(dni, nombres, apellidos, telf, email, pUserName, pPassword, pRol);
         this.gestionEmpleado = gestionEmpleado;
         this.gestionConsultorio = gestionConsultorio;

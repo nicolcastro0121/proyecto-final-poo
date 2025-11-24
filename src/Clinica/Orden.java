@@ -7,13 +7,15 @@ public class Orden {
     private double precio;
     private String estado; 
     private String resultado;
+    private Paciente paciente;
 
-    public Orden(String nombre, String descripcion, double precio) {
+    public Orden(String nombre, String descripcion, double precio, Paciente paciente) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.estado = "Pendiente";
         this.resultado = "";
+        this.paciente = paciente;
     }
 
     public void ActualizarEstado(String nuevoEstado) {
@@ -65,6 +67,14 @@ public class Orden {
 
     public void setResultado(String resultado) {
         this.resultado = resultado;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
     

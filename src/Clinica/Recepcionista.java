@@ -14,7 +14,7 @@ public class Recepcionista extends Empleado {
     private GestionConsulta gestionConsultas;
     private GestionConsultorio gestionConsultorios;
 
-    public Recepcionista(GestionPacientes gestionPacientes, GestionCita gestionCitas, GestionFactura gestionFacturas, GestionConsulta gestionConsultas, GestionConsultorio gestionConsultorios, String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol) {
+    public Recepcionista(String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol) {
         super(dni, nombres, apellidos, telf, email, pUserName, pPassword, pRol);
         this.gestionPacientes = gestionPacientes;
         this.gestionCitas = gestionCitas;

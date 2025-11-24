@@ -10,7 +10,7 @@ public class Cajero extends Empleado {
     private GestionFactura gestionFactura;
     private GestionConsulta gestionConsulta;
 
-    public Cajero(GestionFactura gestionFactura, GestionConsulta gestionConsulta, String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol) {
+    public Cajero(String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol) {
         super(dni, nombres, apellidos, telf, email, pUserName, pPassword, pRol);
         this.gestionFactura = gestionFactura;
         this.gestionConsulta = gestionConsulta;

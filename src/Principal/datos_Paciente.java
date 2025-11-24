@@ -199,8 +199,6 @@ public class datos_Paciente extends javax.swing.JFrame {
         String pTelefono = Telefono.getText();
         String pdireccion = Direccion.getText();
         String pContacto_Emergencia = Contacto_Emergencia.getText();
-
-        // 2. Guardar en la lista ESTÁTICA (Esto siempre funciona)
         Paciente nuevo = new Paciente(pDni, pNombre, pApellido, pFecha_Nacimiento, pSexo, pTelefono, pdireccion, pContacto_Emergencia);
 
         if (indiceModificar != null) {
@@ -211,20 +209,16 @@ public class datos_Paciente extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, "Paciente guardado correctamente.");
 
-        // 3. NAVEGACIÓN SEGURA (Aquí estaba el error)
         if (gestor != null) {
-            // Si vinimos desde la tabla correctamente
             gestor.actualizarTabla();
             gestor.setVisible(true);
-        } else {
-            // CASO DE EMERGENCIA: Si gestor es null (por ejemplo si abriste la ventana mal)
-            // Creamos una NUEVA tabla para no quedarnos atrapados
+        } else {   
             GestionPacientes nuevaTabla = new GestionPacientes();
             nuevaTabla.setVisible(true);
         }
+        this.dispose(); 
+        
 
-        // 4. Cerrar esta ventana
-        this.dispose(); // Cierra esta ventana
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed

@@ -149,12 +149,11 @@ public class datos_Factura extends javax.swing.JFrame {
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
         try {
-            // 1. Capturar datos
             int pnumero = Integer.parseInt(numero.getText());
             String pdescripcion = descripcion.getText();
             int pcantidad = Integer.parseInt(cantidad.getText());
 
-            // 2. Obtener Paciente
+
             Paciente pacienteSeleccionado = null;
             String itemSeleccionado = (String) ComBoxPacientes.getSelectedItem();
             
@@ -177,9 +176,7 @@ public class datos_Factura extends javax.swing.JFrame {
                 GestionFactura.listaFactura.add(facts);
             }
 
-            // --- AQUÍ ESTÁ LA CORRECCIÓN DE SEGURIDAD ---
             if (gestor != null) {
-                // Camino ideal: Volver a la ventana que nos abrió
                 gestor.actualizarTabla();
                 gestor.setVisible(true);
             } else {
@@ -189,7 +186,7 @@ public class datos_Factura extends javax.swing.JFrame {
                 nuevaTabla.setVisible(true);
             }
             
-            this.dispose(); // Cerrar formulario
+            this.dispose();
 
         } catch (NumberFormatException e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: Número y Cantidad deben ser numéricos.");

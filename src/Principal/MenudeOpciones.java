@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Principal;
 
 import Clinica.Usuario;
@@ -16,9 +12,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenudeOpciones.class.getName());
 
-    /**
-     * Creates new form MenudeOpciones
-     */
     public MenudeOpciones(Usuario user) {
         initComponents();
         deshabilitarTodo();
@@ -45,7 +38,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
             telefono.setText(usuarioActual.getEmpleado().getTelf());
 
         } else {
-            // Seguridad por si el empleado es null
+
             nombre.setText("—");
             apellido.setText("—");
             dni.setText("—");
@@ -298,6 +291,11 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jMenu1.add(AtencionClinica);
 
         EjecucionOrdenesAnalisis.setText("Ejecucion Ordenes Analisis");
+        EjecucionOrdenesAnalisis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EjecucionOrdenesAnalisisActionPerformed(evt);
+            }
+        });
         jMenu1.add(EjecucionOrdenesAnalisis);
 
         HistorialClinica.setText("Historial Clinica");
@@ -355,8 +353,8 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }//GEN-LAST:event_GEmpleadosActionPerformed
 
     private void GestionPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionPacientesActionPerformed
-        GestionPacientes ventana = new GestionPacientes(this.usuarioActual); 
-        
+        GestionPacientes ventana = new GestionPacientes(this.usuarioActual);
+
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_GestionPacientesActionPerformed
@@ -369,7 +367,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         GestionFactura ventana = new GestionFactura(this.usuarioActual);
         ventana.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_FacturasActionPerformed
 
     private void CitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CitasActionPerformed
@@ -385,12 +383,14 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
     private void CerrarSesionbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionbtActionPerformed
         loginn login = new loginn();
-
-        // 2. Hacer visible el login
         login.setVisible(true);
-
-        // 3. Cerrar (destruir) la ventana actual del menú
         this.dispose();    }//GEN-LAST:event_CerrarSesionbtActionPerformed
+
+    private void EjecucionOrdenesAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecucionOrdenesAnalisisActionPerformed
+        EjecuciónOrdenesyAnalisis ejecutor = new EjecuciónOrdenesyAnalisis(this.usuarioActual);
+        ejecutor.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_EjecucionOrdenesAnalisisActionPerformed
 
     /**
      * @param args the command line arguments
