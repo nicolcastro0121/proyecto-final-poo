@@ -87,7 +87,7 @@ public class EjecuciónOrdenesyAnalisis extends javax.swing.JFrame {
 
         jLabel1.setText("TIPO:");
 
-        ComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Orden", "Analisis" }));
+        ComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Imágen", "Analisis" }));
         ComboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxTipoActionPerformed(evt);
