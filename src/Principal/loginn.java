@@ -13,42 +13,42 @@ import GestionClinica.GestorUsuarios;
 import static java.lang.System.gc;
 import Clinica.Paciente;
 
-/**
- *
- * @author Nicol
- */
 public class loginn extends javax.swing.JFrame {
+
+    private static Sistema sistema = new Sistema();
     private GestorUsuarios usuarios;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(loginn.class.getName());
+
     /**
      * Creates new form loginn
      */
     public loginn() {
         initComponents();
-        usuarios = new GestorUsuarios();
-        Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
-        Gestor_Empleados.listaEmpleados.add(med1);
-         usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
-         
-        Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
-        Gestor_Empleados.listaEmpleados.add(med2);
-        usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
-        
-        
-        Administrador amin = new Administrador("12312312", "Paul", "Castro", "123123", "castro@gmail.com", "admin", "admin", "Administrador");
-        Gestor_Empleados.listaEmpleados.add(amin);
-        usuarios.AgregarUsuario("admin", "admin", "Administrador",amin);
-        
-        usuarios.AgregarUsuario("cajero", "cajero", "Cajero");
 
-        usuarios.AgregarUsuario("medico", "medico", "Médico");
-        usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
-        usuarios.AgregarUsuario("recep", "recep", "Recepcionista");
-        
         Paciente paciente = new Paciente("74839201", "María Fernanda", "López Rivas", "2004-03-22", "F", "987654321", "Jr. Las Gardenias 221", "Carlos López - 987112233");
-        GestionPacientes.listaPacientes.add(paciente);
-        
-        
+        sistema.getGestionPacientes().agregar(paciente);
+        if (usuarios == null) {
+            usuarios = new GestorUsuarios();
+
+            // Crear algunos usuarios de prueba
+            Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
+            Sistema.gestionEmpleados.AgregarEmpleado(dni, nombres, apellidos, telf, email, pUserName, pPassword, med1, pRol);
+            usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
+
+            Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
+            
+            usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
+
+            Administrador admin = new Administrador("12312312", "Paul", "Castro", "123123", "castro@gmail.com", "admin", "admin", "Administrador");
+            
+            usuarios.AgregarUsuario("admin", "admin", "Administrador", admin);
+
+            usuarios.AgregarUsuario("cajero", "cajero", "Cajero");
+            usuarios.AgregarUsuario("medico", "medico", "Médico");
+            usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
+            usuarios.AgregarUsuario("recep", "recep", "Recepcionista");
+
+        }
     }
 
     /**
@@ -131,14 +131,17 @@ public class loginn extends javax.swing.JFrame {
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
 
         String pass = String.valueOf(jPasswordField1.getPassword());
-        Usuario x = this.usuarios.ValidarUsuario(this.user.getText(), pass);
+        Usuario x = usuarios.ValidarUsuario(user.getText(), pass);
+
         if (x != null) {
-           
-            MenudeOpciones menu = new MenudeOpciones(x);
+            // Guardar el usuario actual en la misma instancia de sistema
+            sistema.setUsuarioActual(x);
+
+            MenudeOpciones menu = new MenudeOpciones(x, sistema);
             menu.setVisible(true);
-            this.dispose(); 
-        } else {      
-            javax.swing.JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+            this.dispose();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
         }
     }//GEN-LAST:event_AceptarActionPerformed
 

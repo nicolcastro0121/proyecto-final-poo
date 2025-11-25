@@ -11,20 +11,19 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private Clinica.Usuario usuarioActual;
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenudeOpciones.class.getName());
+    private Sistema sistema;
 
-    public MenudeOpciones(Usuario user) {
+    public MenudeOpciones(Usuario user, Sistema sistema) {
         initComponents();
         deshabilitarTodo();
+
         this.usuarioActual = user;
+        this.sistema = sistema;
+
         cargarDatosUsuario();
         aplicarRol(user);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-    }
-
-    public MenudeOpciones() {
-
-        throw new UnsupportedOperationException("Usa el constructor con Usuario");
     }
 
     private void cargarDatosUsuario() {
@@ -352,9 +351,14 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }//GEN-LAST:event_GEmpleadosActionPerformed
 
     private void GestionPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionPacientesActionPerformed
-        GestionPacientes ventana = new GestionPacientes(this.usuarioActual);
+        GESTIONPACIENTESPANEL panel = new GESTIONPACIENTESPANEL(this.sistema);
+        javax.swing.JFrame ventana = new javax.swing.JFrame("Gestión de Pacientes");
 
+        ventana.setContentPane(panel);
+        ventana.setSize(1200, 600);
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
+
         this.dispose();
     }//GEN-LAST:event_GestionPacientesActionPerformed
 
@@ -395,25 +399,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MenudeOpciones().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

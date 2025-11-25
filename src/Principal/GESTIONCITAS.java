@@ -73,7 +73,7 @@ public class GESTIONCITAS extends javax.swing.JFrame {
     }
     private Medico buscarMedico(String textoCombo) {
         if(textoCombo == null) return null;
-        String dni = textoCombo.split(" - ")[0]; // Sacamos el DNI del texto
+        String dni = textoCombo.split(" - ")[0]; 
         for(Empleado emp : Gestor_Empleados.listaEmpleados) {
             if(emp.getDni().equals(dni) && emp instanceof Medico) return (Medico) emp;
         }

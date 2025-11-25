@@ -1,4 +1,3 @@
-
 package Principal;
 
 import Clinica.Usuario;
@@ -10,10 +9,9 @@ import GestionClinica.GestionFactura;
 import GestionClinica.GestionPacientes;
 import InterfacesClinica.Reporte;
 
-
-
-
 public class Sistema {
+
+    private Usuario usuarioActual;
     static GestionPacientes gestionPacientes;
     static GestionEmpleado gestionEmpleados;
     static GestionCita gestionCitas;
@@ -34,8 +32,15 @@ public class Sistema {
         this.cantidadUsuarios = 0;
     }
 
-    
-     public void agregarUsuario(Usuario usuario) {
+    public void setUsuarioActual(Usuario u) {
+        this.usuarioActual = u;
+    }
+
+    public Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    public void agregarUsuario(Usuario usuario) {
         if (cantidadUsuarios < usuarios.length) {
             usuarios[cantidadUsuarios] = usuario;
             cantidadUsuarios++;
@@ -44,43 +49,43 @@ public class Sistema {
             System.out.println("No hay espacio para más usuarios");
         }
     }
-    
+
     public void eliminarUsuario(String id) {
-    for (int i = 0; i < cantidadUsuarios; i++) {
-        if (usuarios[i].getUserName().equals(id)) {
-            System.out.println("Usuario eliminado: " + usuarios[i].getUserName());
-            for (int j = i; j < cantidadUsuarios - 1; j++) {
-                usuarios[j] = usuarios[j + 1];
+        for (int i = 0; i < cantidadUsuarios; i++) {
+            if (usuarios[i].getUserName().equals(id)) {
+                System.out.println("Usuario eliminado: " + usuarios[i].getUserName());
+                for (int j = i; j < cantidadUsuarios - 1; j++) {
+                    usuarios[j] = usuarios[j + 1];
+                }
+                usuarios[cantidadUsuarios - 1] = null;
+                cantidadUsuarios--;
+                return;
             }
-            usuarios[cantidadUsuarios - 1] = null;
-            cantidadUsuarios--;
-            return;
         }
+        System.out.println("Usuario no encontrado con ID: " + id);
     }
-    System.out.println("Usuario no encontrado con ID: " + id);
-}
-    
+
     public void modificarUsuario(String id, Usuario nuevoUsuario) {
-    for (int i = 0; i < cantidadUsuarios; i++) {
-        if (usuarios[i].getUserName().equals(id)) {
-            usuarios[i].setUserName(nuevoUsuario.getUserName());
-            usuarios[i].setPassword(nuevoUsuario.getPassword());
-            System.out.println("Usuario modificado: " + id);
-            return;
+        for (int i = 0; i < cantidadUsuarios; i++) {
+            if (usuarios[i].getUserName().equals(id)) {
+                usuarios[i].setUserName(nuevoUsuario.getUserName());
+                usuarios[i].setPassword(nuevoUsuario.getPassword());
+                System.out.println("Usuario modificado: " + id);
+                return;
+            }
         }
+        System.out.println("Usuario no encontrado con ID: " + id);
     }
-    System.out.println("Usuario no encontrado con ID: " + id);
-}
-    
+
     public Usuario buscarUsuario(String id) {
-    for (int i = 0; i < cantidadUsuarios; i++) {
-        if (usuarios[i].getUserName().equals(id)) {
-            return usuarios[i];
+        for (int i = 0; i < cantidadUsuarios; i++) {
+            if (usuarios[i].getUserName().equals(id)) {
+                return usuarios[i];
+            }
         }
+        return null;
     }
-    return null;
-}   
-    
+
     public void verUsuarios() {
         System.out.println("=== LISTA DE USUARIOS ===");
         System.out.println("Total de usuarios: " + cantidadUsuarios);
@@ -120,6 +125,5 @@ public class Sistema {
     public int getCantidadUsuarios() {
         return cantidadUsuarios;
     }
-    
-    
+
 }

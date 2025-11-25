@@ -12,7 +12,7 @@ public class GestionEmpleado {
         this.cantidad = 0;
     }
     
-    public void AgregarEmpleado(String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, Empleado empleado, String pRol){
+    public void AgregarEmpleado(String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol){
         if (this.cantidad < this.empleados.length) {
             this.empleados[this.cantidad] = new Empleado( dni,  nombres,  apellidos,  telf,  email,  pUserName,  pPassword,  pRol){
                 
