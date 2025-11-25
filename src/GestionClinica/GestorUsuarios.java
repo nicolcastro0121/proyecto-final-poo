@@ -14,9 +14,15 @@ public class GestorUsuarios {
         this.numUsuario = 0;
     }
     
-    public void AgregarUsuario(String pUserName, String pPassword, String pRol, Empleado emp){
-        this.listaUsuarios[this.numUsuario] = new Usuario(pUserName, pPassword, emp, pRol);
-        this.numUsuario++;
+    public void AgregarUsuario(String userName, String password, String rol, Empleado empleado) {
+        if (numUsuario < listaUsuarios.length) {
+            // Creamos un Usuario apuntando al empleado
+            listaUsuarios[numUsuario] = empleado;  // empleado ya es un Usuario
+            numUsuario++;
+            System.out.println("Usuario agregado: " + empleado.getUserName());
+        } else {
+            System.out.println("No hay espacio para más usuarios");
+        }
     }
     
     public void AgregarUsuario(String pUserName, String pPassword, String pRol){

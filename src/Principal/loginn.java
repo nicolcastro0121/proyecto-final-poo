@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Principal;
 
 import Clinica.Administrador;
@@ -9,13 +6,15 @@ import Clinica.Medico;
 import Clinica.Recepcionista;
 import Clinica.Usuario;
 import Clinica.Cajero;
+import Clinica.Enfermero;
 import GestionClinica.GestorUsuarios;
 import static java.lang.System.gc;
 import Clinica.Paciente;
 
+
 public class loginn extends javax.swing.JFrame {
 
-    private static Sistema sistema = new Sistema();
+    private Sistema sistema = new Sistema();
     private GestorUsuarios usuarios;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(loginn.class.getName());
 
@@ -25,30 +24,45 @@ public class loginn extends javax.swing.JFrame {
     public loginn() {
         initComponents();
 
-        Paciente paciente = new Paciente("74839201", "María Fernanda", "López Rivas", "2004-03-22", "F", "987654321", "Jr. Las Gardenias 221", "Carlos López - 987112233");
-        sistema.getGestionPacientes().agregar(paciente);
-        if (usuarios == null) {
-            usuarios = new GestorUsuarios();
+    
+    if (usuarios == null) {
+        usuarios = new GestorUsuarios();
+    }
 
-            // Crear algunos usuarios de prueba
-            Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
-            Sistema.gestionEmpleados.AgregarEmpleado(dni, nombres, apellidos, telf, email, pUserName, pPassword, med1, pRol);
-            usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
+    // Crear usuarios de prueba
+    Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
+    usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
+    sistema.getGestionEmpleados().crearEmpleado(med1);
 
-            Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
-            
-            usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
+    Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
+    usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
+    sistema.getGestionEmpleados().crearEmpleado(med2);
 
-            Administrador admin = new Administrador("12312312", "Paul", "Castro", "123123", "castro@gmail.com", "admin", "admin", "Administrador");
-            
-            usuarios.AgregarUsuario("admin", "admin", "Administrador", admin);
+    Administrador admin = new Administrador("12312312", "Paul", "Castro", "123123", "castro@gmail.com", "admin", "admin", "Administrador");
+    usuarios.AgregarUsuario("admin", "admin", "Administrador", admin);
+    sistema.getGestionEmpleados().crearEmpleado(admin);
+    
+    Recepcionista recep = new Recepcionista("33333333", "Laura", "Rojas", "777777", "laura@mail.com", "recep", "1234", "Recepcionista");
+    sistema.getGestionEmpleados().crearEmpleado(recep);
 
-            usuarios.AgregarUsuario("cajero", "cajero", "Cajero");
-            usuarios.AgregarUsuario("medico", "medico", "Médico");
-            usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
-            usuarios.AgregarUsuario("recep", "recep", "Recepcionista");
-
-        }
+    // Crear pacientes de prueba
+    Paciente paciente = new Paciente("74839201", "María Fernanda", "López Rivas", "2004-03-22", "F", "987654321", "Jr. Las Gardenias 221", "Carlos López - 987112233");
+    sistema.getGestionPacientes().agregar(paciente);
+    
+    Cajero cajero = new Cajero("44444444", "Pedro", "Mendoza", "666666", "pedro@mail.com", "cajero", "1234", "Cajero");
+    sistema.getGestionEmpleados().crearEmpleado(cajero);
+    
+    Enfermero enfer = new Enfermero("60966605", "Carlos", "Cabrera", "45632423", "cabrera@gmail.com", "enfermero", "enfermero", "Enfermero");
+    sistema.getGestionEmpleados().crearEmpleado(enfer);
+    
+    usuarios.AgregarUsuario("cajero", "cajero", "Cajero", cajero);
+    usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
+    usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
+    usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
+    usuarios.AgregarUsuario("recep", "1234", "Recepcionista",recep);
+       
+        
+        
     }
 
     /**
@@ -129,12 +143,10 @@ public class loginn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-
         String pass = String.valueOf(jPasswordField1.getPassword());
         Usuario x = usuarios.ValidarUsuario(user.getText(), pass);
 
         if (x != null) {
-            // Guardar el usuario actual en la misma instancia de sistema
             sistema.setUsuarioActual(x);
 
             MenudeOpciones menu = new MenudeOpciones(x, sistema);
@@ -153,26 +165,8 @@ public class loginn extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new loginn().setVisible(true));
-    }
+    java.awt.EventQueue.invokeLater(() -> new loginn().setVisible(true));
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;

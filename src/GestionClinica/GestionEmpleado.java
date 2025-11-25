@@ -13,16 +13,14 @@ public class GestionEmpleado {
     }
     
     public void AgregarEmpleado(String dni, String nombres, String apellidos, String telf, String email, String pUserName, String pPassword, String pRol){
-        if (this.cantidad < this.empleados.length) {
-            this.empleados[this.cantidad] = new Empleado( dni,  nombres,  apellidos,  telf,  email,  pUserName,  pPassword,  pRol){
-                
-            };
-            this.cantidad++;
-        }else{
-             System.out.println("No se pueden agregar más empleados.No hay espacio.");
-                    
-        }
+    if (this.cantidad < this.empleados.length) {
+        this.empleados[this.cantidad] = new Empleado( dni,  nombres,  apellidos,  telf,  email,  pUserName,  pPassword,  pRol);
+        
+        this.cantidad++;
+    } else {
+         System.out.println("No se pueden agregar más empleados.No hay espacio.");
     }
+}
     
      public void crearEmpleado(Empleado empleado) {
         if (cantidad < empleados.length) {
@@ -33,14 +31,14 @@ public class GestionEmpleado {
         }
     }
      
-    public Empleado ValidarEmpleado(String dni, String nombres, String apellidos, String telf, String email, String userName, String password, Empleado empleado, String Rol){
-        for (int i = 0; i < this.cantidad; i++) {
-            if (this.empleados[i].getUserName().equals(userName)&& this.empleados[i].getPassword().equals(password)) {
-                return this.empleados[i];
-            }
+    public Empleado validarEmpleado(String userName, String password){
+    for (int i = 0; i < this.cantidad; i++) {
+        if (empleados[i].getUserName().equals(userName) && empleados[i].getPassword().equals(password)) {
+            return empleados[i];
         }
-        return null;
     }
+    return null;
+}
     
    
     public boolean modificar(String DNI, Empleado nuevoEmpleado) {

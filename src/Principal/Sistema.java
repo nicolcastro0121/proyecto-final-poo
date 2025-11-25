@@ -1,5 +1,6 @@
 package Principal;
 
+import Clinica.Empleado;
 import Clinica.Usuario;
 import GestionClinica.GestionCita;
 import GestionClinica.GestionConsulta;
@@ -40,14 +41,9 @@ public class Sistema {
         return usuarioActual;
     }
 
-    public void agregarUsuario(Usuario usuario) {
-        if (cantidadUsuarios < usuarios.length) {
-            usuarios[cantidadUsuarios] = usuario;
-            cantidadUsuarios++;
-            System.out.println("Usuario agregado: " + usuario.getUserName());
-        } else {
-            System.out.println("No hay espacio para más usuarios");
-        }
+    public void AgregarUsuario(String userName, String password, String rol, Empleado empleado) {
+    Usuario nuevoUsuario = new Usuario(userName, password, rol);
+    nuevoUsuario.setEmpleado(empleado); 
     }
 
     public void eliminarUsuario(String id) {

@@ -8,7 +8,7 @@ public class Usuario {
     protected String Rol;
     public int getRol;
 
-    public Usuario(String userName, String password, Empleado empleado, String Rol) {
+    public Usuario(String userName, String password, String Rol, Empleado empleado) {
         this.userName = userName;
         this.password = password;
         this.empleado = empleado;

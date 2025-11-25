@@ -1,5 +1,6 @@
 package Principal;
 
+import Clinica.Empleado;
 import Clinica.Usuario;
 
 /**
@@ -27,21 +28,21 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }
 
     private void cargarDatosUsuario() {
-        if (usuarioActual != null && usuarioActual.getEmpleado() != null) {
-
-            nombre.setText(usuarioActual.getEmpleado().getNombres());
-            apellido.setText(usuarioActual.getEmpleado().getApellidos());
-            dni.setText(usuarioActual.getEmpleado().getDni());
-            correo.setText(usuarioActual.getEmpleado().getEmail());
-            telefono.setText(usuarioActual.getEmpleado().getTelf());
-
-        } else {
-
-            nombre.setText("—");
-            apellido.setText("—");
-            dni.setText("—");
-            correo.setText("—");
-            telefono.setText("—");
+        if (usuarioActual != null) {
+            // Verifica si es un Empleado
+            if (usuarioActual instanceof Empleado empleado) {
+                nombre.setText(empleado.getNombres());
+                apellido.setText(empleado.getApellidos());
+                dni.setText(empleado.getDni());
+                correo.setText(empleado.getEmail());
+                telefono.setText(empleado.getTelf());
+            } else {
+                nombre.setText("—");
+                apellido.setText("—");
+                dni.setText("—");
+                correo.setText("—");
+                telefono.setText("—");
+            }
         }
     }
 
@@ -345,8 +346,18 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }//GEN-LAST:event_GConsultoriosActionPerformed
 
     private void GEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GEmpleadosActionPerformed
-        Gestor_Empleados gestor = new Gestor_Empleados(this.usuarioActual);
-        gestor.setVisible(true);
+        GESTIONEMPLEADOSPANEL panel = new GESTIONEMPLEADOSPANEL(this.sistema);
+
+        // Creamos una nueva ventana
+        javax.swing.JFrame ventana = new javax.swing.JFrame("Gestión de Empleados");
+
+        // Configuramos la ventana con el panel
+        ventana.setContentPane(panel);
+        ventana.setSize(1200, 600);           // Ajusta el tamaño como necesites
+        ventana.setLocationRelativeTo(null);  // Centrar ventana
+        ventana.setVisible(true);
+
+        // Opcional: cerrar la ventana de menú principal si quieres
         this.dispose();
     }//GEN-LAST:event_GEmpleadosActionPerformed
 
