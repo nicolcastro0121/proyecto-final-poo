@@ -335,7 +335,22 @@ public class GESTIONEMPLEADOSPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        String dniEliminar = EliminarIngresaDNI.getText(); 
+        if (dniEliminar.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un DNI para eliminar.");
+            return;
+        }
 
+        
+        boolean eliminado = sistema.getGestionEmpleados().eliminar(dniEliminar);
+
+        if (eliminado) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente.");
+            actualizarTabla();  
+            EliminarIngresaDNI.setText(""); 
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Empleado no encontrado.");
+        }
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void EliminarIngresaDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarIngresaDNIActionPerformed
