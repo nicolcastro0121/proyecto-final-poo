@@ -44,9 +44,6 @@ public class EjecuciónOrdenesyAnalisis extends javax.swing.JFrame {
             model.addRow(new Object[]{
                 ord.getNombre(),
                 ord.getDescripcion(),
-                ord.getPrecio(),
-                ord.getEstado(),
-                ord.getResultado(),
                 ord.getPaciente().getNombres() + " " + ord.getPaciente().getApellidos()
             });
         }
