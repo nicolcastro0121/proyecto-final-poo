@@ -12,7 +12,7 @@ import InterfacesClinica.Reporte;
 
 public class Sistema {
 
-    private Usuario usuarioActual;
+    public static Usuario usuarioActual;
     static GestionPacientes gestionPacientes;
     static GestionEmpleado gestionEmpleados;
     static GestionCita gestionCitas;

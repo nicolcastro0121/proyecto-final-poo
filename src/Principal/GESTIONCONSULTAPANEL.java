@@ -120,11 +120,16 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(191, 191, 191)
+                        .addComponent(Modificar)
+                        .addGap(231, 231, 231)
+                        .addComponent(Eliminar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
+                                .addGap(96, 96, 96)
                                 .addComponent(aceptar)
                                 .addGap(54, 54, 54)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +138,7 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
                                         .addComponent(GuardarCambios)
                                         .addGap(29, 29, 29))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,27 +164,20 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
                                     .addComponent(estado, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Precio, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Motivo, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(antecedentes, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(plan)
-                                        .addComponent(cant_operaciones)
-                                        .addComponent(diagnosticos)
-                                        .addComponent(examenes_fisicos)
-                                        .addComponent(signos_vitales, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
-                        .addComponent(Modificar)
-                        .addGap(231, 231, 231)
-                        .addComponent(Eliminar)))
+                                    .addComponent(antecedentes, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                                    .addComponent(plan)
+                                    .addComponent(cant_operaciones)
+                                    .addComponent(diagnosticos)
+                                    .addComponent(examenes_fisicos)
+                                    .addComponent(signos_vitales))))))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(Motivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,11 +216,12 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(GuardarCambios)
-                            .addComponent(aceptar)))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(aceptar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(13, 13, 13)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Eliminar)
                     .addComponent(Modificar))
@@ -255,7 +254,7 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
                 pCantidadOrdenes, pPlan, null
             );
 
-            // SOLO AGREGAR - no modificar
+           
             sistema.getGestionConsultas().agregar(nuevaConsulta);
             JOptionPane.showMessageDialog(this, "Consulta agregada correctamente");
 
@@ -277,7 +276,7 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
         Consulta consultaSeleccionada = sistema.getGestionConsultas().buscar(fila);
         
         if (consultaSeleccionada != null) {
-            // Llenar campos
+
             Motivo.setText(consultaSeleccionada.getMotivo());
             Precio.setText(String.valueOf(consultaSeleccionada.getPrecio()));
             estado.setText(consultaSeleccionada.getEstado());

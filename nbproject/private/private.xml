@@ -5,14 +5,14 @@
         <group>
             <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/MenudeOpciones.java</file>
             <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/Sistema.java</file>
-            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/datos_Factura.java</file>
             <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/loginn.java</file>
-            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/GESTIONPACIENTESPANEL.java</file>
-            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/GestionClinica/GestionPacientes.java</file>
-            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/GESTIONEMPLEADOSPANEL.java</file>
-            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/datosEmpleado.java</file>
-            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/Gestor_Empleados.java</file>
             <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/GestionClinica/GestionEmpleado.java</file>
+            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Clinica/Empleado.java</file>
+            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Clinica/Usuario.java</file>
+            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/GestionClinica/GestorUsuarios.java</file>
+            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/GESTIONEMPLEADOSPANEL.java</file>
+            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Principal/GESTIONPACIENTESPANEL.java</file>
+            <file>file:/C:/Users/Fernanda/OneDrive/Documentos/NetBeansProjects/proyecto-final-poo/src/Clinica/Medico.java</file>
         </group>
     </open-files>
 </project-private>
