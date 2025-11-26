@@ -35,13 +35,40 @@ public class GestionConsulta {
         }
         return null;
     }
+    
+    public boolean eliminar(int posicion) {
+        if (posicion >= 0 && posicion < cantidad) {
+            for (int i = posicion; i < cantidad - 1; i++) {
+                consultas[i] = consultas[i + 1];
+            }
+            consultas[cantidad - 1] = null;
+            cantidad--;
+            return true;
+        }
+        return false;
+    }
+
+    public Consulta[] getConsultas() {
+        Consulta[] resultado = new Consulta[cantidad];
+        for (int i = 0; i < cantidad; i++) {
+            resultado[i] = consultas[i];
+        }
+        return resultado;
+    }
+
 
     public void setConsultas(Consulta[] consultas) {
         this.consultas = consultas;
     }
+    
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+    
 
 }

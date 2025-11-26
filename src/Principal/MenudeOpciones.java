@@ -60,6 +60,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
                 GestionPacientes.setEnabled(true);
                 break;
             case "Médico":
+                Gconsulta.setEnabled(true);
                 Citas.setEnabled(true);
                 AtencionClinica.setEnabled(true);
                 HistorialClinica.setEnabled(true);
@@ -123,6 +124,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         GEmpleados = new javax.swing.JMenuItem();
         GConsultorios = new javax.swing.JMenuItem();
+        Gconsulta = new javax.swing.JMenuItem();
         GestionPacientes = new javax.swing.JMenuItem();
         Citas = new javax.swing.JMenuItem();
         AdmisionyAlta = new javax.swing.JMenuItem();
@@ -194,9 +196,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(dni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
                     .addComponent(apellido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -207,10 +206,14 @@ public class MenudeOpciones extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(correo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(29, 29, 29)))
                 .addGap(52, 52, 52))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(156, Short.MAX_VALUE)
                 .addComponent(CerrarSesionbt)
                 .addGap(150, 150, 150))
         );
@@ -261,6 +264,14 @@ public class MenudeOpciones extends javax.swing.JFrame {
             }
         });
         jMenu1.add(GConsultorios);
+
+        Gconsulta.setText("Gestion Consulta");
+        Gconsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GconsultaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Gconsulta);
 
         GestionPacientes.setText("Gestion Pacientes");
         GestionPacientes.addActionListener(new java.awt.event.ActionListener() {
@@ -406,6 +417,18 @@ public class MenudeOpciones extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_EjecucionOrdenesAnalisisActionPerformed
 
+    private void GconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GconsultaActionPerformed
+        // TODO add your handling code here:
+        GESTIONCONSULTAPANEL consultasPanel = new GESTIONCONSULTAPANEL(this.sistema);
+        javax.swing.JFrame ventana = new javax.swing.JFrame("Gestión de Consultas");
+        ventana.setContentPane(consultasPanel);
+        ventana.setSize(900, 700);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+
+        this.dispose(); // Cierra el menú actual
+    }//GEN-LAST:event_GconsultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -422,6 +445,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private javax.swing.JMenuItem Facturas;
     private javax.swing.JMenuItem GConsultorios;
     private javax.swing.JMenuItem GEmpleados;
+    private javax.swing.JMenuItem Gconsulta;
     private javax.swing.JMenuItem GestionPacientes;
     private javax.swing.JMenuItem HistorialClinica;
     private javax.swing.JMenuItem Reportes;
