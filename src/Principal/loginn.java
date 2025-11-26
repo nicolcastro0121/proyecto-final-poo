@@ -1,4 +1,3 @@
-
 package Principal;
 
 import Clinica.Administrador;
@@ -11,65 +10,57 @@ import GestionClinica.GestorUsuarios;
 import static java.lang.System.gc;
 import Clinica.Paciente;
 
-
 public class loginn extends javax.swing.JFrame {
 
-    private Sistema sistema = new Sistema();
+    public static Sistema sistemaGlobal = new Sistema();
+   
     private GestorUsuarios usuarios;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(loginn.class.getName());
-
-    /**
-     * Creates new form loginn
-     */
     public loginn() {
         initComponents();
 
-    
-    if (usuarios == null) {
-        usuarios = new GestorUsuarios();
+        if (usuarios == null) {
+            usuarios = new GestorUsuarios();
+        }
+
+        Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
+        usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
+        sistemaGlobal.getGestionEmpleados().crearEmpleado(med1);
+
+        Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
+        usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
+        sistemaGlobal.getGestionEmpleados().crearEmpleado(med2);
+
+        Administrador admin = new Administrador("12312312", "Paul", "Castro", "123123", "castro@gmail.com", "admin", "admin", "Administrador");
+        usuarios.AgregarUsuario("admin", "admin", "Administrador", admin);
+        sistemaGlobal.getGestionEmpleados().crearEmpleado(admin);
+        
+        Administrador admin2 = new Administrador("66666", "Renata", "res", "1123123", "ren@gmail.com", "admin", "admin", "Administrador");
+        usuarios.AgregarUsuario("admin", "admin", "Administrador", admin2);
+        sistemaGlobal.getGestionEmpleados().crearEmpleado(admin2);
+
+        Recepcionista recep = new Recepcionista("33333333", "Laura", "Rojas", "777777", "laura@mail.com", "recep", "1234", "Recepcionista");
+        sistemaGlobal.getGestionEmpleados().crearEmpleado(recep);
+
+        // Paciente
+        Paciente paciente = new Paciente("74839201", "María Fernanda", "López Rivas", "2004-03-22", "F", "987654321", "Jr. Las Gardenias 221", "Carlos López - 987112233");
+        sistemaGlobal.getGestionPacientes().agregar(paciente);
+
+        Cajero cajero = new Cajero("44444444", "Pedro", "Mendoza", "666666", "pedro@mail.com", "cajero", "1234", "Cajero");
+        sistemaGlobal.getGestionEmpleados().crearEmpleado(cajero);
+
+        Enfermero enfer = new Enfermero("60966605", "Carlos", "Cabrera", "45632423", "cabrera@gmail.com", "enfermero", "enfermero", "Enfermero");
+        sistemaGlobal.getGestionEmpleados().crearEmpleado(enfer);
+
+        usuarios.AgregarUsuario("cajero", "cajero", "Cajero", cajero);
+        usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
+        usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
+        usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
+        usuarios.AgregarUsuario("recep", "1234", "Recepcionista", recep);
+
     }
 
-    // Crear usuarios de prueba
-    Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
-    usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
-    sistema.getGestionEmpleados().crearEmpleado(med1);
-
-    Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
-    usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
-    sistema.getGestionEmpleados().crearEmpleado(med2);
-
-    Administrador admin = new Administrador("12312312", "Paul", "Castro", "123123", "castro@gmail.com", "admin", "admin", "Administrador");
-    usuarios.AgregarUsuario("admin", "admin", "Administrador", admin);
-    sistema.getGestionEmpleados().crearEmpleado(admin);
-    
-    Recepcionista recep = new Recepcionista("33333333", "Laura", "Rojas", "777777", "laura@mail.com", "recep", "1234", "Recepcionista");
-    sistema.getGestionEmpleados().crearEmpleado(recep);
-
-    // Crear pacientes de prueba
-    Paciente paciente = new Paciente("74839201", "María Fernanda", "López Rivas", "2004-03-22", "F", "987654321", "Jr. Las Gardenias 221", "Carlos López - 987112233");
-    sistema.getGestionPacientes().agregar(paciente);
-    
-    Cajero cajero = new Cajero("44444444", "Pedro", "Mendoza", "666666", "pedro@mail.com", "cajero", "1234", "Cajero");
-    sistema.getGestionEmpleados().crearEmpleado(cajero);
-    
-    Enfermero enfer = new Enfermero("60966605", "Carlos", "Cabrera", "45632423", "cabrera@gmail.com", "enfermero", "enfermero", "Enfermero");
-    sistema.getGestionEmpleados().crearEmpleado(enfer);
-    
-    usuarios.AgregarUsuario("cajero", "cajero", "Cajero", cajero);
-    usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
-    usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
-    usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
-    usuarios.AgregarUsuario("recep", "1234", "Recepcionista",recep);
-       
-        
-        
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -147,26 +138,24 @@ public class loginn extends javax.swing.JFrame {
         Usuario x = usuarios.ValidarUsuario(user.getText(), pass);
 
         if (x != null) {
-            sistema.setUsuarioActual(x);
+            sistemaGlobal.setUsuarioActual(x);
 
-            MenudeOpciones menu = new MenudeOpciones(x, sistema);
+            MenudeOpciones menu = new MenudeOpciones(x, sistemaGlobal);
             menu.setVisible(true);
             this.dispose();
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
         }
+    
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_SalirActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-    java.awt.EventQueue.invokeLater(() -> new loginn().setVisible(true));
-}
+        java.awt.EventQueue.invokeLater(() -> new loginn().setVisible(true));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;

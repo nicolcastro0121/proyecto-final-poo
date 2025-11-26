@@ -45,7 +45,7 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
 
     private void cargarComboMedicos() {
         comboMedicos.removeAllItems();
-        comboMedicos.addItem("Seleccione..."); // Item por defecto
+        comboMedicos.addItem("Seleccione..."); 
         
         Empleado[] lista = sistema.getGestionEmpleados().getEmpleados();
 
@@ -150,6 +150,13 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tablaConsultorios);
+        if (tablaConsultorios.getColumnModel().getColumnCount() > 0) {
+            tablaConsultorios.getColumnModel().getColumn(0).setResizable(false);
+            tablaConsultorios.getColumnModel().getColumn(1).setResizable(false);
+            tablaConsultorios.getColumnModel().getColumn(2).setResizable(false);
+            tablaConsultorios.getColumnModel().getColumn(3).setResizable(false);
+            tablaConsultorios.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         Disponibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado" }));
         Disponibilidad.addActionListener(new java.awt.event.ActionListener() {
@@ -227,15 +234,15 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addComponent(Modificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Eliminar)
-                        .addGap(124, 124, 124)))
+                        .addGap(124, 124, 124))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +268,7 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
                     .addComponent(Agregar))
                 .addGap(127, 127, 127))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(258, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(538, 538, 538))
         );
@@ -269,12 +276,12 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Eliminar)
                             .addComponent(Modificar))
@@ -346,17 +353,17 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
 
         String estado = Disponibilidad.getSelectedItem().toString();
 
-        // Obtener médico seleccionado
+        
         Medico medicoSeleccionado = null;
         int indexMed = comboMedicos.getSelectedIndex();
-        if (indexMed > 0) { // Mayor que 0 porque el índice 0 es "Seleccione..."
+        if (indexMed > 0) { 
             Empleado[] empleados = sistema.getGestionEmpleados().getEmpleados();
             int contadorMedicos = 0;
 
             for (int i = 0; i < sistema.getGestionEmpleados().getCantidad(); i++) {
                 if (empleados[i] instanceof Medico) {
                     contadorMedicos++;
-                    if (contadorMedicos == indexMed) { // Ajustar por el item "Seleccione..."
+                    if (contadorMedicos == indexMed) { 
                         medicoSeleccionado = (Medico) empleados[i];
                         break;
                     }
@@ -373,7 +380,7 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Consultorio modificado correctamente.");
             cargarTabla();
             limpiarCampos();
-            indiceSeleccionado = -1; // Resetear después de guardar
+            indiceSeleccionado = -1;
         } else {
             JOptionPane.showMessageDialog(this, "Error al modificar el consultorio.");
         }
@@ -425,7 +432,7 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
                 return;
             }
 
-            // Obtener código del consultorio seleccionado
+            
             Object codigoObj = tablaConsultorios.getValueAt(filaSeleccionada, 0);
             if (codigoObj == null) {
                 JOptionPane.showMessageDialog(this, "Error: No se pudo obtener el código del consultorio.");
@@ -434,13 +441,13 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
 
             String codigo = codigoObj.toString();
 
-            // Buscar el consultorio en el sistema
+            
             Consultorio consultorioSeleccionado = null;
             Consultorio[] consultorios = sistema.getGestionConsultorios().getConsultorios();
             for (int i = 0; i < sistema.getGestionConsultorios().getCantidad(); i++) {
                 if (consultorios[i] != null && consultorios[i].getCodigo().equals(codigo)) {
                     consultorioSeleccionado = consultorios[i];
-                    indiceSeleccionado = i; // Guardar el índice para referencia
+                    indiceSeleccionado = i; 
                     break;
                 }
             }
@@ -450,17 +457,16 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
                 return;
             }
 
-            // Cargar datos en el formulario
+           
             INGRESARTEXTOCODIGO.setText(consultorioSeleccionado.getCodigo());
             especialidadINGRESARTEXTO.setText(consultorioSeleccionado.getEspecialidad());
             Disponibilidad.setSelectedItem(consultorioSeleccionado.getEstado());
 
-            // Cargar médico asignado si existe
+            
             if (consultorioSeleccionado.getMedicoAsignado() != null) {
-                String nombreMedico = consultorioSeleccionado.getMedicoAsignado().getNombres() + " " + 
-                                     consultorioSeleccionado.getMedicoAsignado().getApellidos();
+                String nombreMedico = consultorioSeleccionado.getMedicoAsignado().getNombres() + " " + consultorioSeleccionado.getMedicoAsignado().getApellidos();
 
-                // Buscar el índice en el comboBox
+               
                 for (int i = 0; i < comboMedicos.getItemCount(); i++) {
                     if (comboMedicos.getItemAt(i).equals(nombreMedico)) {
                         comboMedicos.setSelectedIndex(i);
@@ -468,7 +474,7 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
                     }
                 }
             } else {
-                comboMedicos.setSelectedIndex(0); // "Seleccione..."
+                comboMedicos.setSelectedIndex(0); 
             }
 
             JOptionPane.showMessageDialog(this, "Modifique los datos y haga clic en 'Guardar Cambios'");
