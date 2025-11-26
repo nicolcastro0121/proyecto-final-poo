@@ -59,5 +59,10 @@ public class GestionCita {
         return cantidad;
     }
      
-     
+    public Cita buscar(int posicionconsulta) {
+        if (posicionconsulta >= 0 && posicionconsulta < cantidad) {
+            return citas[posicionconsulta];
+        }
+        return null;
+    } 
 }

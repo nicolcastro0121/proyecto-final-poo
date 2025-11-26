@@ -35,6 +35,12 @@ public class GestionFactura {
         }
         return false;
     }
+    public Factura buscar(int posicionconsulta) {
+        if (posicionconsulta >= 0 && posicionconsulta < cantidad) {
+            return facturas[posicionconsulta];
+        }
+        return null;
+    }
 
     public Factura[] getFacturas() {
         return facturas;

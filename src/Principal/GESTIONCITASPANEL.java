@@ -6,11 +6,11 @@ import Clinica.Empleado;
 import Clinica.Medico;
 import Clinica.Paciente;
 import javax.swing.JOptionPane;
-import Clinica.Persona;
+import GestionClinica.GestionCita;
 import javax.swing.table.DefaultTableModel;
 
 public class GESTIONCITASPANEL extends javax.swing.JPanel {
-
+    private int indiceSeleccionado = -1;
     private Sistema sistema;
 
     public GESTIONCITASPANEL(Sistema sistema) {
@@ -59,42 +59,34 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
             });
         }
     }
-
+    
     private void cargarCombos() {
 
-        comboPACIENTE.removeAllItems();
-        comboMEDICO.removeAllItems();
-        COMOBconultorios.removeAllItems();
+    comboPACIENTE.removeAllItems();
+    comboMEDICO.removeAllItems();
+    COMOBconultorios.removeAllItems();
 
-        for (Paciente p : sistema.getGestionPacientes().getPacientes()) {
-            if (p != null) {
-                comboPACIENTE.addItem(new ComboItem(
-                        p.getNombre() + " - " + p.getDni(),
-                        p
-                ));
-            }
-        }
-
-        for (Empleado e : sistema.getGestionEmpleados().getEmpleados()) {
-            if (e instanceof Medico m) {
-                comboMEDICO.addItem(new ComboItem(
-                        m.getDni() + " - " + m.getNombre(),
-                        m
-                ));
-            }
-        }
-
-
-        for (Consultorio c : sistema.getGestionConsultorios().getConsultorios()) {
-            if (c != null) {
-                COMOBconultorios.addItem(new ComboItem(
-                        c.getCodigo(), // SOLO EL CÓDIGO
-                        c
-                ));
-            }
+    // Pacientes
+    for (Paciente p : sistema.getGestionPacientes().getPacientes()) {
+        if (p != null) {
+            comboPACIENTE.addItem(p.getNombres() + " - " + p.getDni());
         }
     }
 
+    // Médicos
+    for (Empleado e : sistema.getGestionEmpleados().getEmpleados()) {
+        if (e instanceof Medico m) {
+            comboMEDICO.addItem(m.getNombres() + " - " + m.getDni());
+        }
+    }
+
+    // Consultorios
+    for (Consultorio c : sistema.getGestionConsultorios().getConsultorios()) {
+        if (c != null) {
+            COMOBconultorios.addItem(c.getCodigo()); // solo código
+        }
+    }
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -104,7 +96,6 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         textPacientes = new javax.swing.JLabel();
         bModificar = new javax.swing.JButton();
         bEliminar = new javax.swing.JButton();
-        comboMEDICO = new javax.swing.JComboBox<>();
         comboPACIENTE = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         bVolver = new javax.swing.JToggleButton();
@@ -120,6 +111,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         FechayhoraIngresar = new javax.swing.JTextField();
         modalidadCOMBOBOX = new javax.swing.JComboBox<>();
         estadoCOMBOBOX = new javax.swing.JComboBox<>();
+        comboMEDICO = new javax.swing.JComboBox<>();
 
         jLabel6.setFont(new java.awt.Font("Perpetua", 1, 48)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 102));
@@ -155,6 +147,12 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         bVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bVolverActionPerformed(evt);
+            }
+        });
+
+        COMOBconultorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                COMOBconultoriosActionPerformed(evt);
             }
         });
 
@@ -213,6 +211,8 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
 
         estadoCOMBOBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Confirmada", "Cancelada", "En sala", "Pendiente" }));
 
+        comboMEDICO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,38 +225,45 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(287, 287, 287)
                                 .addComponent(jLabel6))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(109, 109, 109))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(bModificar)
-                        .addGap(120, 120, 120)
-                        .addComponent(bEliminar)))
-                .addGap(109, 109, 109)
+                        .addGap(186, 186, 186)
+                        .addComponent(bEliminar)
+                        .addGap(237, 237, 237)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textMedicos)
-                            .addComponent(textPacientes)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(FechayhoraIngresar)
-                            .addComponent(modalidadCOMBOBOX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(estadoCOMBOBOX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboMEDICO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(COMOBconultorios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboPACIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(bVolver)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Agregar)
-                            .addGap(69, 69, 69)
-                            .addComponent(Guardar))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textMedicos)
+                                    .addComponent(textPacientes)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(FechayhoraIngresar)
+                                    .addComponent(modalidadCOMBOBOX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(estadoCOMBOBOX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(COMOBconultorios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboPACIENTE, 0, 146, Short.MAX_VALUE)
+                                    .addComponent(comboMEDICO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(87, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(Agregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addComponent(Guardar)
+                        .addGap(77, 77, 77))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bVolver)
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,23 +291,24 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textPacientes)
                             .addComponent(comboPACIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textMedicos)
-                            .addComponent(comboMEDICO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(COMOBconultorios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textMedicos)
+                                .addGap(49, 49, 49)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(COMOBconultorios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboMEDICO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Guardar)
                             .addComponent(Agregar))
-                        .addGap(18, 18, 18)
+                        .addGap(43, 43, 43)
                         .addComponent(bVolver)
-                        .addGap(44, 44, 44))
+                        .addGap(28, 28, 28))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -422,12 +430,80 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
 
     private void comboPACIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPACIENTEActionPerformed
         // TODO add your handling code here:
+                                                   
+        String seleccionado = (String) comboPACIENTE.getSelectedItem();
+          
+    
+
     }//GEN-LAST:event_comboPACIENTEActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         // TODO add your handling code here:
+        if (indiceSeleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "No hay cita seleccionada para guardar.");
+            return;
+        }
+        String fechaHora = FechayhoraIngresar.getText().trim();
+        String modalidad = modalidadCOMBOBOX.getSelectedItem().toString();
+        String estado = estadoCOMBOBOX.getSelectedItem().toString();
+
+        Paciente paciente = (Paciente) comboPACIENTE.getSelectedItem();
+        Medico medico = (Medico) comboMEDICO.getSelectedItem();
+        Consultorio consultorio = (Consultorio) COMOBconultorios.getSelectedItem();
+        
+        Cita citas = sistema.getGestionCitas().buscar(indiceSeleccionado);
+        Cita nueva = new Cita(
+                fechaHora,
+                modalidad,
+                estado,
+                paciente,
+                medico,
+                consultorio
+        );
+         boolean exito = sistema.getGestionCitas().modificar(indiceSeleccionado, nueva);
+
+            if (exito) {
+                actualizarTabla();
+                limpiarCampos();
+                indiceSeleccionado = -1;
+                JOptionPane.showMessageDialog(this, "Cita modificada correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar la cita.");
+            }
     }//GEN-LAST:event_GuardarActionPerformed
 
+    private void COMOBconultoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_COMOBconultoriosActionPerformed
+        // TODO add your handling code here:
+        String codigo = (String) COMOBconultorios.getSelectedItem();
+    }//GEN-LAST:event_COMOBconultoriosActionPerformed
+        private void actualizarTabla() {
+        DefaultTableModel model = (DefaultTableModel) tablaCITAS.getModel();
+        model.setRowCount(0);
+        
+        GestionCita gestor = sistema.getGestionCitas();
+        
+        for (int i = 0; i < gestor.getCantidad(); i++) {
+            Cita c = gestor.getCitas()[i];
+            model.addRow(new Object[]{
+                c.getEstado(),
+                c.getFechaHora(),
+                c.getMedico(),
+                c.getModalidad(),
+                c.getPaciente(),
+                c.getConsultorio(),
+            });
+        }
+    }
+    
+    private void limpiarCampos() {
+        FechayhoraIngresar.setText("");
+        modalidadCOMBOBOX.setSelectedIndex(-1);
+        estadoCOMBOBOX.setSelectedIndex(-1);
+        comboPACIENTE.setSelectedIndex(-1);
+        comboMEDICO.setSelectedIndex(-1);
+        COMOBconultorios.setSelectedIndex(-1);        
+        indiceSeleccionado = -1;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
@@ -437,7 +513,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     private javax.swing.JButton bEliminar;
     private javax.swing.JButton bModificar;
     private javax.swing.JToggleButton bVolver;
-    private javax.swing.JComboBox<string> comboMEDICO;
+    private javax.swing.JComboBox<String> comboMEDICO;
     private javax.swing.JComboBox<String> comboPACIENTE;
     private javax.swing.JComboBox<String> estadoCOMBOBOX;
     private javax.swing.JLabel jLabel1;
