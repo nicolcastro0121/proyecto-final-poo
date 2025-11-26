@@ -62,18 +62,18 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
 
     private Medico obtenerMedicoDelCombo() {
         int indexMed = comboMedicos.getSelectedIndex();
-        if (indexMed <= 0) { // 0 o menor significa "Seleccione..."
+        if (indexMed <= 0) { 
             return null;
         }
 
-        // Buscar directamente en la lista de empleados
+        
         Empleado[] empleados = sistema.getGestionEmpleados().getEmpleados();
         int contadorMedicos = 0;
 
         for (int i = 0; i < sistema.getGestionEmpleados().getCantidad(); i++) {
             if (empleados[i] instanceof Medico) {
                 contadorMedicos++;
-                // El índice en el comboBox empieza en 1 para el primer médico
+                
                 if (contadorMedicos == indexMed) {
                     return (Medico) empleados[i];
                 }
@@ -377,12 +377,12 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
         String estado = Disponibilidad.getSelectedItem().toString();
         Medico medicoSeleccionado = obtenerMedicoDelCombo();
 
-        // OBTENER HORARIOS SELECCIONADOS COMO ARRAY
+        
         String[] horariosSeleccionados = obtenerHorariosSeleccionadosArray();
 
         Consultorio consultorioActualizado = new Consultorio(codigo, especialidad, estado);
         consultorioActualizado.setMedicoAsignado(medicoSeleccionado);
-        consultorioActualizado.setHorariosAsignados(horariosSeleccionados); // GUARDAR HORARIOS
+        consultorioActualizado.setHorariosAsignados(horariosSeleccionados); 
 
         boolean exito = sistema.getGestionConsultorios().modificar(codigo, consultorioActualizado);
 
@@ -436,12 +436,12 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
         String estado = Disponibilidad.getSelectedItem().toString();
         Medico medicoSeleccionado = obtenerMedicoDelCombo();
 
-        // OBTENER HORARIOS SELECCIONADOS COMO ARRAY
+       
         String[] horariosSeleccionados = obtenerHorariosSeleccionadosArray();
 
         Consultorio nuevo = new Consultorio(codigo, especialidad, estado);
         nuevo.setMedicoAsignado(medicoSeleccionado);
-        nuevo.setHorariosAsignados(horariosSeleccionados); // GUARDAR HORARIOS
+        nuevo.setHorariosAsignados(horariosSeleccionados); 
 
         boolean ok = sistema.getGestionConsultorios().agregar(nuevo);
 
@@ -474,7 +474,7 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
 
         String codigo = codigoObj.toString();
 
-        // Buscar el consultorio en el sistema
+        
         Consultorio consultorioSeleccionado = null;
         Consultorio[] consultorios = sistema.getGestionConsultorios().getConsultorios();
         for (int i = 0; i < sistema.getGestionConsultorios().getCantidad(); i++) {
@@ -509,7 +509,7 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
             comboMedicos.setSelectedIndex(0); 
         }
 
-        // CARGAR HORARIOS EN LOS CHECKBOXES - NUEVO
+        
         cargarHorariosEnCheckboxes(consultorioSeleccionado.getHorariosAsignados());
 
         JOptionPane.showMessageDialog(this, "Modifique los datos y haga clic en 'Guardar Cambios'");
