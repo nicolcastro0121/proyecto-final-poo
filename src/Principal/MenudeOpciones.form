@@ -54,32 +54,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CitasActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="AdmisionyAlta">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Admision y Alta"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="AtencionClinica">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Atencion Clinica"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AtencionClinicaActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="EjecucionOrdenesAnalisis">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ejecucion Ordenes Analisis"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EjecucionOrdenesAnalisisActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="HistorialClinica">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Historial Clinica"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Facturas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Facturas y Pagos"/>

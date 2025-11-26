@@ -51,7 +51,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
             case "Administrador":
                 GEmpleados.setEnabled(true);
                 GConsultorios.setEnabled(true);
-                HistorialClinica.setEnabled(true);
                 Reportes.setEnabled(true);
                 Citas.setEnabled(true);
                 GestionPacientes.setEnabled(true);
@@ -59,23 +58,15 @@ public class MenudeOpciones extends javax.swing.JFrame {
             case "Médico":
                 Gconsulta.setEnabled(true);
                 Citas.setEnabled(true);
-                AtencionClinica.setEnabled(true);
-                HistorialClinica.setEnabled(true);
-                EjecucionOrdenesAnalisis.setEnabled(true);
                 GestionPacientes.setEnabled(true);
                 break;
-            case "Enfermero":
-                AdmisionyAlta.setEnabled(true);
-                EjecucionOrdenesAnalisis.setEnabled(true);
-                AtencionClinica.setEnabled(true);
-                break;
+            
             case "Cajero":
                 Facturas.setEnabled(true);
                 break;
             case "Recepcionista":
                 GestionPacientes.setEnabled(true);
                 Citas.setEnabled(true);
-                AdmisionyAlta.setEnabled(true);
                 Facturas.setEnabled(true);
                 break;
         }
@@ -86,10 +77,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
         GConsultorios.setEnabled(false);
         GestionPacientes.setEnabled(false);
         Citas.setEnabled(false);
-        AdmisionyAlta.setEnabled(false);
-        AtencionClinica.setEnabled(false);
-        EjecucionOrdenesAnalisis.setEnabled(false);
-        HistorialClinica.setEnabled(false);
         Facturas.setEnabled(false);
         Reportes.setEnabled(false);
     }
@@ -119,10 +106,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
         Gconsulta = new javax.swing.JMenuItem();
         GestionPacientes = new javax.swing.JMenuItem();
         Citas = new javax.swing.JMenuItem();
-        AdmisionyAlta = new javax.swing.JMenuItem();
-        AtencionClinica = new javax.swing.JMenuItem();
-        EjecucionOrdenesAnalisis = new javax.swing.JMenuItem();
-        HistorialClinica = new javax.swing.JMenuItem();
         Facturas = new javax.swing.JMenuItem();
         Reportes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -281,28 +264,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
         });
         jMenu1.add(Citas);
 
-        AdmisionyAlta.setText("Admision y Alta");
-        jMenu1.add(AdmisionyAlta);
-
-        AtencionClinica.setText("Atencion Clinica");
-        AtencionClinica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AtencionClinicaActionPerformed(evt);
-            }
-        });
-        jMenu1.add(AtencionClinica);
-
-        EjecucionOrdenesAnalisis.setText("Ejecucion Ordenes Analisis");
-        EjecucionOrdenesAnalisis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EjecucionOrdenesAnalisisActionPerformed(evt);
-            }
-        });
-        jMenu1.add(EjecucionOrdenesAnalisis);
-
-        HistorialClinica.setText("Historial Clinica");
-        jMenu1.add(HistorialClinica);
-
         Facturas.setText("Facturas y Pagos");
         Facturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,21 +368,10 @@ public class MenudeOpciones extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_CitasActionPerformed
 
-    private void AtencionClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtencionClinicaActionPerformed
-        
-
-    }//GEN-LAST:event_AtencionClinicaActionPerformed
-
     private void CerrarSesionbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionbtActionPerformed
         loginn login = new loginn();
         login.setVisible(true);
         this.dispose();    }//GEN-LAST:event_CerrarSesionbtActionPerformed
-
-    private void EjecucionOrdenesAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecucionOrdenesAnalisisActionPerformed
-        EjecuciónOrdenesyAnalisis ejecutor = new EjecuciónOrdenesyAnalisis(this.usuarioActual);
-        ejecutor.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_EjecucionOrdenesAnalisisActionPerformed
 
     private void GconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GconsultaActionPerformed
         // TODO add your handling code here:
@@ -443,17 +393,13 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem AdmisionyAlta;
-    private javax.swing.JMenuItem AtencionClinica;
     private javax.swing.JToggleButton CerrarSesionbt;
     private javax.swing.JMenuItem Citas;
-    private javax.swing.JMenuItem EjecucionOrdenesAnalisis;
     private javax.swing.JMenuItem Facturas;
     private javax.swing.JMenuItem GConsultorios;
     private javax.swing.JMenuItem GEmpleados;
     private javax.swing.JMenuItem Gconsulta;
     private javax.swing.JMenuItem GestionPacientes;
-    private javax.swing.JMenuItem HistorialClinica;
     private javax.swing.JMenuItem Reportes;
     private javax.swing.JLabel apellido;
     private javax.swing.JLabel correo;
