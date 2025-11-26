@@ -1,4 +1,3 @@
-
 package Clinica;
 
 
@@ -8,6 +7,7 @@ public class Consultorio {
     private String estado;
     private Cita[] citas;
     private Medico medicoAsignado;
+    private String[] horariosAsignados;
     
     public Consultorio(String codigo, String especialidad, String estado) {
         this.codigo = codigo;
@@ -27,6 +27,20 @@ public class Consultorio {
         System.out.println("Estado del consultorio " + codigo + " cambiado a: " + estado);
     }
     
+    public String getHorariosParaTabla() {
+        if (horariosAsignados == null || horariosAsignados.length == 0) {
+            return "Sin configurar";
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < horariosAsignados.length; i++) {
+            sb.append(horariosAsignados[i]);
+            if (i < horariosAsignados.length - 1) {
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
+    }
 
     public String getCodigo() {
         return codigo;
@@ -66,6 +80,14 @@ public class Consultorio {
 
     public void setMedicoAsignado(Medico medicoAsignado) {
         this.medicoAsignado = medicoAsignado;
+    }
+
+    public String[] getHorariosAsignados() {
+        return horariosAsignados;
+    }
+
+    public void setHorariosAsignados(String[] horariosAsignados) {
+        this.horariosAsignados = horariosAsignados;
     }
     
     

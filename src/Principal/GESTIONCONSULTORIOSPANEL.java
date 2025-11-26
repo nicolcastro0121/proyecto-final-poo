@@ -28,35 +28,58 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
             if (c == null) continue;
 
             String medicoNombre = "Sin asignar";
-
             if (c.getMedicoAsignado() != null) {
                 medicoNombre = c.getMedicoAsignado().getNombres() + " " + c.getMedicoAsignado().getApellidos();
             }
+
+            // USAR EL MÉTODO QUE YA EXISTE EN CONSULTORIO
+            String horarios = c.getHorariosParaTabla();
 
             model.addRow(new Object[]{
                 c.getCodigo(),
                 c.getEspecialidad(),
                 c.getEstado(),
-                "Horarios disponibles", 
+                horarios, // MOSTRAR HORARIOS REALES
                 medicoNombre
             });
         }
     }
-
+    
     private void cargarComboMedicos() {
-        comboMedicos.removeAllItems();
-        comboMedicos.addItem("Seleccione..."); 
-        
-        Empleado[] lista = sistema.getGestionEmpleados().getEmpleados();
+    comboMedicos.removeAllItems();
+    comboMedicos.addItem("Seleccione..."); 
+    Empleado[] lista = sistema.getGestionEmpleados().getEmpleados();
+
+    for (int i = 0; i < sistema.getGestionEmpleados().getCantidad(); i++) {
+        Empleado emp = lista[i];
+
+        if (emp instanceof Medico) {
+            Medico m = (Medico) emp;
+            comboMedicos.addItem(m.getNombres() + " " + m.getApellidos());
+        }
+    }
+}
+
+    private Medico obtenerMedicoDelCombo() {
+        int indexMed = comboMedicos.getSelectedIndex();
+        if (indexMed <= 0) { // 0 o menor significa "Seleccione..."
+            return null;
+        }
+
+        // Buscar directamente en la lista de empleados
+        Empleado[] empleados = sistema.getGestionEmpleados().getEmpleados();
+        int contadorMedicos = 0;
 
         for (int i = 0; i < sistema.getGestionEmpleados().getCantidad(); i++) {
-            Empleado emp = lista[i];
-
-            if (emp instanceof Medico) {
-                Medico m = (Medico) emp;
-                comboMedicos.addItem(m.getNombres() + " " + m.getApellidos());
+            if (empleados[i] instanceof Medico) {
+                contadorMedicos++;
+                // El índice en el comboBox empieza en 1 para el primer médico
+                if (contadorMedicos == indexMed) {
+                    return (Medico) empleados[i];
+                }
             }
         }
+        return null;
     }
 
     
@@ -352,27 +375,14 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
         }
 
         String estado = Disponibilidad.getSelectedItem().toString();
+        Medico medicoSeleccionado = obtenerMedicoDelCombo();
 
-        
-        Medico medicoSeleccionado = null;
-        int indexMed = comboMedicos.getSelectedIndex();
-        if (indexMed > 0) { 
-            Empleado[] empleados = sistema.getGestionEmpleados().getEmpleados();
-            int contadorMedicos = 0;
-
-            for (int i = 0; i < sistema.getGestionEmpleados().getCantidad(); i++) {
-                if (empleados[i] instanceof Medico) {
-                    contadorMedicos++;
-                    if (contadorMedicos == indexMed) { 
-                        medicoSeleccionado = (Medico) empleados[i];
-                        break;
-                    }
-                }
-            }
-        }
+        // OBTENER HORARIOS SELECCIONADOS COMO ARRAY
+        String[] horariosSeleccionados = obtenerHorariosSeleccionadosArray();
 
         Consultorio consultorioActualizado = new Consultorio(codigo, especialidad, estado);
         consultorioActualizado.setMedicoAsignado(medicoSeleccionado);
+        consultorioActualizado.setHorariosAsignados(horariosSeleccionados); // GUARDAR HORARIOS
 
         boolean exito = sistema.getGestionConsultorios().modificar(codigo, consultorioActualizado);
 
@@ -380,34 +390,58 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Consultorio modificado correctamente.");
             cargarTabla();
             limpiarCampos();
-            indiceSeleccionado = -1;
+            indiceSeleccionado = -1; 
         } else {
             JOptionPane.showMessageDialog(this, "Error al modificar el consultorio.");
         }
     }//GEN-LAST:event_GuardarCambiosActionPerformed
 
+    private String[] obtenerHorariosSeleccionadosArray() {
+        int count = 0;
+        if (diez.isSelected()) count++;
+        if (once.isSelected()) count++;
+        if (doce.isSelected()) count++;
+        if (una.isSelected()) count++;
+        if (dos.isSelected()) count++;
+
+        String[] horariosArray = new String[count];
+        int index = 0;
+
+        if (diez.isSelected()) horariosArray[index++] = "10:00-11:00 AM";
+        if (once.isSelected()) horariosArray[index++] = "11:00-12:00 AM";
+        if (doce.isSelected()) horariosArray[index++] = "12:00-1:00 PM";
+        if (una.isSelected()) horariosArray[index++] = "1:00-2:00 PM";
+        if (dos.isSelected()) horariosArray[index++] = "2:00-3:00 PM";
+
+        return horariosArray;
+    }
+    
     private void DisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisponibilidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DisponibilidadActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         String codigo = INGRESARTEXTOCODIGO.getText().trim();
-
         if (codigo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese un código.");
             return;
         }
 
         String especialidad = especialidadINGRESARTEXTO.getText().trim();
-
         if (especialidad.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese una especialidad.");
-            return;
-        }
+                return;
+            }
 
         String estado = Disponibilidad.getSelectedItem().toString();
+        Medico medicoSeleccionado = obtenerMedicoDelCombo();
+
+        // OBTENER HORARIOS SELECCIONADOS COMO ARRAY
+        String[] horariosSeleccionados = obtenerHorariosSeleccionadosArray();
 
         Consultorio nuevo = new Consultorio(codigo, especialidad, estado);
+        nuevo.setMedicoAsignado(medicoSeleccionado);
+        nuevo.setHorariosAsignados(horariosSeleccionados); // GUARDAR HORARIOS
 
         boolean ok = sistema.getGestionConsultorios().agregar(nuevo);
 
@@ -425,61 +459,93 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_diezActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-         int filaSeleccionada = tablaConsultorios.getSelectedRow();
+        int filaSeleccionada = tablaConsultorios.getSelectedRow();
 
-            if (filaSeleccionada == -1) {
-                JOptionPane.showMessageDialog(this, "Seleccione un consultorio de la tabla para modificar.");
-                return;
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un consultorio de la tabla para modificar.");
+            return;
+        }
+
+        Object codigoObj = tablaConsultorios.getValueAt(filaSeleccionada, 0);
+        if (codigoObj == null) {
+            JOptionPane.showMessageDialog(this, "Error: No se pudo obtener el código del consultorio.");
+            return;
+        }
+
+        String codigo = codigoObj.toString();
+
+        // Buscar el consultorio en el sistema
+        Consultorio consultorioSeleccionado = null;
+        Consultorio[] consultorios = sistema.getGestionConsultorios().getConsultorios();
+        for (int i = 0; i < sistema.getGestionConsultorios().getCantidad(); i++) {
+            if (consultorios[i] != null && consultorios[i].getCodigo().equals(codigo)) {
+                consultorioSeleccionado = consultorios[i];
+                indiceSeleccionado = i;
+                break;
             }
+        }
 
-            
-            Object codigoObj = tablaConsultorios.getValueAt(filaSeleccionada, 0);
-            if (codigoObj == null) {
-                JOptionPane.showMessageDialog(this, "Error: No se pudo obtener el código del consultorio.");
-                return;
-            }
+        if (consultorioSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Consultorio no encontrado.");
+            return;
+        }
 
-            String codigo = codigoObj.toString();
+        INGRESARTEXTOCODIGO.setText(consultorioSeleccionado.getCodigo());
+        especialidadINGRESARTEXTO.setText(consultorioSeleccionado.getEspecialidad());
+        Disponibilidad.setSelectedItem(consultorioSeleccionado.getEstado());
 
-            
-            Consultorio consultorioSeleccionado = null;
-            Consultorio[] consultorios = sistema.getGestionConsultorios().getConsultorios();
-            for (int i = 0; i < sistema.getGestionConsultorios().getCantidad(); i++) {
-                if (consultorios[i] != null && consultorios[i].getCodigo().equals(codigo)) {
-                    consultorioSeleccionado = consultorios[i];
-                    indiceSeleccionado = i; 
+        // Cargar médico asignado
+        if (consultorioSeleccionado.getMedicoAsignado() != null) {
+            String nombreMedico = consultorioSeleccionado.getMedicoAsignado().getNombres() + " " + 
+                                 consultorioSeleccionado.getMedicoAsignado().getApellidos();
+
+            for (int i = 0; i < comboMedicos.getItemCount(); i++) {
+                if (comboMedicos.getItemAt(i).equals(nombreMedico)) {
+                    comboMedicos.setSelectedIndex(i);
                     break;
                 }
             }
+        } else {
+            comboMedicos.setSelectedIndex(0); 
+        }
 
-            if (consultorioSeleccionado == null) {
-                JOptionPane.showMessageDialog(this, "Consultorio no encontrado.");
-                return;
-            }
+        // CARGAR HORARIOS EN LOS CHECKBOXES - NUEVO
+        cargarHorariosEnCheckboxes(consultorioSeleccionado.getHorariosAsignados());
 
-           
-            INGRESARTEXTOCODIGO.setText(consultorioSeleccionado.getCodigo());
-            especialidadINGRESARTEXTO.setText(consultorioSeleccionado.getEspecialidad());
-            Disponibilidad.setSelectedItem(consultorioSeleccionado.getEstado());
-
-            
-            if (consultorioSeleccionado.getMedicoAsignado() != null) {
-                String nombreMedico = consultorioSeleccionado.getMedicoAsignado().getNombres() + " " + consultorioSeleccionado.getMedicoAsignado().getApellidos();
-
-               
-                for (int i = 0; i < comboMedicos.getItemCount(); i++) {
-                    if (comboMedicos.getItemAt(i).equals(nombreMedico)) {
-                        comboMedicos.setSelectedIndex(i);
-                        break;
-                    }
-                }
-            } else {
-                comboMedicos.setSelectedIndex(0); 
-            }
-
-            JOptionPane.showMessageDialog(this, "Modifique los datos y haga clic en 'Guardar Cambios'");
+        JOptionPane.showMessageDialog(this, "Modifique los datos y haga clic en 'Guardar Cambios'");
     }//GEN-LAST:event_ModificarActionPerformed
 
+    private void cargarHorariosEnCheckboxes(String[] horarios) {
+        // Limpiar todos los checkboxes primero
+        diez.setSelected(false);
+        once.setSelected(false);
+        doce.setSelected(false);
+        una.setSelected(false);
+        dos.setSelected(false);
+
+        if (horarios != null) {
+            for (String horario : horarios) {
+                switch (horario) {
+                    case "10:00-11:00 AM":
+                        diez.setSelected(true);
+                        break;
+                    case "11:00-12:00 AM":
+                        once.setSelected(true);
+                        break;
+                    case "12:00-1:00 PM":
+                        doce.setSelected(true);
+                        break;
+                    case "1:00-2:00 PM":
+                        una.setSelected(true);
+                        break;
+                    case "2:00-3:00 PM":
+                        dos.setSelected(true);
+                        break;
+                }
+            }
+        }
+    }
+    
     private void onceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onceActionPerformed
