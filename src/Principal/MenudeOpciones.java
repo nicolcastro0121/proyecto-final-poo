@@ -2,6 +2,7 @@ package Principal;
 
 import Clinica.Empleado;
 import Clinica.Usuario;
+import Principal.GESTIONCONSULTORIOSPANEL;
 
 public class MenudeOpciones extends javax.swing.JFrame {
 
@@ -342,7 +343,17 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GConsultoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GConsultoriosActionPerformed
-        
+
+        GESTIONCONSULTORIOSPANEL panel = new GESTIONCONSULTORIOSPANEL(this.sistema);
+
+        javax.swing.JFrame ventana = new javax.swing.JFrame("Gestión de Consultorios");
+
+        ventana.setContentPane(panel);
+        ventana.setSize(1200, 700);  
+        ventana.setLocationRelativeTo(null);  
+        ventana.setVisible(true);
+
+        this.dispose();
     }//GEN-LAST:event_GConsultoriosActionPerformed
 
     private void GEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GEmpleadosActionPerformed
