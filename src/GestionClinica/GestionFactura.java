@@ -22,19 +22,20 @@ public class GestionFactura {
         return false;
     }
     
-     public boolean eliminarFactura(int idFactura) {
-        for (int i = 0; i < cantidad; i++) {
-            if (facturas[i].getNumero() == idFactura) {
-                for (int j = i; j < cantidad - 1; j++) {
-                    facturas[j] = facturas[j + 1];
-                }
-                facturas[cantidad - 1] = null;
-                cantidad--;
-                return true;
-            }
+     public boolean eliminarFactura(int indice) {
+        if (indice < 0 || indice >= cantidad) {
+            return false;
         }
-        return false;
+
+        for (int j = indice; j < cantidad - 1; j++) {
+            facturas[j] = facturas[j + 1];
+        }
+
+        facturas[cantidad - 1] = null;
+        cantidad--;
+        return true;
     }
+
     public Factura buscar(int posicionconsulta) {
         if (posicionconsulta >= 0 && posicionconsulta < cantidad) {
             return facturas[posicionconsulta];
