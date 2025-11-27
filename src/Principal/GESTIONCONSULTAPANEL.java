@@ -2,20 +2,64 @@
 package Principal;
 
 import Clinica.Consulta;
+import Clinica.Cita;
+import Clinica.Paciente;
 import GestionClinica.GestionConsulta;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
     private Sistema sistema;
+    private Cita citaActual; 
     private int indiceSeleccionado = -1;
     
-    public GESTIONCONSULTAPANEL(Sistema sistema) {
+    public GESTIONCONSULTAPANEL(Sistema sistema, Cita cita) {
         this.sistema = sistema;
+        this.citaActual = cita; 
         initComponents();
-        actualizarTabla();
+        cargarDatosPaciente(); 
+        cargarHistorialPaciente(); 
     }
 
+    private void cargarDatosPaciente() {
+        if (citaActual != null && citaActual.getPaciente() != null) {
+            Paciente p = citaActual.getPaciente();
+            paciente.setText(p.getNombres() + " " + p.getApellidos() + " - DNI: " + p.getDni());
+            
+            // Establecer estado inicial como "En consulta"
+            estado.setText("En consulta");
+        }
+    }
+    
+    private void cargarHistorialPaciente() {
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setRowCount(0);
+        
+        if (citaActual != null && citaActual.getPaciente() != null) {
+            Paciente p = citaActual.getPaciente();
+            
+            Consulta[] consultas = sistema.getGestionConsultas().getConsultas();
+            
+            for (int i = 0; i < sistema.getGestionConsultas().getCantidad(); i++) {
+                Consulta c = consultas[i];
+                if (c != null && c.getCita() != null && 
+                    c.getCita().getPaciente().getDni().equals(p.getDni())) {
+                    
+                    model.addRow(new Object[]{
+                        c.getMotivo(),
+                        c.getPrecio(),
+                        c.getEstado(),
+                        c.getAntecedentes(),
+                        c.getSignosVitales(),
+                        c.getExamenesFisicos(),
+                        c.getDiagnosticos(),
+                        c.getCantidadOrdenes(),
+                        c.getPlan()
+                    });
+                }
+            }
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -261,14 +305,14 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         if (Motivo.getText().trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "El motivo es obligatorio");
-        return;
+            JOptionPane.showMessageDialog(this, "El motivo es obligatorio");
+            return;
         }
 
         try {
             String pMotivo = Motivo.getText();
             double pPrecio = Precio.getText().isEmpty() ? 0.0 : Double.parseDouble(Precio.getText());
-            String pEstado = estado.getText();
+            String pEstado = "Atendida"; // ESTADO CAMBIA A ATENDIDA AUTOMÁTICAMENTE
             String pAntecedentes = antecedentes.getText();
             String pSignosVitales = signos_vitales.getText();
             String pExamenesFisicos = examenes_fisicos.getText();
@@ -276,17 +320,28 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
             int pCantidadOrdenes = cant_operaciones.getText().isEmpty() ? 0 : Integer.parseInt(cant_operaciones.getText());
             String pPlan = plan.getText();
 
+            // CREAR NUEVA CONSULTA CON LA CITA ACTUAL
             Consulta nuevaConsulta = new Consulta(
                 pMotivo, pPrecio, pEstado, pAntecedentes, pSignosVitales,
                 pExamenesFisicos, pDiagnosticos, null, new Clinica.Orden[10], 
-                pCantidadOrdenes, pPlan, null
+                pCantidadOrdenes, pPlan, citaActual  // ASIGNAR LA CITA ACTUAL
             );
 
-           
+            // GUARDAR CONSULTA
             sistema.getGestionConsultas().agregar(nuevaConsulta);
-            JOptionPane.showMessageDialog(this, "Consulta agregada correctamente");
+            
+            // ACTUALIZAR ESTADO DE LA CITA A "Atendida"
+            citaActual.setEstado("Atendida");
+            actualizarEstadoCita();
+            
+            // AGREGAR CONSULTA AL HISTORIAL DEL PACIENTE
+            if (citaActual.getPaciente().getHistoria() != null) {
+                citaActual.getPaciente().getHistoria().agregarConsulta(nuevaConsulta);
+            }
+            cargarHistorialPaciente();
+            JOptionPane.showMessageDialog(this, "Consulta guardada correctamente y cita marcada como atendida");
 
-            actualizarTabla();
+            cargarHistorialPaciente(); // Actualizar tabla con nueva consulta
             limpiarCampos();
 
         } catch (NumberFormatException e) {
@@ -304,7 +359,6 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
         Consulta consultaSeleccionada = sistema.getGestionConsultas().buscar(fila);
         
         if (consultaSeleccionada != null) {
-
             Motivo.setText(consultaSeleccionada.getMotivo());
             Precio.setText(String.valueOf(consultaSeleccionada.getPrecio()));
             estado.setText(consultaSeleccionada.getEstado());
@@ -396,6 +450,16 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_GuardarCambiosActionPerformed
 
+    private void actualizarEstadoCita() {
+        // Buscar y actualizar la cita en el sistema
+        Cita[] citas = sistema.getGestionCitas().getCitas();
+        for (int i = 0; i < sistema.getGestionCitas().getCantidad(); i++) {
+            if (citas[i] != null && citas[i].equals(citaActual)) {
+                sistema.getGestionCitas().modificar(i, citaActual);
+                break;
+            }
+        }
+    }
     
     private void actualizarTabla() {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();

@@ -3,6 +3,7 @@ package Principal;
 import Clinica.Empleado;
 import Clinica.Usuario;
 import Principal.GESTIONCONSULTORIOSPANEL;
+import javax.swing.JOptionPane;
 
 public class MenudeOpciones extends javax.swing.JFrame {
 
@@ -374,15 +375,18 @@ public class MenudeOpciones extends javax.swing.JFrame {
         this.dispose();    }//GEN-LAST:event_CerrarSesionbtActionPerformed
 
     private void GconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GconsultaActionPerformed
-        // TODO add your handling code here:
-        GESTIONCONSULTAPANEL consultasPanel = new GESTIONCONSULTAPANEL(this.sistema);
-        javax.swing.JFrame ventana = new javax.swing.JFrame("Gestión de Consultas");
-        ventana.setContentPane(consultasPanel);
-        ventana.setSize(900, 700);
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
+        if (!(this.sistema.getUsuarioActual() instanceof Clinica.Medico)) {
+            JOptionPane.showMessageDialog(this, "Solo los médicos pueden acceder a la gestión de consultas.");
+            return;
+        }
 
-        this.dispose(); // Cierra el menú actual
+        // Abrir el frame de citas pendientes
+        CitasPendientes citasFrame = new CitasPendientes(this.sistema);
+        citasFrame.setSize(800, 600);
+        citasFrame.setLocationRelativeTo(null);
+        citasFrame.setVisible(true);
+
+        this.dispose();
     }//GEN-LAST:event_GconsultaActionPerformed
 
     /**

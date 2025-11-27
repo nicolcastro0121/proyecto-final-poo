@@ -18,11 +18,11 @@ public class loginn extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(loginn.class.getName());
     public loginn() {
         initComponents();
-
         if (usuarios == null) {
             usuarios = new GestorUsuarios();
         }
-
+        cargarUsuariosLogin();
+        /*
         Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
         usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
         sistemaGlobal.getGestionEmpleados().crearEmpleado(med1);
@@ -57,9 +57,35 @@ public class loginn extends javax.swing.JFrame {
         usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
         usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
         usuarios.AgregarUsuario("recep", "1234", "Recepcionista", recep);
-
+        */
     }
 
+    private void cargarUsuariosLogin() {
+        // Buscar médicos del sistema para crear usuarios
+        Medico med1 = null, med2 = null;
+        
+        for (int i = 0; i < sistemaGlobal.getGestionEmpleados().getCantidad(); i++) {
+            if (sistemaGlobal.getGestionEmpleados().getEmpleados()[i] instanceof Medico) {
+                Medico m = (Medico) sistemaGlobal.getGestionEmpleados().getEmpleados()[i];
+                if ("Juan".equals(m.getNombres())) med1 = m;
+                if ("Ana".equals(m.getNombres())) med2 = m;
+            }
+        }
+
+        // Crear usuarios de login
+        if (med1 != null) {
+            usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
+        }
+        if (med2 != null) {
+            usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
+        }
+        
+        // Otros usuarios...
+        usuarios.AgregarUsuario("admin", "admin", "Administrador");
+        usuarios.AgregarUsuario("recep", "1234", "Recepcionista");
+        usuarios.AgregarUsuario("cajero", "cajero", "Cajero");
+        usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
+    }
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

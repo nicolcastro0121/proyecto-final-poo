@@ -207,7 +207,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
             }
         });
 
-        modalidadCOMBOBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prescencial", "Teleconsulta" }));
+        modalidadCOMBOBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Presencial", "Teleconsulta" }));
 
         estadoCOMBOBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Confirmada", "Cancelada", "En sala", "Pendiente" }));
 
@@ -254,16 +254,17 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                                     .addComponent(comboPACIENTE, 0, 146, Short.MAX_VALUE)
                                     .addComponent(comboMEDICO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(87, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(Agregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                        .addComponent(Guardar)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bVolver))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(Agregar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                                .addComponent(Guardar)))
                         .addGap(77, 77, 77))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(bVolver)
-                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,12 +307,12 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Guardar)
                             .addComponent(Agregar))
-                        .addGap(43, 43, 43)
+                        .addGap(18, 18, 18)
                         .addComponent(bVolver)
-                        .addGap(28, 28, 28))
+                        .addGap(53, 53, 53))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bModificar)
                             .addComponent(bEliminar))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
