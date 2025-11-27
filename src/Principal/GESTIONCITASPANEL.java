@@ -334,7 +334,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                 break;
     }
 }
-        
+
 // Medico
         String seleccionadoMedico = (String) comboMEDICO.getSelectedItem();
         Medico medico = null;
@@ -451,7 +451,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         actualizarTablaCitas();
         JOptionPane.showMessageDialog(this, "Cita agregada correctamente.");
         } else {
-        JOptionPane.showMessageDialog(this, "No hay espacio para más citas.");
+    JOptionPane.showMessageDialog(this, "No hay espacio para más citas.");
 }
     }//GEN-LAST:event_AgregarActionPerformed
 

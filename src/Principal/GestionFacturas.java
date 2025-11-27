@@ -19,16 +19,16 @@ public class GestionFacturas extends javax.swing.JPanel {
         cargarCombos();
     }
     private void cargarCombos() {
-        ComboPaciente.removeAllItems();
-        if (sistema == null || sistema.getGestionPacientes() == null) return;
+    ComboPaciente.removeAllItems();
+    if (sistema == null || sistema.getGestionPacientes() == null) return;
 
-        Paciente[] pacientes = sistema.getGestionPacientes().getPacientes();
-        int total = sistema.getGestionPacientes().getCantidad();
+    Paciente[] pacientes = sistema.getGestionPacientes().getPacientes();
+    int total = sistema.getGestionPacientes().getCantidad();
 
-        for (int i = 0; i < total; i++) {
-            Paciente p = pacientes[i];
-            if (p != null) {
-                ComboPaciente.addItem(p.getNombres() + " - " + p.getDni());
+    for (int i = 0; i < total; i++) {
+        Paciente p = pacientes[i];
+        if (p != null) {
+            ComboPaciente.addItem(p.getNombres() + " - " + p.getDni());
         }
     }
 }
@@ -194,48 +194,77 @@ public class GestionFacturas extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Error");
         return;
     }
-        String seleccionadoPaciente = (String) ComboPaciente.getSelectedItem();
-        Paciente paciente = null;
+        if (numero.getText().trim().isEmpty() ||
+        descripcion.getText().trim().isEmpty() ||
+        monto.getText().trim().isEmpty()) {
         
-        for (Paciente p : sistema.getGestionPacientes().getPacientes()) {
-            if (p != null && (p.getNombres() + " - " + p.getDni()).equals(seleccionadoPaciente)) {
-            paciente = p;
-            break;
+        JOptionPane.showMessageDialog(this, "Complete todos los campos.");
+        return;
     }
-}
         
-        int pnumero = numero.getText().isEmpty() ? 0 : Integer.parseInt(numero.getText());
+        int pnumero;
+        double pmonto;
+        try {
+        pnumero = Integer.parseInt(numero.getText().trim());
+        pmonto = Double.parseDouble(monto.getText().trim());
+        } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Número o monto inválido.");
+        return;
+    }
+        String seleccionadoPaciente = (String) ComboPaciente.getSelectedItem();
+            if (seleccionadoPaciente == null) {
+                 JOptionPane.showMessageDialog(this, "Seleccione un paciente.");
+                return;
+    }
+        Paciente paciente = null;
+        for (Paciente p : sistema.getGestionPacientes().getPacientes()) {
+            if (p != null &&
+             (p.getNombres() + " - " + p.getDni()).equals(seleccionadoPaciente)) {
+                paciente = p;
+                break;
+        }
+    }
+        
         String pdescripcion = descripcion.getText().trim();
-        double pmonto = monto.getText().isEmpty() ? 0.0 : Double.parseDouble(monto.getText());
-        
         Factura nueva = new Factura(pnumero, pdescripcion, pmonto, paciente);
         
         boolean ok = sistema.getGestionFacturas().crearFactura(nueva);
 
         if (ok) {
-        actualizarTabla();
-        limpiarCamposFactura();
-        JOptionPane.showMessageDialog(this, "Factura agregada correctamente.");
-        } else {
-        JOptionPane.showMessageDialog(this, "No hay espacio para más Facturas.");
+            
+            actualizarTabla();
+            limpiarCampos();
+            JOptionPane.showMessageDialog(this, "Factura agregada correctamente.");
+             } else {
+            JOptionPane.showMessageDialog(this, "No hay espacio para más Facturas.");
 }
     }//GEN-LAST:event_AgregarActionPerformed
     
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        int fila = tablaFactura.getSelectedRow();
-
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione una Factura para eliminar.");
+        int filaSeleccionada = tablaFactura.getSelectedRow();
+        
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un factura de la tabla para eliminar.");
             return;
         }
+        int confirmacion = JOptionPane.showConfirmDialog(
+            this, 
+            "¿Está seguro de que desea eliminar" +  "?",
+            "Confirmar eliminación",
+            JOptionPane.YES_NO_OPTION
+        );
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            boolean ok = sistema.getGestionFacturas().eliminarFactura(filaSeleccionada);
 
-        boolean ok = sistema.getGestionFacturas().eliminarFactura(fila);
-
-        if (ok) {
-            actualizarTabla();
-            JOptionPane.showMessageDialog(this, "Factura eliminada correctamente.");
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo eliminar la Factura.");
+            if (ok) {
+                JOptionPane.showMessageDialog(this, "Factura eliminado correctamente.");
+                
+                cargarTabla();
+                limpiarCampos();
+                indiceSeleccionado = -1; 
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al eliminar el Factura.");
+            }
         }
     }//GEN-LAST:event_EliminarActionPerformed
 
@@ -245,31 +274,32 @@ public class GestionFacturas extends javax.swing.JPanel {
         javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
     }//GEN-LAST:event_VolverActionPerformed
 private void actualizarTabla() {
-        DefaultTableModel model = (DefaultTableModel) tablaFactura.getModel();
-        model.setRowCount(0);
-        
-        GestionFactura gestor = sistema.getGestionFacturas();
-        for (int i = 0; i < gestor.getCantidad(); i++) {
+    DefaultTableModel model = (DefaultTableModel) tablaFactura.getModel();
+    model.setRowCount(0);
+
+    GestionFactura gestor = sistema.getGestionFacturas();
+
+    for (int i = 0; i < gestor.getCantidad(); i++) {
         Factura f = gestor.getFacturas()[i];
         if (f == null) continue;
 
-        String pacienteTexto = f.getPaciente() != null
-            ? f.getPaciente().getNombres() + " - " + f.getPaciente().getDni()
-            : "Sin paciente";
+        String pacienteTxt = (f.getPaciente() != null)
+                ? f.getPaciente().getNombres() + " - " + f.getPaciente().getDni()
+                : "Sin paciente";
 
         model.addRow(new Object[]{
             f.getNumero(),
             f.getDescripcion(),
             f.getMonto(),
-            pacienteTexto
-            });
-        }
+            pacienteTxt
+        });
     }
-private void limpiarCamposFactura() {
+}
+private void limpiarCampos() {
     numero.setText("");
     descripcion.setText("");
     monto.setText("");
-    if (ComboPaciente.getItemCount() > 0) ComboPaciente.setSelectedIndex(0);
+    ComboPaciente.setSelectedIndex(-1);
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
