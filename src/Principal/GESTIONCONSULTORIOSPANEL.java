@@ -442,7 +442,7 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
         Consultorio nuevo = new Consultorio(codigo, especialidad, estado);
         nuevo.setMedicoAsignado(medicoSeleccionado);
         nuevo.setHorariosAsignados(horariosSeleccionados); 
-
+        
         boolean ok = sistema.getGestionConsultorios().agregar(nuevo);
 
         if (ok) {

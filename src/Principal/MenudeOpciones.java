@@ -347,13 +347,29 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
         // TODO add your handling code here:
+        REPORTE panel = new REPORTE(this.sistema);
+
+        javax.swing.JFrame ventana = new javax.swing.JFrame("Gestión de Citas");
+
+        ventana.setContentPane(panel);
+        ventana.setSize(1200, 600);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+
+        this.dispose();
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void FacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturasActionPerformed
-        GestionFactura ventana = new GestionFactura(this.usuarioActual);
-        ventana.setVisible(true);
-        this.dispose();
+        GestionFacturas panel = new GestionFacturas(this.sistema);
 
+        javax.swing.JFrame ventana = new javax.swing.JFrame("Gestión de Citas");
+
+        ventana.setContentPane(panel);
+        ventana.setSize(1200, 600);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+
+        this.dispose();
     }//GEN-LAST:event_FacturasActionPerformed
 
     private void CitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CitasActionPerformed

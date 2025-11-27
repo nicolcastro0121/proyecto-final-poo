@@ -326,24 +326,43 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Seleccione una cita para modificar.");
             return;
         }
+        String seleccionadoPaciente = (String) comboPACIENTE.getSelectedItem();
+        Paciente paciente = null;
+        for (Paciente p : sistema.getGestionPacientes().getPacientes()) {
+             if (p != null && (p.getNombres() + " - " + p.getDni()).equals(seleccionadoPaciente)) {
+             paciente = p;
+                break;
+    }
+}
+        
+// Medico
+        String seleccionadoMedico = (String) comboMEDICO.getSelectedItem();
+        Medico medico = null;
+        for (Empleado e : sistema.getGestionEmpleados().getEmpleados()) {
+            if (e instanceof Medico m && (m.getNombres() + " - " + m.getDni()).equals(seleccionadoMedico)) {
+            medico = m;
+            break;
+    }
+}
 
+// Consultorio
+        String seleccionadoConsultorio = (String) COMOBconultorios.getSelectedItem();
+        Consultorio consultorio = null;
+        for (Consultorio c : sistema.getGestionConsultorios().getConsultorios()) {
+            if (c != null && c.getCodigo().equals(seleccionadoConsultorio)) {
+            consultorio = c;
+            break;
+    }
+}
+        if (paciente == null || medico == null || consultorio == null) {
+        JOptionPane.showMessageDialog(this, "Seleccione paciente, médico y consultorio válidos.");
+        return;
+}
+        
         String fechaHora = FechayhoraIngresar.getText().trim();
         String modalidad = modalidadCOMBOBOX.getSelectedItem().toString();
         String estado = estadoCOMBOBOX.getSelectedItem().toString();
 
-        Paciente paciente = (Paciente) comboPACIENTE.getSelectedItem();
-        Medico medico = (Medico) comboMEDICO.getSelectedItem();
-        Consultorio consultorio = (Consultorio) COMOBconultorios.getSelectedItem();
-
-        if (fechaHora.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese fecha y hora.");
-            return;
-        }
-
-        if (paciente == null || medico == null || consultorio == null) {
-            JOptionPane.showMessageDialog(this, "Seleccione todos los datos.");
-            return;
-        }
 
         Cita nueva = new Cita(
                 fechaHora,
@@ -392,41 +411,48 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
 
+        String seleccionadoPaciente = (String) comboPACIENTE.getSelectedItem();
+        Paciente paciente = null;
+        for (Paciente p : sistema.getGestionPacientes().getPacientes()) {
+            if (p != null && (p.getNombres() + " - " + p.getDni()).equals(seleccionadoPaciente)) {
+            paciente = p;
+            break;
+    }
+}
+
+// Obtener el médico
+        String seleccionadoMedico = (String) comboMEDICO.getSelectedItem();
+        Medico medico = null;
+        for (Empleado e : sistema.getGestionEmpleados().getEmpleados()) {
+            if (e instanceof Medico m && (m.getNombres() + " - " + m.getDni()).equals(seleccionadoMedico)) {
+            medico = m;
+            break;
+    }
+}
+
+// Obtener consultorio
+        String seleccionadoConsultorio = (String) COMOBconultorios.getSelectedItem();
+        Consultorio consultorio = null;
+        for (Consultorio c : sistema.getGestionConsultorios().getConsultorios()) {
+            if (c != null && c.getCodigo().equals(seleccionadoConsultorio)) {
+                consultorio = c;
+                break;
+    }
+}
         String fechaHora = FechayhoraIngresar.getText().trim();
         String modalidad = modalidadCOMBOBOX.getSelectedItem().toString();
         String estado = estadoCOMBOBOX.getSelectedItem().toString();
-
-        Paciente paciente = (Paciente) comboPACIENTE.getSelectedItem();
-        Medico medico = (Medico) comboMEDICO.getSelectedItem();
-        Consultorio consultorio = (Consultorio) COMOBconultorios.getSelectedItem();
-
-        if (fechaHora.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese la fecha y hora.");
-            return;
-        }
-        if (paciente == null || medico == null || consultorio == null) {
-            JOptionPane.showMessageDialog(this, "Seleccione paciente, médico y consultorio.");
-            return;
-        }
-
-        Cita nueva = new Cita(
-                fechaHora,
-                modalidad,
-                estado,
-                paciente,
-                medico,
-                consultorio
-        );
+        
+        Cita nueva = new Cita(fechaHora, modalidad, estado, paciente, medico, consultorio);
 
         boolean ok = sistema.getGestionCitas().agregar(nueva);
 
         if (ok) {
-            actualizarTablaCitas();
-            JOptionPane.showMessageDialog(this, "Cita agregada correctamente.");
+        actualizarTablaCitas();
+        JOptionPane.showMessageDialog(this, "Cita agregada correctamente.");
         } else {
-            JOptionPane.showMessageDialog(this, "No hay espacio para más citas.");
-        }
-
+        JOptionPane.showMessageDialog(this, "No hay espacio para más citas.");
+}
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void comboPACIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPACIENTEActionPerformed
