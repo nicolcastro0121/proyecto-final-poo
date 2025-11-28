@@ -17,6 +17,15 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
         this.sistema = sistema;
         this.citaActual = cita; 
         initComponents();
+        if (citaActual == null) {
+            JOptionPane.showMessageDialog(this, "ERROR: No se recibió ninguna cita");
+            System.out.println("❌ ERROR: citaActual es null en el constructor");
+        } else {
+            System.out.println("✅ Cita recibida en consulta: " + 
+                citaActual.getPaciente().getNombres() + " - " + 
+                citaActual.getFechaHora());
+        }
+        System.out.println("Construcctor");
         cargarDatosPaciente(); 
         cargarHistorialPaciente(); 
         GuardarCambios.setEnabled(false);
@@ -27,13 +36,18 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
             Paciente p = citaActual.getPaciente();
             paciente.setText(p.getNombres() + " " + p.getApellidos() + " - DNI: " + p.getDni());
             estado.setText("En consulta");
+            System.out.println("✅ Datos del paciente cargados: " + p.getNombres());
+        } else {
+            System.out.println("❌ No se pudo cargar datos del paciente - cita o paciente es null");
+            paciente.setText("No hay paciente seleccionado");
+            estado.setText("Sin cita");
         }
     }
     
     private void cargarHistorialPaciente() {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setRowCount(0);
-        
+        System.out.println("Cargar tabla-1");
         if (citaActual != null && citaActual.getPaciente() != null) {
             Paciente p = citaActual.getPaciente();
             

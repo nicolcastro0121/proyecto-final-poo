@@ -38,7 +38,7 @@ public class Sistema {
     
     public void cargarDatosPrueba() {
         try {
-            // 1. CARGAR MÉDICOS SI NO EXISTEN
+            
             if (gestionEmpleados.getCantidad() == 0) {
                 Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
                 Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");

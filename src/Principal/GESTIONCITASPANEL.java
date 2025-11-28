@@ -18,6 +18,9 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         initComponents();
         cargarCombos();
         cargarTabla();
+        estado.setText("Pendiente"); // Texto fijo
+        estado.setForeground(new java.awt.Color(0, 102, 0)); // Color verde
+        estado.setFont(new java.awt.Font("Dialog", 1, 12));
     }
 
     private void cargarTabla() {
@@ -114,8 +117,8 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         Agregar = new javax.swing.JButton();
         FechayhoraIngresar = new javax.swing.JTextField();
         modalidadCOMBOBOX = new javax.swing.JComboBox<>();
-        estadoCOMBOBOX = new javax.swing.JComboBox<>();
         comboMEDICO = new javax.swing.JComboBox<>();
+        estado = new javax.swing.JLabel();
 
         jLabel6.setFont(new java.awt.Font("Perpetua", 1, 48)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 102));
@@ -213,8 +216,6 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
 
         modalidadCOMBOBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Presencial", "Teleconsulta" }));
 
-        estadoCOMBOBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Confirmada", "Cancelada", "En sala", "Pendiente" }));
-
         comboMEDICO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -253,10 +254,10 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(FechayhoraIngresar)
                                     .addComponent(modalidadCOMBOBOX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(estadoCOMBOBOX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(COMOBconultorios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(comboPACIENTE, 0, 146, Short.MAX_VALUE)
-                                    .addComponent(comboMEDICO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(comboMEDICO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(estado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(87, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
@@ -287,11 +288,11 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(modalidadCOMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
+                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(estadoCOMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
+                            .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textPacientes)
                             .addComponent(comboPACIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -329,60 +330,56 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Seleccione una cita para modificar.");
             return;
         }
+
         String seleccionadoPaciente = (String) comboPACIENTE.getSelectedItem();
         Paciente paciente = null;
         for (Paciente p : sistema.getGestionPacientes().getPacientes()) {
              if (p != null && (p.getNombres() + " - " + p.getDni()).equals(seleccionadoPaciente)) {
-             paciente = p;
-                break;
-    }
-}
+                 paciente = p;
+                    break;
+            }
+        }
 
-// Medico
         String seleccionadoMedico = (String) comboMEDICO.getSelectedItem();
         Medico medico = null;
         for (Empleado e : sistema.getGestionEmpleados().getEmpleados()) {
             if (e instanceof Medico m && (m.getNombres() + " - " + m.getDni()).equals(seleccionadoMedico)) {
-            medico = m;
-            break;
-    }
-}
+                medico = m;
+                break;
+            }
+        }
 
-// Consultorio
         String seleccionadoConsultorio = (String) COMOBconultorios.getSelectedItem();
         Consultorio consultorio = null;
         for (Consultorio c : sistema.getGestionConsultorios().getConsultorios()) {
             if (c != null && c.getCodigo().equals(seleccionadoConsultorio)) {
-            consultorio = c;
-            break;
-    }
-}
+                consultorio = c;
+                break;
+            }
+        }
+
         if (paciente == null || medico == null || consultorio == null) {
-        JOptionPane.showMessageDialog(this, "Seleccione paciente, médico y consultorio válidos.");
-        return;
-}
-        
+            JOptionPane.showMessageDialog(this, "Seleccione paciente, médico y consultorio válidos.");
+            return;
+        }
+
         String fechaHora = FechayhoraIngresar.getText().trim();
         String modalidad = modalidadCOMBOBOX.getSelectedItem().toString();
-        String estado = estadoCOMBOBOX.getSelectedItem().toString();
 
+        
+        Cita citaOriginal = sistema.getGestionCitas().buscar(fila);
+        String estadoTexto = (citaOriginal != null) ? citaOriginal.getEstado() : "Pendiente";
 
-        Cita nueva = new Cita(
-                fechaHora,
-                modalidad,
-                estado,
-                paciente,
-                medico,
-                consultorio
-        );
+        Cita nueva = new Cita(fechaHora, modalidad, estadoTexto, paciente, medico, consultorio);
 
         boolean ok = sistema.getGestionCitas().modificar(fila, nueva);
 
         if (ok) {
             actualizarTablaCitas();
-            JOptionPane.showMessageDialog(this, "Cita modificada correctamente.");
+            JOptionPane.showMessageDialog(this, "✅ Cita modificada correctamente.");
+            limpiarCampos();
         } else {
-            JOptionPane.showMessageDialog(this, "No se pudo modificar la cita.");
+            JOptionPane.showMessageDialog(this, "❌ No se pudo modificar la cita.");
         }
 
     }//GEN-LAST:event_bModificarActionPerformed
@@ -406,56 +403,78 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_bEliminarActionPerformed
 
     private void bVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolverActionPerformed
-
         MenudeOpciones menu = new MenudeOpciones(this.sistema.getUsuarioActual(), this.sistema);
         menu.setVisible(true);
         javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
     }//GEN-LAST:event_bVolverActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-
         String seleccionadoPaciente = (String) comboPACIENTE.getSelectedItem();
         Paciente paciente = null;
         for (Paciente p : sistema.getGestionPacientes().getPacientes()) {
-            if (p != null && (p.getNombres() + " - " + p.getDni()).equals(seleccionadoPaciente)) {
-            paciente = p;
-            break;
-    }
-}
-
-        String seleccionadoMedico = (String) comboMEDICO.getSelectedItem();
-        Medico medico = null;
-        for (Empleado e : sistema.getGestionEmpleados().getEmpleados()) {
-            if (e instanceof Medico m && (m.getNombres() + " - " + m.getDni()).equals(seleccionadoMedico)) {
-            medico = m;
-            break;
-    }
-}
-
-        String seleccionadoConsultorio = (String) COMOBconultorios.getSelectedItem();
-        Consultorio consultorio = null;
-        for (Consultorio c : sistema.getGestionConsultorios().getConsultorios()) {
-            if (c != null && c.getCodigo().equals(seleccionadoConsultorio)) {
-                consultorio = c;
+                if (p != null && (p.getNombres() + " - " + p.getDni()).equals(seleccionadoPaciente)) {
+                paciente = p;
                 break;
+        }
     }
-}
-        String fechaHora = FechayhoraIngresar.getText().trim();
-        String modalidad = modalidadCOMBOBOX.getSelectedItem().toString();
-        String estado = estadoCOMBOBOX.getSelectedItem().toString();
-        
-        Cita nueva = new Cita(fechaHora, modalidad, estado, paciente, medico, consultorio);
+            String seleccionadoMedico = (String) comboMEDICO.getSelectedItem();
+            Medico medico = null;
+            for (Empleado e : sistema.getGestionEmpleados().getEmpleados()) {
+                if (e instanceof Medico m && (m.getNombres() + " - " + m.getDni()).equals(seleccionadoMedico)) {
+                medico = m;
+                break;
+        }
+    }
 
-        boolean ok = sistema.getGestionCitas().agregar(nueva);
+            String seleccionadoConsultorio = (String) COMOBconultorios.getSelectedItem();
+            Consultorio consultorio = null;
+            for (Consultorio c : sistema.getGestionConsultorios().getConsultorios()) {
+                if (c != null && c.getCodigo().equals(seleccionadoConsultorio)) {
+                    consultorio = c;
+                    break;
+        }
+    }
+            String fechaHora = FechayhoraIngresar.getText().trim();
+            String modalidad = modalidadCOMBOBOX.getSelectedItem().toString();
+            String estadoTexto = estado.getText();
 
-        if (ok) {
-        actualizarTablaCitas();
-        JOptionPane.showMessageDialog(this, "Cita agregada correctamente.");
-        } else {
-    JOptionPane.showMessageDialog(this, "No hay espacio para más citas.");
-}
+            Cita nueva = new Cita(fechaHora, modalidad, estadoTexto, paciente, medico, consultorio);
+
+            boolean ok = sistema.getGestionCitas().agregar(nueva);
+
+            if (ok) {
+                actualizarTablaCitas();
+                JOptionPane.showMessageDialog(this, "Cita agregada correctamente.");
+
+                System.out.println("✅ Cita creada: " + 
+                    paciente.getNombres() + " - " + 
+                    medico.getNombres() + " - Estado: Pendiente");
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay espacio para más citas.");
+            }
+            
     }//GEN-LAST:event_AgregarActionPerformed
 
+    private void verificarCitasEnSistema() {
+        System.out.println("=== VERIFICACIÓN DE CITAS EN SISTEMA ===");
+        Cita[] citas = sistema.getGestionCitas().getCitas();
+        int cantidad = sistema.getGestionCitas().getCantidad();
+
+        System.out.println("Total de citas en sistema: " + cantidad);
+
+        for (int i = 0; i < cantidad; i++) {
+            Cita c = citas[i];
+            if (c != null) {
+                System.out.println("Cita " + i + ": " + 
+                    c.getFechaHora() + " - " + 
+                    c.getPaciente().getNombres() + " - " + 
+                    c.getMedico().getNombres() + " - " +
+                    c.getEstado());
+            }
+        }
+        System.out.println("========================================");
+    }
+    
     private void comboPACIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPACIENTEActionPerformed
                                                   
         String seleccionado = (String) comboPACIENTE.getSelectedItem();
@@ -472,7 +491,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         }
         String fechaHora = FechayhoraIngresar.getText().trim();
         String modalidad = modalidadCOMBOBOX.getSelectedItem().toString();
-        String estado = estadoCOMBOBOX.getSelectedItem().toString();
+        String estadoTexto = estado.getText();
 
         Paciente paciente = (Paciente) comboPACIENTE.getSelectedItem();
         Medico medico = (Medico) comboMEDICO.getSelectedItem();
@@ -482,7 +501,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         Cita nueva = new Cita(
                 fechaHora,
                 modalidad,
-                estado,
+                estadoTexto,
                 paciente,
                 medico,
                 consultorio
@@ -526,13 +545,15 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     
     private void limpiarCampos() {
         FechayhoraIngresar.setText("");
-        modalidadCOMBOBOX.setSelectedIndex(-1);
-        estadoCOMBOBOX.setSelectedIndex(-1);
+        modalidadCOMBOBOX.setSelectedIndex(0); // Volver a primera opción
+        // ✅ NO limpiar el estado label - debe mantenerse como "Pendiente"
         comboPACIENTE.setSelectedIndex(-1);
         comboMEDICO.setSelectedIndex(-1);
         COMOBconultorios.setSelectedIndex(-1);        
         indiceSeleccionado = -1;
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
@@ -544,7 +565,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     private javax.swing.JToggleButton bVolver;
     private javax.swing.JComboBox<String> comboMEDICO;
     private javax.swing.JComboBox<String> comboPACIENTE;
-    private javax.swing.JComboBox<String> estadoCOMBOBOX;
+    private javax.swing.JLabel estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
