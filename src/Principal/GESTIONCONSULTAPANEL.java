@@ -19,14 +19,13 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
         initComponents();
         cargarDatosPaciente(); 
         cargarHistorialPaciente(); 
+        GuardarCambios.setEnabled(false);
     }
 
     private void cargarDatosPaciente() {
         if (citaActual != null && citaActual.getPaciente() != null) {
             Paciente p = citaActual.getPaciente();
             paciente.setText(p.getNombres() + " " + p.getApellidos() + " - DNI: " + p.getDni());
-            
-            // Establecer estado inicial como "En consulta"
             estado.setText("En consulta");
         }
     }
@@ -312,7 +311,7 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
         try {
             String pMotivo = Motivo.getText();
             double pPrecio = Precio.getText().isEmpty() ? 0.0 : Double.parseDouble(Precio.getText());
-            String pEstado = "Atendida"; // ESTADO CAMBIA A ATENDIDA AUTOMÁTICAMENTE
+            String pEstado = "Atendida"; 
             String pAntecedentes = antecedentes.getText();
             String pSignosVitales = signos_vitales.getText();
             String pExamenesFisicos = examenes_fisicos.getText();
@@ -320,28 +319,24 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
             int pCantidadOrdenes = cant_operaciones.getText().isEmpty() ? 0 : Integer.parseInt(cant_operaciones.getText());
             String pPlan = plan.getText();
 
-            // CREAR NUEVA CONSULTA CON LA CITA ACTUAL
             Consulta nuevaConsulta = new Consulta(
                 pMotivo, pPrecio, pEstado, pAntecedentes, pSignosVitales,
                 pExamenesFisicos, pDiagnosticos, null, new Clinica.Orden[10], 
-                pCantidadOrdenes, pPlan, citaActual  // ASIGNAR LA CITA ACTUAL
+                pCantidadOrdenes, pPlan, citaActual 
             );
 
-            // GUARDAR CONSULTA
             sistema.getGestionConsultas().agregar(nuevaConsulta);
             
-            // ACTUALIZAR ESTADO DE LA CITA A "Atendida"
             citaActual.setEstado("Atendida");
             actualizarEstadoCita();
             
-            // AGREGAR CONSULTA AL HISTORIAL DEL PACIENTE
             if (citaActual.getPaciente().getHistoria() != null) {
                 citaActual.getPaciente().getHistoria().agregarConsulta(nuevaConsulta);
             }
             cargarHistorialPaciente();
             JOptionPane.showMessageDialog(this, "Consulta guardada correctamente y cita marcada como atendida");
 
-            cargarHistorialPaciente(); // Actualizar tabla con nueva consulta
+            cargarHistorialPaciente(); 
             limpiarCampos();
 
         } catch (NumberFormatException e) {
@@ -370,6 +365,8 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
             plan.setText(consultaSeleccionada.getPlan());
             
             indiceSeleccionado = fila;
+            aceptar.setEnabled(false);
+            GuardarCambios.setEnabled(true);
         }
     }//GEN-LAST:event_ModificarActionPerformed
 
@@ -402,14 +399,12 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
             return;
         }
 
-        // Validar campos obligatorios
         if (Motivo.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El motivo es obligatorio");
             return;
         }
 
         try {
-            // Obtener datos de los campos
             String pMotivo = Motivo.getText();
             double pPrecio = Precio.getText().isEmpty() ? 0.0 : Double.parseDouble(Precio.getText());
             String pEstado = estado.getText();
@@ -420,20 +415,17 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
             int pCantidadOrdenes = cant_operaciones.getText().isEmpty() ? 0 : Integer.parseInt(cant_operaciones.getText());
             String pPlan = plan.getText();
 
-            // Obtener la consulta actual para mantener datos que no se modifican
             Consulta consultaActual = sistema.getGestionConsultas().buscar(indiceSeleccionado);
 
-            // Crear nueva consulta con los datos actualizados
             Consulta consultaActualizada = new Consulta(
                 pMotivo, pPrecio, pEstado, pAntecedentes, pSignosVitales,
                 pExamenesFisicos, pDiagnosticos, 
-                consultaActual.getReceta(), // Mantener la receta existente
-                consultaActual.getOrdenes(), // Mantener las órdenes existentes
+                consultaActual.getReceta(), 
+                consultaActual.getOrdenes(), 
                 pCantidadOrdenes, pPlan, 
-                consultaActual.getCita() // Mantener la cita existente
+                consultaActual.getCita() 
             );
 
-            // Modificar la consulta en el sistema
             boolean exito = sistema.getGestionConsultas().modificar(indiceSeleccionado, consultaActualizada);
 
             if (exito) {
@@ -441,6 +433,8 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
                 limpiarCampos();
                 indiceSeleccionado = -1;
                 JOptionPane.showMessageDialog(this, "Consulta modificada correctamente.");
+                aceptar.setEnabled(true);
+                GuardarCambios.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar la consulta.");
             }
@@ -451,7 +445,6 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_GuardarCambiosActionPerformed
 
     private void actualizarEstadoCita() {
-        // Buscar y actualizar la cita en el sistema
         Cita[] citas = sistema.getGestionCitas().getCitas();
         for (int i = 0; i < sistema.getGestionCitas().getCantidad(); i++) {
             if (citas[i] != null && citas[i].equals(citaActual)) {
@@ -494,6 +487,8 @@ public class GESTIONCONSULTAPANEL extends javax.swing.JPanel {
         cant_operaciones.setText("0");
         plan.setText("");
         indiceSeleccionado = -1;
+        aceptar.setEnabled(true);
+        GuardarCambios.setEnabled(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

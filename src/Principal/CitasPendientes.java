@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Principal;
 import Clinica.Cita;
 import Clinica.Medico;
@@ -13,9 +10,6 @@ public class CitasPendientes extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CitasPendientes.class.getName());
 
-    /**
-     * Creates new form NewJFrame
-     */
     public CitasPendientes(Sistema sistema) {
         this.sistema = sistema;
         initComponents();
@@ -58,14 +52,14 @@ public class CitasPendientes extends javax.swing.JFrame {
                 String consultorioInfo = cita.getConsultorio() != null ? cita.getConsultorio().getCodigo() : "No asignado";
                 String medicoInfo = cita.getMedico().getNombres() + " " + cita.getMedico().getApellidos();
 
-                // ORDEN CORREGIDO - debe coincidir con las columnas del modelo
+                
                 model.addRow(new Object[]{
-                    cita.getFechaHora(),      // Columna 0: Fecha y Hora
-                    cita.getModalidad(),      // Columna 1: Modalidad  
-                    cita.getEstado(),         // Columna 2: Estado
-                    pacienteInfo,             // Columna 3: Paciente
-                    medicoInfo,               // Columna 4: Medico
-                    consultorioInfo           // Columna 5: Consultorio
+                    cita.getFechaHora(),      
+                    cita.getModalidad(),      
+                    cita.getEstado(),         
+                    pacienteInfo,             
+                    medicoInfo,              
+                    consultorioInfo          
                 });
             }
         }

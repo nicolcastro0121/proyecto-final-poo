@@ -22,46 +22,10 @@ public class loginn extends javax.swing.JFrame {
             usuarios = new GestorUsuarios();
         }
         cargarUsuariosLogin();
-        /*
-        Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
-        usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
-        sistemaGlobal.getGestionEmpleados().crearEmpleado(med1);
-
-        Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
-        usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
-        sistemaGlobal.getGestionEmpleados().crearEmpleado(med2);
-
-        Administrador admin = new Administrador("12312312", "Paul", "Castro", "123123", "castro@gmail.com", "admin", "admin", "Administrador");
-        usuarios.AgregarUsuario("admin", "admin", "Administrador", admin);
-        sistemaGlobal.getGestionEmpleados().crearEmpleado(admin);
         
-        Administrador admin2 = new Administrador("66666", "Renata", "res", "1123123", "ren@gmail.com", "admin", "admin", "Administrador");
-        usuarios.AgregarUsuario("admin", "admin", "Administrador", admin2);
-        sistemaGlobal.getGestionEmpleados().crearEmpleado(admin2);
-
-        Recepcionista recep = new Recepcionista("33333333", "Laura", "Rojas", "777777", "laura@mail.com", "recep", "1234", "Recepcionista");
-        sistemaGlobal.getGestionEmpleados().crearEmpleado(recep);
-
-        // Paciente
-        Paciente paciente = new Paciente("74839201", "María Fernanda", "López Rivas", "2004-03-22", "F", "987654321", "Jr. Las Gardenias 221", "Carlos López - 987112233");
-        sistemaGlobal.getGestionPacientes().agregar(paciente);
-
-        Cajero cajero = new Cajero("44444444", "Pedro", "Mendoza", "666666", "pedro@mail.com", "cajero", "1234", "Cajero");
-        sistemaGlobal.getGestionEmpleados().crearEmpleado(cajero);
-
-        Enfermero enfer = new Enfermero("60966605", "Carlos", "Cabrera", "45632423", "cabrera@gmail.com", "enfermero", "enfermero", "Enfermero");
-        sistemaGlobal.getGestionEmpleados().crearEmpleado(enfer);
-
-        usuarios.AgregarUsuario("cajero", "cajero", "Cajero", cajero);
-        usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
-        usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
-        usuarios.AgregarUsuario("enfermera", "enfermera", "Enfermero");
-        usuarios.AgregarUsuario("recep", "1234", "Recepcionista", recep);
-        */
     }
 
     private void cargarUsuariosLogin() {
-        // Buscar médicos del sistema para crear usuarios
         Medico med1 = null, med2 = null;
         
         for (int i = 0; i < sistemaGlobal.getGestionEmpleados().getCantidad(); i++) {
@@ -72,7 +36,6 @@ public class loginn extends javax.swing.JFrame {
             }
         }
 
-        // Crear usuarios de login
         if (med1 != null) {
             usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
         }
@@ -80,7 +43,6 @@ public class loginn extends javax.swing.JFrame {
             usuarios.AgregarUsuario("medico2", "1234", "Médico", med2);
         }
         
-        // Otros usuarios...
         usuarios.AgregarUsuario("admin", "admin", "Administrador");
         usuarios.AgregarUsuario("recep", "1234", "Recepcionista");
         usuarios.AgregarUsuario("cajero", "cajero", "Cajero");

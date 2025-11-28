@@ -29,14 +29,16 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
 
         for (int i = 0; i < total; i++) {
             Cita c = lista[i];
-            modelo.addRow(new Object[]{
-                c.getFechaHora(),
-                c.getModalidad(),
-                c.getEstado(),
-                c.getPaciente().getNombres(),
-                c.getMedico().getNombres(),
-                c.getConsultorio().getCodigo()
-            });
+            if (c != null) {
+                modelo.addRow(new Object[]{
+                    c.getFechaHora(),                    // Fecha y Hora
+                    c.getModalidad(),                    // Modalidad
+                    c.getEstado(),                       // Estado
+                    c.getPaciente().getNombres(),        // Paciente
+                    c.getMedico().getNombres(),          // Medico  
+                    c.getConsultorio().getCodigo()       // Consultorio
+                });
+            }
         }
     }
 
@@ -49,14 +51,16 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
 
         for (int i = 0; i < total; i++) {
             Cita c = lista[i];
-            modelo.addRow(new Object[]{
-                c.getFechaHora(),
-                c.getModalidad(),
-                c.getEstado(),
-                c.getPaciente().getNombres(),
-                c.getMedico().getNombres(),
-                c.getConsultorio().getCodigo()
-            });
+            if (c != null) {
+                modelo.addRow(new Object[]{
+                    c.getFechaHora(),                    // Fecha y Hora
+                    c.getModalidad(),                    // Modalidad
+                    c.getEstado(),                       // Estado
+                    c.getPaciente().getNombres(),        // Paciente
+                    c.getMedico().getNombres(),          // Medico
+                    c.getConsultorio().getCodigo()       // Consultorio
+                });
+            }
         }
     }
     
@@ -101,7 +105,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         bVolver = new javax.swing.JToggleButton();
         COMOBconultorios = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        Guardar = new javax.swing.JButton();
+        GuardarCambios = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -158,10 +162,10 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
 
         jLabel4.setText("Estado");
 
-        Guardar.setText("Guardar");
-        Guardar.addActionListener(new java.awt.event.ActionListener() {
+        GuardarCambios.setText("Guardar Cambios");
+        GuardarCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarActionPerformed(evt);
+                GuardarCambiosActionPerformed(evt);
             }
         });
 
@@ -255,16 +259,15 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                                     .addComponent(comboMEDICO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(87, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bVolver))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(Agregar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                                .addComponent(Guardar)))
-                        .addGap(77, 77, 77))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addComponent(bVolver)
+                        .addGap(77, 77, 77))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(Agregar)
+                        .addGap(58, 58, 58)
+                        .addComponent(GuardarCambios)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +308,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Guardar)
+                            .addComponent(GuardarCambios)
                             .addComponent(Agregar))
                         .addGap(18, 18, 18)
                         .addComponent(bVolver)
@@ -420,7 +423,6 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     }
 }
 
-// Obtener el médico
         String seleccionadoMedico = (String) comboMEDICO.getSelectedItem();
         Medico medico = null;
         for (Empleado e : sistema.getGestionEmpleados().getEmpleados()) {
@@ -430,7 +432,6 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     }
 }
 
-// Obtener consultorio
         String seleccionadoConsultorio = (String) COMOBconultorios.getSelectedItem();
         Consultorio consultorio = null;
         for (Consultorio c : sistema.getGestionConsultorios().getConsultorios()) {
@@ -456,15 +457,14 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void comboPACIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPACIENTEActionPerformed
-        // TODO add your handling code here:
-                                                   
+                                                  
         String seleccionado = (String) comboPACIENTE.getSelectedItem();
           
     
 
     }//GEN-LAST:event_comboPACIENTEActionPerformed
 
-    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+    private void GuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarCambiosActionPerformed
         // TODO add your handling code here:
         if (indiceSeleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No hay cita seleccionada para guardar.");
@@ -497,28 +497,30 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar la cita.");
             }
-    }//GEN-LAST:event_GuardarActionPerformed
+    }//GEN-LAST:event_GuardarCambiosActionPerformed
 
     private void COMOBconultoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_COMOBconultoriosActionPerformed
-        // TODO add your handling code here:
+
         String codigo = (String) COMOBconultorios.getSelectedItem();
     }//GEN-LAST:event_COMOBconultoriosActionPerformed
         private void actualizarTabla() {
         DefaultTableModel model = (DefaultTableModel) tablaCITAS.getModel();
         model.setRowCount(0);
-        
+
         GestionCita gestor = sistema.getGestionCitas();
-        
+
         for (int i = 0; i < gestor.getCantidad(); i++) {
             Cita c = gestor.getCitas()[i];
-            model.addRow(new Object[]{
-                c.getEstado(),
-                c.getFechaHora(),
-                c.getMedico(),
-                c.getModalidad(),
-                c.getPaciente(),
-                c.getConsultorio(),
-            });
+            if (c != null) {
+                model.addRow(new Object[]{
+                    c.getFechaHora(),                    
+                    c.getModalidad(),                    
+                    c.getEstado(),                      
+                    c.getPaciente().getNombres(),        
+                    c.getMedico().getNombres(),         
+                    c.getConsultorio().getCodigo()       
+                });
+            }
         }
     }
     
@@ -536,7 +538,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     private javax.swing.JButton Agregar;
     private javax.swing.JComboBox<String> COMOBconultorios;
     private javax.swing.JTextField FechayhoraIngresar;
-    private javax.swing.JButton Guardar;
+    private javax.swing.JButton GuardarCambios;
     private javax.swing.JButton bEliminar;
     private javax.swing.JButton bModificar;
     private javax.swing.JToggleButton bVolver;
