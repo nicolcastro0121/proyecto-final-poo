@@ -150,16 +150,24 @@ private void generarReportes() {
             }
         });
 
+        jtTotalPacientes1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jtTotalPacientes1.setDoubleBuffered(true);
         jtTotalPacientes1.setEnabled(false);
+        jtTotalPacientes1.setOpaque(true);
         jtTotalPacientes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtTotalPacientes1ActionPerformed(evt);
             }
         });
 
+        jtCitasAtendidas1.setBackground(new java.awt.Color(242, 242, 242));
+        jtCitasAtendidas1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jtCitasAtendidas1.setEnabled(false);
+        jtCitasAtendidas1.setOpaque(true);
 
+        jtConsultoriosOcupados1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jtConsultoriosOcupados1.setEnabled(false);
+        jtConsultoriosOcupados1.setOpaque(true);
 
         jLabel5.setText("Total de Pacientes Registrados");
 
@@ -181,11 +189,11 @@ private void generarReportes() {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(267, 267, 267)
                         .addComponent(jLabel6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(560, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel7)
