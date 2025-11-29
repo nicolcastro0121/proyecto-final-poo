@@ -348,11 +348,9 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_dosActionPerformed
 
     private void especialidadINGRESARTEXTOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_especialidadINGRESARTEXTOActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_especialidadINGRESARTEXTOActionPerformed
 
     private void GuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarCambiosActionPerformed
@@ -416,7 +414,6 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
     }
     
     private void DisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisponibilidadActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_DisponibilidadActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
@@ -454,7 +451,6 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void diezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diezActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_diezActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
@@ -544,7 +540,6 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
     }
     
     private void onceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onceActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_onceActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
@@ -583,19 +578,15 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void doceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doceActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_doceActionPerformed
 
     private void unaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unaActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_unaActionPerformed
 
     private void INGRESARTEXTOCODIGOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INGRESARTEXTOCODIGOActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_INGRESARTEXTOCODIGOActionPerformed
 
     private void comboMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicosActionPerformed
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_comboMedicosActionPerformed
 

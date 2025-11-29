@@ -11,7 +11,7 @@ public class Receta {
         this.cantidad = 0;
     }
     public String getContenido() {
-        String texto = ""; // Empezamos con el texto vacío
+        String texto = ""; 
         
         for (int i = 0; i < cantidad; i++) {
             Medicamento m = medicamentos[i];

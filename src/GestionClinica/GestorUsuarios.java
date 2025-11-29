@@ -16,8 +16,7 @@ public class GestorUsuarios {
     
     public void AgregarUsuario(String userName, String password, String rol, Empleado empleado) {
         if (numUsuario < listaUsuarios.length) {
-            // Creamos un Usuario apuntando al empleado
-            listaUsuarios[numUsuario] = empleado;  // empleado ya es un Usuario
+            listaUsuarios[numUsuario] = empleado; 
             numUsuario++;
             System.out.println("Usuario agregado: " + empleado.getUserName());
         } else {

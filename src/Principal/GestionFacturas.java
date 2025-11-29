@@ -273,15 +273,15 @@ public class GestionFacturas extends javax.swing.JPanel {
         menu.setVisible(true);
         javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
     }//GEN-LAST:event_VolverActionPerformed
-private void actualizarTabla() {
-    DefaultTableModel model = (DefaultTableModel) tablaFactura.getModel();
-    model.setRowCount(0);
+    private void actualizarTabla() {
+        DefaultTableModel model = (DefaultTableModel) tablaFactura.getModel();
+        model.setRowCount(0);
 
-    GestionFactura gestor = sistema.getGestionFacturas();
+        GestionFactura gestor = sistema.getGestionFacturas();
 
-    for (int i = 0; i < gestor.getCantidad(); i++) {
-        Factura f = gestor.getFacturas()[i];
-        if (f == null) continue;
+        for (int i = 0; i < gestor.getCantidad(); i++) {
+            Factura f = gestor.getFacturas()[i];
+            if (f == null) continue;
 
         String pacienteTxt = (f.getPaciente() != null)
                 ? f.getPaciente().getNombres() + " - " + f.getPaciente().getDni()
@@ -295,11 +295,11 @@ private void actualizarTabla() {
         });
     }
 }
-private void limpiarCampos() {
-    numero.setText("");
-    descripcion.setText("");
-    monto.setText("");
-    ComboPaciente.setSelectedIndex(-1);
+    private void limpiarCampos() {
+        numero.setText("");
+        descripcion.setText("");
+        monto.setText("");
+        ComboPaciente.setSelectedIndex(-1);
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;

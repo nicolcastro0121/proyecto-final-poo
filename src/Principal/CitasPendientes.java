@@ -35,7 +35,6 @@ public class CitasPendientes extends javax.swing.JFrame {
 
         if (!esAdmin && !esMedico && !esEnfermero) {
             JOptionPane.showMessageDialog(this, "Solo Administradores, Médicos y Enfermeros pueden acceder a esta función.");
-            // this.dispose(); 
             return;
         }
 
@@ -237,13 +236,9 @@ public class CitasPendientes extends javax.swing.JFrame {
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
 
-        // Cerrar esta ventana
         this.dispose();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

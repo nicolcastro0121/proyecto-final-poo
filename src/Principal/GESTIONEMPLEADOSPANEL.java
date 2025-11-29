@@ -303,7 +303,6 @@ public class GESTIONEMPLEADOSPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_dniActionPerformed
 
     private void ComboBoxROLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxROLActionPerformed
@@ -378,7 +377,6 @@ public class GESTIONEMPLEADOSPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void EliminarIngresaDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarIngresaDNIActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_EliminarIngresaDNIActionPerformed
 
     private void ModificarIngresarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarIngresarDniActionPerformed
@@ -487,7 +485,6 @@ public class GESTIONEMPLEADOSPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_GuardarCambiosbtActionPerformed
 
     private void ComboBoxEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxEspecialidadesActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxEspecialidadesActionPerformed
 
     private void VolverbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverbtActionPerformed

@@ -414,9 +414,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_GconsultaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
 
     }

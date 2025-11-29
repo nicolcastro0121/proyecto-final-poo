@@ -5,27 +5,21 @@ public class HistoriaClinica {
     private int cantidad;
     private Paciente paciente;
     
-    // Constructor con Paciente (el que ya tenías)
     public HistoriaClinica(Paciente paciente) {
         this.consultas = new Consulta[100];
         this.cantidad = 0;
         this.paciente = paciente;
     }
 
-    // --- CONSTRUCTOR CORREGIDO ---
-    // Antes lanzaba error, ahora inicializa los datos
     public HistoriaClinica() {
         this.consultas = new Consulta[100];
         this.cantidad = 0;
-        // El paciente se queda en null temporalmente hasta que se asigne
     }
-    // -----------------------------
     
     public void agregarConsulta(Consulta consulta) {
         if (cantidad < consultas.length) {
             consultas[cantidad] = consulta;
             cantidad++;
-            // Agregamos una validación por si paciente es null para que no falle
             String nombrePac = (paciente != null) ? paciente.getNombres() : "Desconocido";
             System.out.println("Consulta agregada a historia clínica de: " + nombrePac);
         } else {
@@ -56,7 +50,6 @@ public class HistoriaClinica {
     }
     
     public void ver() {
-        // Validación para evitar error si no hay paciente asignado aún
         String nombre = (paciente != null) ? paciente.getNombres() + " " + paciente.getApellidos() : "Sin Asignar";
         String dni = (paciente != null) ? paciente.getDni() : "---";
 
@@ -77,7 +70,6 @@ public class HistoriaClinica {
         }
     }
     
-    // Agrega este SETTER por si necesitas asignar el paciente después
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }

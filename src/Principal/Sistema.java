@@ -37,7 +37,6 @@ public class Sistema {
     
     public void cargarDatosPrueba() {
         try {
-            // 1. CARGAR MÉDICOS SI NO EXISTEN
             if (gestionEmpleados.getCantidad() == 0) {
                 Medico med1 = new Medico("Cardiología", "11111111", "Juan", "Perez", "999999", "juan@mail.com", "medico1", "1234", "Médico");
                 Medico med2 = new Medico("Pediatría", "22222222", "Ana", "Gomez", "888888", "ana@mail.com", "medico2", "1234", "Médico");
@@ -45,12 +44,10 @@ public class Sistema {
                 gestionEmpleados.crearEmpleado(med1);
                 gestionEmpleados.crearEmpleado(med2);
 
-                // Agregar usuarios también
                 AgregarUsuario("medico1", "1234", "Médico", med1);
                 AgregarUsuario("medico2", "1234", "Médico", med2);
             }
 
-            // 2. CARGAR PACIENTES SI NO EXISTEN
             if (gestionPacientes.getCantidad() == 0) {
                 Paciente paciente1 = new Paciente("74839201", "María Fernanda", "López Rivas", "2004-03-22", "F", "987654321", "Jr. Las Gardenias 221", "Carlos López - 987112233");
                 Paciente paciente2 = new Paciente("87654321", "Carlos", "Gómez", "1990-01-10", "M", "111111111", "Av. Siempre Viva 123", "999888777");
@@ -59,7 +56,6 @@ public class Sistema {
                 gestionPacientes.agregar(paciente2);
             }
 
-            // 3. CARGAR CONSULTORIOS SI NO EXISTEN
             if (gestionConsultorios.getCantidad() == 0) {
                 Clinica.Consultorio consultorio1 = new Clinica.Consultorio("C-001", "Cardiología", "Disponible");
                 Clinica.Consultorio consultorio2 = new Clinica.Consultorio("C-002", "Pediatría", "Disponible");
@@ -68,14 +64,11 @@ public class Sistema {
                 gestionConsultorios.agregar(consultorio2);
             }
 
-            // 4. CARGAR CITAS SI NO EXISTEN
             if (gestionCitas.getCantidad() == 0) {
-                // Buscar médicos y pacientes
                 Medico med1 = null, med2 = null;
                 Paciente paciente1 = null, paciente2 = null;
                 Clinica.Consultorio consultorio1 = null, consultorio2 = null;
 
-                // Buscar médicos
                 for (int i = 0; i < gestionEmpleados.getCantidad(); i++) {
                     if (gestionEmpleados.getEmpleados()[i] instanceof Medico) {
                         Medico m = (Medico) gestionEmpleados.getEmpleados()[i];
@@ -84,21 +77,18 @@ public class Sistema {
                     }
                 }
 
-                // Buscar pacientes
                 for (int i = 0; i < gestionPacientes.getCantidad(); i++) {
                     Paciente p = gestionPacientes.getPaciente(i);
                     if ("María Fernanda".equals(p.getNombres())) paciente1 = p;
                     if ("Carlos".equals(p.getNombres())) paciente2 = p;
                 }
 
-                // Buscar consultorios
                 for (int i = 0; i < gestionConsultorios.getCantidad(); i++) {
                     Clinica.Consultorio c = gestionConsultorios.getConsultorios()[i];
                     if ("C-001".equals(c.getCodigo())) consultorio1 = c;
                     if ("C-002".equals(c.getCodigo())) consultorio2 = c;
                 }
 
-                // Crear citas
                 if (med1 != null && paciente1 != null && consultorio1 != null) {
                     Cita cita1 = new Cita("2024-01-15 10:00", "Presencial", "Pendiente", 
                                          paciente1, med1, consultorio1);

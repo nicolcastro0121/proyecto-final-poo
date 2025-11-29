@@ -16,28 +16,25 @@ public class REPORTE extends javax.swing.JPanel {
     }
     
     
-private void generarReportes() {
-    try {
-        if (sistema == null
-            || sistema.getGestionPacientes() == null
-            || sistema.getGestionCitas() == null
-            || sistema.getGestionConsultorios() == null) {
+    private void generarReportes() {
+        try {
+            if (sistema == null
+                || sistema.getGestionPacientes() == null
+                || sistema.getGestionCitas() == null
+                || sistema.getGestionConsultorios() == null) {
 
-            jtTotalPacientes1.setText("0");
-            jtCitasAtendidas1.setText("0");
-            jtConsultoriosOcupados1.setText("0");
-            return;
+                jtTotalPacientes1.setText("0");
+                jtCitasAtendidas1.setText("0");
+                jtConsultoriosOcupados1.setText("0");
+                return;
         }
 
-        // TOTAL PACIENTES (campo visible: jtTotalPacientes1)
         int totalPacientes = sistema.getGestionPacientes().getCantidad();
         jtTotalPacientes1.setText(String.valueOf(totalPacientes));
 
-        // TOTAL DE CITAS (campo visible: jtCitasAtendidas1)
         int totalCitas = sistema.getGestionCitas().getCantidad();
         jtCitasAtendidas1.setText(String.valueOf(totalCitas));
 
-        // CONSULTORIOS OCUPADOS (campo visible: jtConsultoriosOcupados1)
         int ocupados = 0;
         Consultorio[] consultorios = sistema.getGestionConsultorios().getConsultorios();
         int maxCons = Math.min(consultorios.length, sistema.getGestionConsultorios().getCantidad());
@@ -49,35 +46,35 @@ private void generarReportes() {
         }
         jtConsultoriosOcupados1.setText(String.valueOf(ocupados));
 
-    } catch (Exception e) {
+    }  catch (Exception e) {
         e.printStackTrace();
         jtTotalPacientes1.setText("Error");
         jtCitasAtendidas1.setText("Error");
         jtConsultoriosOcupados1.setText("Error");
     }
-}  private void cargarTabla() {
-    DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-    modelo.setRowCount(0); // Limpia la tabla
+}   private void cargarTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0); 
 
-    if (sistema == null || sistema.getGestionCitas() == null) return;
+        if (sistema == null || sistema.getGestionCitas() == null) return;
 
-    Cita[] citas = sistema.getGestionCitas().getCitas();
-    int cantidad = sistema.getGestionCitas().getCantidad();
+        Cita[] citas = sistema.getGestionCitas().getCitas();
+        int cantidad = sistema.getGestionCitas().getCantidad();
 
-    for (int i = 0; i < cantidad; i++) {
-        Cita c = citas[i];
-        if (c == null) continue;
+        for (int i = 0; i < cantidad; i++) {
+            Cita c = citas[i];
+            if (c == null) continue;
 
-        String fecha = c.getFechaHora() != null ? c.getFechaHora() : "";
-        String paciente = (c.getPaciente() != null && c.getPaciente().getNombres() != null)
+            String fecha = c.getFechaHora() != null ? c.getFechaHora() : "";
+            String paciente = (c.getPaciente() != null && c.getPaciente().getNombres() != null)
                             ? c.getPaciente().getNombres() : "Sin paciente";
-        String medico = (c.getMedico() != null && c.getMedico().getNombres() != null)
+            String medico = (c.getMedico() != null && c.getMedico().getNombres() != null)
                             ? c.getMedico().getNombres() : "Sin medico";
-        String consultorio = (c.getConsultorio() != null && c.getConsultorio().getCodigo() != null)
+            String consultorio = (c.getConsultorio() != null && c.getConsultorio().getCodigo() != null)
                             ? c.getConsultorio().getCodigo() : "Sin consultorio";
-        String estado = c.getEstado() != null ? c.getEstado() : "";
+            String estado = c.getEstado() != null ? c.getEstado() : "";
 
-        modelo.addRow(new Object[]{ fecha, paciente, medico, consultorio, estado });
+            modelo.addRow(new Object[]{ fecha, paciente, medico, consultorio, estado });
     }
 }
     @SuppressWarnings("unchecked")

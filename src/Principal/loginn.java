@@ -61,7 +61,6 @@ public class loginn extends javax.swing.JFrame {
     }
 
     private void cargarUsuariosLogin() {
-        // Buscar médicos del sistema para crear usuarios
         Medico med1 = null, med2 = null;
         
         for (int i = 0; i < sistemaGlobal.getGestionEmpleados().getCantidad(); i++) {
@@ -72,7 +71,6 @@ public class loginn extends javax.swing.JFrame {
             }
         }
 
-        // Crear usuarios de login
         if (med1 != null) {
             usuarios.AgregarUsuario("medico1", "1234", "Médico", med1);
         }
