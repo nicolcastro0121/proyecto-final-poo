@@ -11,7 +11,6 @@ import GestionClinica.GestionConsultorio;
 import GestionClinica.GestionEmpleado;
 import GestionClinica.GestionFactura;
 import GestionClinica.GestionPacientes;
-import InterfacesClinica.Reporte;
 
 public class Sistema {
     public static Usuario usuarioActual;

@@ -1,10 +1,9 @@
 
 package GestionClinica;
 import Clinica.Consultorio;
-import InterfacesClinica.Reporte;
 
 
-public class GestionConsultorio implements Reporte{
+public class GestionConsultorio {
     private Consultorio[] consultorios;
     private int cantidad;
 
@@ -63,12 +62,12 @@ public class GestionConsultorio implements Reporte{
         return cantidad;
     }
 
-    @Override
+
     public String generarReporte() {
         return "Reporte de Consultorios: Total=" + this.cantidad;
     }
 
-    @Override
+
     public String generarReporteDetallado() {
         StringBuilder reporte = new StringBuilder();
         reporte.append("REPORTE DETALLADO DE CONSULTORIOS");
@@ -80,7 +79,6 @@ public class GestionConsultorio implements Reporte{
         return reporte.toString();
     }
 
-    @Override
     public Object[] obtenerDatosReporte() {
         return this.consultorios;
     }

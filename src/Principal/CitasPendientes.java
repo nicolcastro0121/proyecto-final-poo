@@ -28,39 +28,60 @@ public class CitasPendientes extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tablaCITAS.getModel();
         model.setRowCount(0);
 
-        Medico medicoLogueado = null;
-        if (sistema.getUsuarioActual() instanceof Medico) {
-            medicoLogueado = (Medico) sistema.getUsuarioActual();
-        }
+        String rolActual = sistema.getUsuarioActual().getRol();
+        boolean esAdmin = "Administrador".equals(rolActual);
+        boolean esMedico = "Médico".equals(rolActual);
+        boolean esEnfermero = "Enfermero".equals(rolActual);
 
-        if (medicoLogueado == null) {
-            JOptionPane.showMessageDialog(this, "Solo los médicos pueden acceder a esta función.");
+        if (!esAdmin && !esMedico && !esEnfermero) {
+            JOptionPane.showMessageDialog(this, "Solo Administradores, Médicos y Enfermeros pueden acceder a esta función.");
+            // this.dispose(); 
             return;
         }
+
+        Medico medicoLogueado = null;
+        if (esMedico) {
+            if (sistema.getUsuarioActual() instanceof Medico) {
+                medicoLogueado = (Medico) sistema.getUsuarioActual();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error de sistema: Usuario con rol Médico no es instancia de Medico.");
+                return;
+            }
+        }
+
 
         Cita[] citas = sistema.getGestionCitas().getCitas();
 
         for (int i = 0; i < sistema.getGestionCitas().getCantidad(); i++) {
             Cita cita = citas[i];
 
-            if (cita != null && 
-                cita.getMedico() != null && 
-                cita.getMedico().equals(medicoLogueado) &&
-                "Pendiente".equals(cita.getEstado())) {
+            boolean esPendiente = "Pendiente".equals(cita.getEstado());
+            boolean esCitaValida = (cita != null && cita.getMedico() != null);
 
-                String pacienteInfo = cita.getPaciente().getNombres() + " " + cita.getPaciente().getApellidos();
-                String consultorioInfo = cita.getConsultorio() != null ? cita.getConsultorio().getCodigo() : "No asignado";
-                String medicoInfo = cita.getMedico().getNombres() + " " + cita.getMedico().getApellidos();
+            if (esCitaValida && esPendiente) {
 
-                
-                model.addRow(new Object[]{
-                    cita.getFechaHora(),      
-                    cita.getModalidad(),      
-                    cita.getEstado(),         
-                    pacienteInfo,             
-                    medicoInfo,              
-                    consultorioInfo          
-                });
+                boolean mostrarCita = false;
+
+                if (esAdmin || esEnfermero) {
+                    mostrarCita = true;
+                } else if (esMedico) {
+                    mostrarCita = cita.getMedico().equals(medicoLogueado);
+                }
+
+                if (mostrarCita) {
+                    String pacienteInfo = cita.getPaciente().getNombres() + " " + cita.getPaciente().getApellidos();
+                    String consultorioInfo = cita.getConsultorio() != null ? cita.getConsultorio().getCodigo() : "No asignado";
+                    String medicoInfo = cita.getMedico().getNombres() + " " + cita.getMedico().getApellidos();
+
+                    model.addRow(new Object[]{
+                        cita.getFechaHora(),      
+                        cita.getModalidad(),      
+                        cita.getEstado(),         
+                        pacienteInfo,             
+                        medicoInfo,              
+                        consultorioInfo          
+                    });
+                }
             }
         }
     }
@@ -144,7 +165,7 @@ public class CitasPendientes extends javax.swing.JFrame {
     private void bVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolverActionPerformed
         MenudeOpciones menu = new MenudeOpciones(this.sistema.getUsuarioActual(), this.sistema);
         menu.setVisible(true);
-        javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
+        this.dispose();
     }//GEN-LAST:event_bVolverActionPerformed
 
     private void AtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtenderActionPerformed
@@ -154,10 +175,21 @@ public class CitasPendientes extends javax.swing.JFrame {
             return;
         }
 
-        String fechaHoraSeleccionada = tablaCITAS.getValueAt(filaSeleccionada, 0).toString(); 
-        String pacienteSeleccionado = tablaCITAS.getValueAt(filaSeleccionada, 3).toString();  
+        Object fechaHoraObj = tablaCITAS.getValueAt(filaSeleccionada, 0);
+        String fechaHoraSeleccionada = String.valueOf(fechaHoraObj); 
 
-        Medico medicoLogueado = (Medico) sistema.getUsuarioActual();
+        Object pacienteObj = tablaCITAS.getValueAt(filaSeleccionada, 3);
+        String pacienteSeleccionado = String.valueOf(pacienteObj); 
+
+        Object medicoObj = tablaCITAS.getValueAt(filaSeleccionada, 4);
+        String medicoSeleccionado = String.valueOf(medicoObj);
+
+        String rolActual = sistema.getUsuarioActual().getRol();
+        boolean esAdminOEnfermero = "Administrador".equals(rolActual) || "Enfermero".equals(rolActual);
+        boolean esMedico = "Médico".equals(rolActual);
+        Medico medicoLogueado = esMedico && (sistema.getUsuarioActual() instanceof Clinica.Medico) 
+                                 ? (Clinica.Medico) sistema.getUsuarioActual() : null;
+
         Cita[] citas = sistema.getGestionCitas().getCitas();
         Cita citaEncontrada = null;
         int indiceCita = -1;
@@ -166,22 +198,29 @@ public class CitasPendientes extends javax.swing.JFrame {
             Cita cita = citas[i];
             if (cita != null && 
                 cita.getMedico() != null && 
-                cita.getMedico().equals(medicoLogueado) &&
                 "Pendiente".equals(cita.getEstado()) &&
-                cita.getFechaHora().equals(fechaHoraSeleccionada) &&
-                (cita.getPaciente().getNombres() + " " + cita.getPaciente().getApellidos()).equals(pacienteSeleccionado)) {
+                cita.getFechaHora().equals(fechaHoraSeleccionada)) {
 
-                citaEncontrada = cita;
-                indiceCita = i;
-                break;
+                String nombreCompletoPaciente = cita.getPaciente().getNombres() + " " + cita.getPaciente().getApellidos();
+                String nombreCompletoMedico = cita.getMedico().getNombres() + " " + cita.getMedico().getApellidos();
+
+                if (nombreCompletoPaciente.equals(pacienteSeleccionado) && 
+                    nombreCompletoMedico.equals(medicoSeleccionado)) {
+
+                    if (esAdminOEnfermero || (esMedico && cita.getMedico().equals(medicoLogueado))) {
+                        citaEncontrada = cita;
+                        indiceCita = i;
+                        break;
+                    }
+                }
             }
-        }
+        } 
 
         if (citaEncontrada != null) {
-            citaEncontrada.setEstado("En consulta");
-            sistema.getGestionCitas().modificar(indiceCita, citaEncontrada);
+            citaEncontrada.setEstado("En consulta"); 
 
             abrirGestionConsulta(citaEncontrada);
+
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo encontrar la cita seleccionada.");
         }

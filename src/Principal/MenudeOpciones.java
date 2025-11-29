@@ -398,10 +398,14 @@ public class MenudeOpciones extends javax.swing.JFrame {
         this.dispose();    }//GEN-LAST:event_CerrarSesionbtActionPerformed
 
     private void GconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GconsultaActionPerformed
-        if (!(this.sistema.getUsuarioActual() instanceof Clinica.Medico)) {
-            JOptionPane.showMessageDialog(this, "Solo los médicos pueden acceder a la gestión de consultas.");
+        String rol = this.sistema.getUsuarioActual().getRol();
+    
+        if (!("Administrador".equals(rol) || "Médico".equals(rol) || "Enfermero".equals(rol))) {
+
+            JOptionPane.showMessageDialog(this, "Solo administradores, médicos y enfermeros pueden acceder a la gestión de consultas.");
             return;
         }
+
         CitasPendientes citasFrame = new CitasPendientes(this.sistema);
         citasFrame.setSize(800, 600);
         citasFrame.setLocationRelativeTo(null);

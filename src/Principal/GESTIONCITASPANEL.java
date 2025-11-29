@@ -18,8 +18,8 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
         initComponents();
         cargarCombos();
         cargarTabla();
-        estado.setText("Pendiente"); // Texto fijo
-        estado.setForeground(new java.awt.Color(0, 102, 0)); // Color verde
+        estado.setText("Pendiente"); 
+        estado.setForeground(new java.awt.Color(0, 102, 0)); 
         estado.setFont(new java.awt.Font("Dialog", 1, 12));
     }
 
@@ -34,12 +34,12 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
             Cita c = lista[i];
             if (c != null) {
                 modelo.addRow(new Object[]{
-                    c.getFechaHora(),                    // Fecha y Hora
-                    c.getModalidad(),                    // Modalidad
-                    c.getEstado(),                       // Estado
-                    c.getPaciente().getNombres(),        // Paciente
-                    c.getMedico().getNombres(),          // Medico  
-                    c.getConsultorio().getCodigo()       // Consultorio
+                    c.getFechaHora(),                    
+                    c.getModalidad(),                    
+                    c.getEstado(),                       
+                    c.getPaciente().getNombres(),        
+                    c.getMedico().getNombres(),         
+                    c.getConsultorio().getCodigo()       
                 });
             }
         }
@@ -56,12 +56,12 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
             Cita c = lista[i];
             if (c != null) {
                 modelo.addRow(new Object[]{
-                    c.getFechaHora(),                    // Fecha y Hora
-                    c.getModalidad(),                    // Modalidad
-                    c.getEstado(),                       // Estado
-                    c.getPaciente().getNombres(),        // Paciente
-                    c.getMedico().getNombres(),          // Medico
-                    c.getConsultorio().getCodigo()       // Consultorio
+                    c.getFechaHora(),                    
+                    c.getModalidad(),                   
+                    c.getEstado(),                       
+                    c.getPaciente().getNombres(),        
+                    c.getMedico().getNombres(),          
+                    c.getConsultorio().getCodigo()       
                 });
             }
         }
@@ -73,24 +73,24 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     comboMEDICO.removeAllItems();
     COMOBconultorios.removeAllItems();
 
-    // Pacientes
+    
     for (Paciente p : sistema.getGestionPacientes().getPacientes()) {
         if (p != null) {
             comboPACIENTE.addItem(p.getNombres() + " - " + p.getDni());
         }
     }
 
-    // Médicos
+    
     for (Empleado e : sistema.getGestionEmpleados().getEmpleados()) {
         if (e instanceof Medico m) {
             comboMEDICO.addItem(m.getNombres() + " - " + m.getDni());
         }
     }
 
-    // Consultorios
+    
     for (Consultorio c : sistema.getGestionConsultorios().getConsultorios()) {
         if (c != null) {
-            COMOBconultorios.addItem(c.getCodigo()); // solo código
+            COMOBconultorios.addItem(c.getCodigo()); 
         }
     }
 }
@@ -172,7 +172,8 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Datos Citas");
+        jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
+        jLabel1.setText("Datos Citas:");
 
         jLabel5.setText("Modalidad:");
 
@@ -231,44 +232,39 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                                 .addGap(287, 287, 287)
                                 .addComponent(jLabel6))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(109, 109, 109))
+                        .addGap(55, 55, 55))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(bModificar)
                         .addGap(186, 186, 186)
                         .addComponent(bEliminar)
                         .addGap(237, 237, 237)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textMedicos)
-                                    .addComponent(textPacientes)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(FechayhoraIngresar)
-                                    .addComponent(modalidadCOMBOBOX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(COMOBconultorios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboPACIENTE, 0, 146, Short.MAX_VALUE)
-                                    .addComponent(comboMEDICO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(estado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addContainerGap(87, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
-                        .addComponent(bVolver)
-                        .addGap(77, 77, 77))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(Agregar)
-                        .addGap(58, 58, 58)
-                        .addComponent(GuardarCambios)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(Agregar)
+                            .addGap(54, 54, 54)
+                            .addComponent(GuardarCambios))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(textMedicos)
+                                .addComponent(textPacientes)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3))
+                            .addGap(34, 34, 34)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(FechayhoraIngresar)
+                                .addComponent(modalidadCOMBOBOX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(COMOBconultorios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboPACIENTE, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboMEDICO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bVolver)))
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,9 +285,9 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(modalidadCOMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textPacientes)
@@ -308,17 +304,20 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(GuardarCambios)
-                            .addComponent(Agregar))
-                        .addGap(18, 18, 18)
-                        .addComponent(bVolver)
-                        .addGap(53, 53, 53))
+                        .addComponent(Agregar)
+                        .addGap(94, 94, 94))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bModificar)
-                            .addComponent(bEliminar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(GuardarCambios)
+                                .addGap(18, 18, 18)
+                                .addComponent(bVolver))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bModificar)
+                                    .addComponent(bEliminar))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -376,10 +375,10 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
 
         if (ok) {
             actualizarTablaCitas();
-            JOptionPane.showMessageDialog(this, "✅ Cita modificada correctamente.");
+            JOptionPane.showMessageDialog(this, "Cita modificada correctamente.");
             limpiarCampos();
         } else {
-            JOptionPane.showMessageDialog(this, "❌ No se pudo modificar la cita.");
+            JOptionPane.showMessageDialog(this, "No se pudo modificar la cita.");
         }
 
     }//GEN-LAST:event_bModificarActionPerformed
@@ -484,7 +483,6 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_comboPACIENTEActionPerformed
 
     private void GuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarCambiosActionPerformed
-        // TODO add your handling code here:
         if (indiceSeleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No hay cita seleccionada para guardar.");
             return;
@@ -545,8 +543,7 @@ public class GESTIONCITASPANEL extends javax.swing.JPanel {
     
     private void limpiarCampos() {
         FechayhoraIngresar.setText("");
-        modalidadCOMBOBOX.setSelectedIndex(0); // Volver a primera opción
-        // ✅ NO limpiar el estado label - debe mantenerse como "Pendiente"
+        modalidadCOMBOBOX.setSelectedIndex(0); 
         comboPACIENTE.setSelectedIndex(-1);
         comboMEDICO.setSelectedIndex(-1);
         COMOBconultorios.setSelectedIndex(-1);        

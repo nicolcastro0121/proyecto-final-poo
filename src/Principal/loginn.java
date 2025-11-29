@@ -183,11 +183,11 @@ public class loginn extends javax.swing.JFrame {
 
             MenudeOpciones menu = new MenudeOpciones(x, sistemaGlobal);
             menu.setVisible(true);
-            //this.dispose();
+            this.dispose();
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
         }
-    
+        
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed

@@ -495,8 +495,6 @@ public class GESTIONEMPLEADOSPANEL extends javax.swing.JPanel {
         menu.setSize(800, 600);
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
-
-        // Cerrar la ventana actual
         javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
     }//GEN-LAST:event_VolverbtActionPerformed
     private void actualizarTabla() {

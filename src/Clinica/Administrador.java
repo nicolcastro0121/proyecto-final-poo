@@ -3,7 +3,6 @@ package Clinica;
 import GestionClinica.GestionConsulta;
 import GestionClinica.GestionConsultorio;
 import GestionClinica.GestionEmpleado;
-import InterfacesClinica.Reporte;
 
 public class Administrador extends Empleado{
      private GestionEmpleado gestionEmpleado;

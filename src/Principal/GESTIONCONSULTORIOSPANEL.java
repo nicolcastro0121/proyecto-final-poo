@@ -32,14 +32,13 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
                 medicoNombre = c.getMedicoAsignado().getNombres() + " " + c.getMedicoAsignado().getApellidos();
             }
 
-            // USAR EL MÉTODO QUE YA EXISTE EN CONSULTORIO
             String horarios = c.getHorariosParaTabla();
 
             model.addRow(new Object[]{
                 c.getCodigo(),
                 c.getEspecialidad(),
                 c.getEstado(),
-                horarios, // MOSTRAR HORARIOS REALES
+                horarios, 
                 medicoNombre
             });
         }
@@ -494,7 +493,6 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
         especialidadINGRESARTEXTO.setText(consultorioSeleccionado.getEspecialidad());
         Disponibilidad.setSelectedItem(consultorioSeleccionado.getEstado());
 
-        // Cargar médico asignado
         if (consultorioSeleccionado.getMedicoAsignado() != null) {
             String nombreMedico = consultorioSeleccionado.getMedicoAsignado().getNombres() + " " + 
                                  consultorioSeleccionado.getMedicoAsignado().getApellidos();
@@ -516,7 +514,6 @@ public class GESTIONCONSULTORIOSPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void cargarHorariosEnCheckboxes(String[] horarios) {
-        // Limpiar todos los checkboxes primero
         diez.setSelected(false);
         once.setSelected(false);
         doce.setSelected(false);

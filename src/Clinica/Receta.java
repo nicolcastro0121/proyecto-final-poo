@@ -1,5 +1,4 @@
 package Clinica;
-import InterfacesClinica.Imprimible; 
 
 
 public class Receta {

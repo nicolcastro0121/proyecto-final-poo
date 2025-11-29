@@ -2,6 +2,7 @@ package GestionClinica;
 
 import Clinica.Consulta;
 
+
 public class GestionConsulta {
 
     private Consulta[] consultas;
@@ -11,7 +12,7 @@ public class GestionConsulta {
         this.consultas = new Consulta[100];
         this.cantidad = 0;
     }
-
+    
     public boolean agregar(Consulta consulta) {
         if (cantidad < consultas.length) {
             consultas[cantidad] = consulta;
@@ -20,7 +21,7 @@ public class GestionConsulta {
         }
         return false;
     }
-
+    
     public boolean modificar(int posi, Consulta nuevaConsulta) {
         if (posi >= 0 && posi < cantidad) {
             consultas[posi] = nuevaConsulta;
