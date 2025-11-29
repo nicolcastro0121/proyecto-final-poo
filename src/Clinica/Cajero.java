@@ -2,7 +2,6 @@ package Clinica;
 
 import GestionClinica.GestionFactura;
 import GestionClinica.GestionConsulta;
-import InterfacesClinica.Imprimible;
 import java.util.Random;
 
 public class Cajero extends Empleado {

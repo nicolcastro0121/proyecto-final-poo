@@ -111,6 +111,10 @@ public class Paciente {
         return nombres + " " + apellidos + " - DNI: " + dni + " - Tel: " + telefono;
     }
 
+    public String getNombre() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
     
 }

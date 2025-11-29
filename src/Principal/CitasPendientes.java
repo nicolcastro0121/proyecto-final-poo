@@ -154,7 +154,6 @@ public class CitasPendientes extends javax.swing.JFrame {
             return;
         }
 
-        // Obtener los datos de la fila seleccionada
         String fechaHoraSeleccionada = tablaCITAS.getValueAt(filaSeleccionada, 0).toString(); 
         String pacienteSeleccionado = tablaCITAS.getValueAt(filaSeleccionada, 3).toString();  
 
@@ -163,86 +162,44 @@ public class CitasPendientes extends javax.swing.JFrame {
         Cita citaEncontrada = null;
         int indiceCita = -1;
 
-        // Buscar la cita en el sistema
         for (int i = 0; i < sistema.getGestionCitas().getCantidad(); i++) {
             Cita cita = citas[i];
             if (cita != null && 
                 cita.getMedico() != null && 
                 cita.getMedico().equals(medicoLogueado) &&
                 "Pendiente".equals(cita.getEstado()) &&
-                cita.getFechaHora().equals(fechaHoraSeleccionada)) {
+                cita.getFechaHora().equals(fechaHoraSeleccionada) &&
+                (cita.getPaciente().getNombres() + " " + cita.getPaciente().getApellidos()).equals(pacienteSeleccionado)) {
 
-                // Verificar que el paciente coincida (usando solo el nombre para simplificar)
-                String nombreCompletoPaciente = cita.getPaciente().getNombres() + " " + cita.getPaciente().getApellidos();
-                if (nombreCompletoPaciente.equals(pacienteSeleccionado)) {
-                    citaEncontrada = cita;
-                    indiceCita = i;
-                    break;
-                }
+                citaEncontrada = cita;
+                indiceCita = i;
+                break;
             }
         }
 
         if (citaEncontrada != null) {
-            // ✅ ACTUALIZAR ESTADO DE LA CITA
             citaEncontrada.setEstado("En consulta");
             sistema.getGestionCitas().modificar(indiceCita, citaEncontrada);
 
-            // ✅ ABRIR PANEL DE CONSULTA PASANDO LA CITA
             abrirGestionConsulta(citaEncontrada);
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo encontrar la cita seleccionada.");
-            // 🔍 DEBUG: Mostrar qué citas hay disponibles
-            debugCitasDisponibles(medicoLogueado, fechaHoraSeleccionada, pacienteSeleccionado);
-        }                                       
+        }
     }//GEN-LAST:event_AtenderActionPerformed
 
-    private void debugCitasDisponibles(Medico medico, String fechaHoraBuscada, String pacienteBuscado) {
-        System.out.println("=== DEBUG CITAS DISPONIBLES ===");
-        System.out.println("Buscando: " + fechaHoraBuscada + " - " + pacienteBuscado);
-        System.out.println("Médico: " + medico.getNombres());
-
-        Cita[] citas = sistema.getGestionCitas().getCitas();
-        for (int i = 0; i < sistema.getGestionCitas().getCantidad(); i++) {
-            Cita cita = citas[i];
-            if (cita != null && cita.getMedico() != null && cita.getMedico().equals(medico)) {
-                String pacienteInfo = cita.getPaciente().getNombres() + " " + cita.getPaciente().getApellidos();
-                System.out.println("Cita " + i + ": " + 
-                    cita.getFechaHora() + " - " + 
-                    pacienteInfo + " - " + 
-                    cita.getEstado() + " - " +
-                    "¿Coincide fecha? " + cita.getFechaHora().equals(fechaHoraBuscada) + " - " +
-                    "¿Coincide paciente? " + pacienteInfo.equals(pacienteBuscado));
-            }
-        }
-        System.out.println("===============================");
-    }
-    
     private void abrirGestionConsulta(Cita cita) {
-        try {
-            // ✅ CREAR EL PANEL DE CONSULTA PASANDO LA CITA
-            GESTIONCONSULTAPANEL panelConsulta = new GESTIONCONSULTAPANEL(sistema, cita);
+        GESTIONCONSULTAPANEL panelConsulta = new GESTIONCONSULTAPANEL(sistema, cita);
+        
+        javax.swing.JFrame ventana = new javax.swing.JFrame("Gestión de Consulta - " + 
+            cita.getPaciente().getNombres() + " " + cita.getPaciente().getApellidos());
+        
+        ventana.setContentPane(panelConsulta);
+        ventana.setSize(1200, 700);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
 
-            // ✅ CREAR UNA NUEVA VENTANA PARA LA CONSULTA
-            javax.swing.JFrame ventanaConsulta = new javax.swing.JFrame("Gestión de Consulta - " + 
-                cita.getPaciente().getNombres() + " " + cita.getPaciente().getApellidos());
-
-            ventanaConsulta.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
-            ventanaConsulta.getContentPane().add(panelConsulta);
-            ventanaConsulta.pack();
-            ventanaConsulta.setSize(1200, 700);
-            ventanaConsulta.setLocationRelativeTo(null);
-            ventanaConsulta.setVisible(true);
-
-            // ✅ CERRAR ESTA VENTANA DE CITAS PENDIENTES
-            this.dispose();
-
-            System.out.println("✅ Cita pasada a consulta: " + cita.getPaciente().getNombres());
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, 
-                "Error al abrir la consulta: " + e.getMessage());
-            e.printStackTrace();
-        }
+        // Cerrar esta ventana
+        this.dispose();
     }
 
     /**

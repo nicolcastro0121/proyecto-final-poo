@@ -55,22 +55,29 @@ public class MenudeOpciones extends javax.swing.JFrame {
                 Reportes.setEnabled(true);
                 Citas.setEnabled(true);
                 GestionPacientes.setEnabled(true);
-                break;
-            case "Médico":
                 Gconsulta.setEnabled(true);
-                Citas.setEnabled(true);
+                Facturas.setEnabled(true);
+                
+                break;
+            case "Recepcionista":
+                Gconsulta.setEnabled(false);
                 GestionPacientes.setEnabled(true);
+                Citas.setEnabled(true);
+                Facturas.setEnabled(true); 
+                break;
+            
+            case "Medico":
+                Gconsulta.setEnabled(true);
                 break;
             
             case "Cajero":
                 Facturas.setEnabled(true);
                 break;
-            case "Recepcionista":
-                GestionPacientes.setEnabled(true);
-                Citas.setEnabled(true);
-                Facturas.setEnabled(true);
+            case "Enfermero":
+                Gconsulta.setEnabled(true);
                 break;
         }
+
     }
 
     private void deshabilitarTodo() {
@@ -395,8 +402,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Solo los médicos pueden acceder a la gestión de consultas.");
             return;
         }
-
-        // Abrir el frame de citas pendientes
         CitasPendientes citasFrame = new CitasPendientes(this.sistema);
         citasFrame.setSize(800, 600);
         citasFrame.setLocationRelativeTo(null);
